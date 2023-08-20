@@ -1,0 +1,62 @@
+#cover-image {
+  height: 100vh;
+}
+#cover-image .container {
+  position: relative;
+  margin-top: 14vh;
+}
+#cover-image img {
+  width: 100%;
+}
+#cover-text {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  max-width: 35%;
+  height: 100%;
+}
+#cover-image h1, 
+#cover-image h5,
+#cover-image a {
+  color: white;
+  position: relative;
+}
+#cover-image h1 {
+  top: 150px;
+} 
+#cover-image h5 {
+  top: 225px;
+}
+#cover-image a {
+  top: 275px;
+}
+.apollo-cards a {
+  display: block;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 0 .5rem;
+}
+.apollo-cards a {
+ color: black;
+ border-color: black;
+}
+.apollo-cards a:hover {
+ color: var(--link-hover);
+ border-color: var(--link-hover);
+}
+.apollo-cards h5 {
+  transition: color .4s ease;
+}
+.apollo-cards h5,
+.apollo-cards span {
+ color: black;
+}
+.apollo-cards a:hover h5,
+.apollo-cards a:hover span {
+ color: var(--link-hover);
+}
+.apollo-cards .material-icons {
+  transition: color .4s ease;
+  font-size: 2.5rem;
+}

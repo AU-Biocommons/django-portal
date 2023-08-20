@@ -1,0 +1,70 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="theme-black" id="cover-image">
+  <div class="container">
+    <img src="{% static 'home/img/surgeonfish.jpg' %}" alt="Aquarium fish">
+    <div id="cover-text">
+      <h1>Apollo Portal</h1>
+      <h5>
+        Apollo Portal is an Australian genome curation and editing portal
+      </h5>
+      <a class="btn btn-primary" href="/signup">Sign up</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h1 class="mb-5">Apollo Portal</h1>
+    <p>
+      Apollo is web-browser accessible system facilitating real-time collaborative curation and genome annotation editing. We provide a hosted Apollo Portal where your genome assembly and supporting evidence files can be hosted, and all the system administration is taken care of, so you and your team can focus on the annotation curation itself. Apollo Portal is free to use for Australian-based research groups and research consortia and is resourced to support genomes of any size. Sign up for an account to start using Apollo Portal.
+    </p>
+    <p>
+      When papers acknowledge the Australian Apollo Service, they support continued research infrastructure investments by institutions and governments. When you use the Australian Apollo Service to support your publication or project, please cite its use using the following acknowledgement statement and web address:
+    </p>
+    <blockquote>
+      This work was supported by the Australian Apollo Service https://apollo-portal.genome.edu.au/ provided by the Australian BioCommons and Operational Partners.
+    </blockquote>
+  </div>
+</section>
+
+<section class="mb-5">
+  <div class="container">
+    <div class="row apollo-cards text-center my-5">
+      <a class="col" href="https://genomearchitect.readthedocs.io/en/latest/index.html">
+        <span class="material-icons">public</span>
+        <h5>Apollo</h5>
+        <p>
+          Apollo lets you conduct real-time collaborative curation and editing of genome annotations.
+        </p>
+      </a>
+
+      <a class="col" href="/organisms">
+        <span class="material-icons">local_florist</span>
+        <h5>Organisms</h5>
+        <p>
+          Apollo Portal hosts genome data from a growing list of species.
+        </p>
+      </a>
+
+      <a class="col" href="/resources">
+        <span class="material-icons">book</span>
+        <h5>Resources</h5>
+        <p>
+          Online documentation including tutorials, videos, webinars & courses for using Apollo Portal.
+        </p>
+      </a>
+    </div>
+
+    <div class="text-center">
+      <a class="btn btn-primary" href="/signup">Sign up</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+body {
+  color: black;
+  background-color: white;
+}
+main {
+  margin-bottom: 100px;
+}
+section {
+  padding: 1.6rem 0;
+}
+blockquote {
+  font-style: italic;
+  padding: 1.6rem;
+  border-left: 4px solid var(--link-hover);
+}
+.btn-primary {
+  color: black;
+  border-color: black;
+  background: white;
+}
+.btn-primary:hover {
+  color: white;
+  border: 1px solid var(--link-hover);
+  background-color: var(--link-hover);
+}
+a {
+  color: var(--link-hover);
+}
+footer img {
+  height: 50px;
+  width: auto;
+}
+footer .copyright {
+  font-size: .8rem;
+}
+.footer-bottom-section {
+  border-top: 4px double black;
+}
+.theme-black {
+  color: white;
+  background-color: var(--theme-color);
+}
+.theme-black .btn-primary {
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+}

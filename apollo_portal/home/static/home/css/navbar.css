@@ -1,0 +1,33 @@
+nav {
+  background-color: var(--theme-color);
+}
+.navbar-brand {
+  font-size: 1.75rem;
+}
+.nav-item {
+  padding: 4px .3rem;
+}
+.nav-item:hover {
+  background-color: #222;
+}
+.dropdown-menu, .dropdown-item {
+  color: white;
+  background-color: #222;
+}
+.dropdown-item {
+  border-top: 1px solid #494949;
+}
+.dropdown-item:hover {
+  color: inherit;
+  background-color: inherit;
+  border-top: 1px solid #494949;
+}
+.search-icon {
+  position: relative;
+  color: var(--border-color);
+  line-height: 1;
+  cursor: pointer;
+  padding: 8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
