@@ -6,10 +6,12 @@ def index(request):
 
 
 def signup(request):
+    # TODO
     return render(request, 'home/signup.html')
 
 
 def contact(request):
+    # TODO
     return render(request, 'home/contact.html')
 
 
@@ -22,14 +24,17 @@ def documentation(request):
 
 
 def training(request):
+    # TODO
     return render(request, 'home/resources/training.html')
 
 
 def faqs(request):
+    # TODO
     return render(request, 'home/resources/faqs.html')
 
 
 def video(request):
+    # TODO
     return render(request, 'home/resources/video.html')
 
 

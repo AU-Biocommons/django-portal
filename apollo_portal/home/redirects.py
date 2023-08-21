@@ -4,12 +4,12 @@ from django.urls import path
 from django.shortcuts import redirect
 
 REDIRECT_PATHS = {
-     '/gettingstarted': '/resources/start',
-     '/userdocumentationandtutorials': '/resources/documentation',
-     '/trainingandhelpresources': '/resources/training',
-     '/node/27': '/resources/faqs',
-     '/termsofuse': '/resources/terms',
-     '/form/signup': '/signup',
+     'gettingstarted': '/resources/start',
+     'userdocumentationandtutorials': '/resources/documentation',
+     'trainingandhelpresources': '/resources/training',
+     'node/27': '/resources/faqs',
+     'termsofuse': '/resources/terms',
+     'form/signup': '/signup',
 }
 
 
