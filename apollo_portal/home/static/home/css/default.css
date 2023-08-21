@@ -234,7 +234,6 @@ acronym {
 /* Typography -> Blockquote */
 blockquote {
   position: relative;
-  background: var(--light) url('../images/icons/quote.svg') 10px 10px no-repeat;
   margin: 10px 0;
   padding: 1rem;
   box-shadow: 0 0 4px 2px var(--border-color);
