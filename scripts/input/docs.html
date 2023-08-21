@@ -1,0 +1,283 @@
+<div class="block-region region-content">
+  <div data-drupal-messages-fallback="" class="hidden"></div><div id="block-milipro-page-title" class="block">
+
+  
+<div class="block-content">
+    <div class="page-title-wrap">
+
+    <h1 class="page-title"><span>User Documentation</span>
+</h1>
+  
+</div> <!--/.page-title-wrap -->
+
+  </div>
+</div> <!--/.block-content -->
+<div id="block-milipro-content" class="block">
+
+  
+<div class="block-content">
+    <article data-history-node-id="21" role="article" about="/userdocumentationandtutorials" class="node node-view-mode-full">
+
+
+
+<div class="node-content">
+  
+          <div class="field field--name-body field--type-text-with-summary field--label-hidden field-item"><div id="eight"></div><br><br><p>This document provides guidance and information about: </p><br><p><a class="myclass" href="#one">1. How Do I Sign Up for an Apollo Instance?</a></p>
+<p><a class="myclass" href="#two">2. What Data Files Are Required To Create Genome Tracks In Apollo?</a></p>
+<p><a class="myclass" href="#three">3. How Do I Prepare My Data Prior to Upload?</a></p>
+<p><a class="myclass" href="#four">4. How Do I Generate a Public-Key?</a></p>
+<p><a class="myclass" href="#five">5. How Do I Upload Data and Create a Genome Track via the Command Line?</a></p>
+<p><a class="myclass" href="#six">6. How Do I Upload Data and Create a Genome Track via the Apollo (browser) Interface?</a></p>
+<p><a class="myclass" href="#seven">7. How Do I Make My Genome Public?</a></p>
+<p><a class="myclass" href="#eight">8. How Do I Manually Annotate My Genome In Apollo?</a></p>
+
+<div id="one"></div><br><br><br><h4>1. How Do I Sign Up for an Apollo Instance?</h4><br><p>Only project administrators can add or remove user accounts.</p>
+<p>To add a user account:</p> 
+<ol><li>Log into the Apollo Instance via the Apollo browser interface using your credentials</li>
+<li>Click on the “User” tab </li>
+<li>Click on “+ Create User” </li>
+<li>Click on the “Detail” tab and add the following information:
+<ul><li>First Name</li>
+<li>Last Name</li>
+<li>Email</li>
+<li>Password</li>
+<li>Role: Choose from “user” or “admin”</li>
+</ul></li>
+<li>Click on the “Groups” tab
+<ul><li>Assign the user to a group (optional)</li>
+<li>Assign the user permissions for an organism. This can only be done after the organism has been  added to the Apollo Instance</li>
+</ul></li></ol><br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+
+<div id="two"></div><br><br><br><h4>2. What Data Files are Required to Create Genome Tracks in Apollo?</h4><br><p>This section provides a list of the available file formats that can be used with Apollo.</p>
+<h3> Table 1. Required Data Files for Genome Track Creation.</h3><h3>
+</h3><table><tbody><tr><th>File Format</th>
+  <th>Description</th>
+  <th>Requirement</th>
+</tr><tr><td>Fasta</td>
+  <td>Genome Reference File</td>
+  <td>Mandatory</td>
+</tr><tr><td>Fai</td>
+  <td>Genome Reference Index File</td>
+  <td>Mandatory</td>
+</tr><tr><td>Gff3</td>
+  <td>Genome Annotation File</td>
+  <td>Mandatory</td>
+</tr><tr><td>Gff3.gz</td>
+  <td>Genome Annotation Compressed File</td>
+  <td>Mandatory</td>
+</tr><tr><td>2bit</td>
+  <td>Genomic Sequence in Binary File</td>
+  <td>Optional</td>
+</tr><tr><td>Bam</td>
+  <td>Alignment File</td>
+  <td>Optional</td>
+</tr><tr><td>Bai</td>
+  <td>Alignment Index File</td>
+  <td>Optional</td>
+</tr><tr><td>Vcf</td>
+  <td>Variant Calling File</td>
+  <td>Optional</td>
+</tr><tr><td>Vcf.gz</td>
+  <td>Variant Calling Index File</td>
+  <td>Optional</td>
+</tr><tr><td>bw</td>
+  <td>A compressed, indexed, binary format of genome-wide signal data</td>
+  <td>Optional</td>
+</tr></tbody></table><br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+
+<div id="three"></div><br><br><br><h4>3. How do I Prepare My Data Prior to Upload?</h4><br><p>Apollo is a Genome Browser. It allows you to visualise evidence from analyses on a genome, create and edit genes, and create and edit annotations on those genes. To allow you to view the genome in your Apollo Instance, the reference genome in FASTA file format and the genome annotation in GFF file format are required. The reference genome can be obtained from the public repository or generated from any genome assembly workflow. The genome annotation describes genes and other features of DNA, RNA and protein sequences. The genome annotation can be generated using any genome annotation workflow. For the evidence files such as alignment file (BAM), variant file (VCF) and genome coverage file (Bigwig), they should be prepared using the appropriate workflows before uploading into your Apollo Instance.</p>
+
+<p>This section outlines the steps required to prepare data files to create a genome track in Apollo. In order to create tracks in your Apollo Instance you must provide the 'mandatory' files listed in <a class="myclass" href="https://apollo-portal.genome.edu.au/userdocumentationandtutorials#two">Table 1</a>:</p>
+
+<ol><li>Organism files:
+<ol style="list-style-type:lower-alpha"><li>Genome reference file (fasta, fa, fna)</li>
+<li>Genome reference indexing file (fai). It can be yielded from running the following command in the <a class="myclass" href="http://www.htslib.org/">Samtools suite of programs:</a> 
+<p style="font-family:'Courier New'">
+&gt;samtools faidx [species.fasta]</p></li>
+<li>Genome sequence file in binary format (2bit). The 2bit file can be created using the following command in the<a class="myclass" href="https://genome.ucsc.edu/goldenpath/help/twoBit.html"> faToTwoBit program:</a>   
+<p style="font-family:'Courier New'">
+&gt;faToTwoBit [species.fasta] [species.2bit] </p></li>
+</ol></li><li>Genome annotation files:
+<ol style="list-style-type:lower-alpha"><li>Genome annotation file (gff3) generated from the annotation process.</li>
+<li>Genome annotation compressed file (gz). This file can be compressed by running the following commands in the <a href="http://www.htslib.org/">Samtools suite of programs:</a>
+<p style="font-family:'Courier New'">
+&gt;bgzip [species.sorted.gff3]<br>
+&gt;tabix -p gff [species.sorted.gff3.gz]</p></li>
+</ol></li><li>Evidence track files: 
+<ol style="list-style-type:lower-alpha"><li>Alignment file (bam)</li>
+<li>Alignment index file (bam). The index file can be yield from running the following commands in the <a href="http://www.htslib.org/">Samtools suite of programs:</a>
+<p style="font-family:'Courier New'">
+&gt;samtools index [species.bam] </p></li>
+Note: Please make sure the reference sequence header (ID) does not contain any space in your bam file. Jbrowse can't capture the space in the reference sequence ID within BAM file. 
+<li> Do the followings if there is a space in your reference sequence ID within your bam file.</li>
+<p style="font-family:'Courier New'">
+&gt; samtools view -H example.bam &gt; header.sam <br>
+&gt; sed -i 's/PUT_YOUR_REMOVAL_STRING_WITH_SPACE/ /g' header.sam <br>
+ Example : if the original reference sequence ID is formatted with space  (i.e chr1 species1), the space between chr1 species1 needs to be removed. <br>
+ Usage : sed -i s/ species1/ /g' header.sam (Note: there is a leading space in front of species1) <br>
+&gt; samtools reheader header.sam example.bam<br>
+&gt; samtools index example.bam</p></ol></li> 
+</ol><li>Variant files:
+<ol style="list-style-type:lower-alpha"><li>Variant calling file (vcf) generated from the variant calling process.</li>
+<li>Variant calling index file (vcf.gz). The variant calling index file of the variant calling file. The index file can be created running the following commands in the<a class="myclass" href="http://www.htslib.org/"> Samtools suite of programs:</a> 
+<p style="font-family:'Courier New'">
+&gt;bgzip [species.vcf]<br>
+&gt;tabix -p vcf [species.vcf.gz]</p></li>
+</ol></li><li>BigWig files are compressed, indexed, binary format of genome-wide signal data. They can be created by running the following commands in the <a class="myclass" href="https://bedtools.readthedocs.io/en/latest/">bedtools suite of programs:</a>
+<p style="font-family:'Courier New'">
+&gt;bedtools genomecov -ibam -bg -split -strand + -I [species.bam] -g Chrominfo.txt &gt; [species.plus.bedGraph]<br>
+&gt;bedtools genomecov -ibam -bg -split -strand - -I [species.bam] -g Chrominfo.txt &gt; [species.minus.bedGraph]<br>
+&gt;bedGraphToBigWig [species.plus.bedGraph] Chrominfo.txt [species.plus.bw]<br>
+&gt;bedGraphToBigWig [species.minus.bedGraph] Chrominfo.txt [species.minus.bw]</p></li>
+
+
+<br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+<div id="four"></div><br><br><br><h4>4. How Do I Generate a Public-Key?</h4><be><ul style="list-style-type: disc"><li>The Project Administrator is required to share a public-key to securely transfer data into their Instance via the command line. For more information about public-key cryptography, you can view <a class="myclass" href="https://en.wikipedia.org/wiki/Public-key_cryptography"> here</a>. </li>
+
+<li>To create a public/private rsa key pair on your Unix/Linux/MacOS/Windows system, run the following commands on your local machine (the computer that you will be accessing the Apollo Instance from):</li>
+
+<p style="font-family:'Courier New'">
+&gt;ssh-keygen -t rsa -f ~/.ssh/firstname_lastname_key
+</p>
+<li>After running the above command, a passphrase (essentially a password) will be requested. You can either leave this blank by hitting return/enter or create a passphrase to recall for future use of the key pair.</li>
+<li>The following command sets permissions for the .ssh/:</li>
+<p style="font-family:'Courier New'">
+&gt;chmod 600 ~/.ssh/firstname_lastname_key 
+</p>
+<li>The following command outputs your public key to the terminal and saves the public-key titled "firstname_lastname_key.pub" in ~/.ssh/: </li>
+<p style="font-family:'Courier New'">
+&gt;cat ~/.ssh/firstname_lastname_key.pub 
+</p>
+<li>You can now copy the file to a convenient location. Choose one that is accessible to your mail client, such as the Desktop, by running the following command:</li>
+<p style="font-family:'Courier New'">
+&gt;cp ~/.ssh/firstname_lastname_key.pub ~/Desktop
+</p>
+<li>Send the details of your public-key to the Apollo Service Team via return email or by sending an email to <a class="myclass" href="mailto:apollo-support@genome.edu.au">apollo-support@genome.edu.au</a> with the subject header "Public-key for Apollo Instance". Please note, an automated response to this email will be signed off by one of our partners, the ARDC Support Team. Please also note that you should never give out the private-key (i.e. the <span style="font-family:'Courier New'">firstname_lastname_key</span> file). Following the creation of your Instance and the addition of your public-key, login credentials will be provided to you.</li>
+
+</ul><br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+
+
+<div id="five"></div><br><br><be><h4>5. How Do I Upload Data and Create a Genome Track via the Command Line?</h4><br><p>Data to support your genome annotations can be uploaded via the command line or terminal on your local machine. This method is recommended for data files that exceed 2 GB. If your data files are less than 2 GB, you can also upload them via the Apollo (browser) interface. To ensure you can create the visual representation of your genome in the Apollo Instance, known as a genome track, there are a minimum number of evidence files that are required. The files that are 'mandatory' for genome track creation are listed in <a class="myclass" href="https://apollo-portal.genome.edu.au/userdocumentationandtutorials#two">Table 1</a>.</p>
+
+<ul><li>To access your Instance, you will need to <a class="myclass" href="https://apollo-portal.genome.edu.au/userdocumentationandtutorials#four">create a public-key</a> to share with the Apollo Service Team for the creation of a login. If you have not yet received your login credentials, email your public-key file to the <a class="myclass" href="mailto:apollo-support@genome.edu.au">Apollo Service Team</a> with the subject header "Public-key for Apollo Instance". Please note, an automated response to this email will be signed off by one of our partners, the ARDC Support Team.</li>
+<li>You can login to your Apollo Instance with your credentials with the SSH command as follows:</li>
+<p style="font-family:'Courier New'">
+&gt; ssh -i /path/to/your/private_key_file username@example.genome.edu.au 
+</p>
+<li>For example, for the username, 'doe_user', with a host name, 'ocean.genome.edu.au', and a private key file, 'jane_doe_key', stored in their /.ssh/, they would use the following command to copy files from their local environment to their Apollo Instance:</li>
+<p style="font-family:'Courier New'">
+&gt; ssh -i ~/.ssh/jane_doe_key doe_user@ocean.genome.edu.au 
+</p>
+
+<li>Once access has been granted, your prompt will indicate that you are in your apollo instance, e.g. <span style="font-family:'Courier New'">username@apollo-0##:~$</span>. Navigate to the folder ’apollo_data’. To do this, you can use the following commands:
+<p style="font-family:'Courier New'">
+&gt;cd /home/data/apollo_data
+</p></li>
+<li>While in the folder ‘apollo_data’, create a new folder for your organism named ‘organism_A’ using the following command:
+<p style="font-family:'Courier New'">
+&gt;mkdir organism_A
+</p></li>
+<li>Now you can transfer your data files into this folder. To copy a single file into your new folder, 'organism_A', navigate to a new terminal prompt connected to your local environment and run:
+<p style="font-family:'Courier New'">
+&gt;scp -i ~/.ssh/jane_doe_key organism_A.fa doe_user@ocean.genome.edu.au:/home/data/apollo_data/organism_A/           
+</p></li>
+<li>To copy a complete directory of files in a folder, including subfolders and their files to the 'organism_A' folder you can use:
+<p style="font-family:'Courier New'">
+&gt;scp -i ~/.ssh/jane_doe_key -r organism_A_files/ doe_user@ocean.genome.edu.au:/home/data/apollo_data/organism_A/
+</p></li>
+
+<li>Navigate into the folder named ‘organism_A’ and make sure the genome reference file (fasta and faidx) and the annotation file (gff3 and gff3.gz) are in this folder.</li>
+<li>To ensure the tool/command is available in the environment you are in, you can run:
+<p style="font-family:'Courier New'">
+&gt;export PATH=/opt/Apollo-2.6.x/jbrowse/bin:$PATH <br>
+Note: replace x with the Apollo version (i.e. Apollo-2.6.5) in your instance 
+</p></li>
+<li>Prepare the config file with the following commands:
+<p style="font-family:'Courier New'">
+&gt;prepare-refseqs.pl --fasta [organism_A.fa] <br>
+&gt;flatfile-to-json.pl –-tracklabel [organism_A] –-key “organism_A” –-gff organism_A.gff3 –-trackType CanvasFeatures –-type CDS –-autocomplete all<br>
+&gt;generate-names.pl <br>
+&gt;ln -s data/tracks tracks <br>
+&gt;ln -s data/seq seq <br>
+&gt;ln -s data/trackList.json trackList.json <br>
+&gt;ln -s data/names names <br></p></li>
+<li>You can follow the instructions on page 7 in this <a class="myclass" href="https://buildmedia.readthedocs.org/media/pdf/genomearchitect/2.1.0/genomearchitect.pdf">document</a> to complete the creation of your reference genome. These are: <br>
+1. Navigate to your Instance via the browser interface and log in<br>
+2. Go to 'Organism' tab in the bottom right-hand-side of the 'Annotator Panel'<br>
+3. Select (+) 'Add New Organism'<br>
+4. Fill out details, i.e. Name, Genus, Species, Directory, etc.<br>
+5. Click on 'Create Organism' <br>
+6. At the top of the annotation panel, select the 'Tracks' tab for your organism of interest. You should now see genome tracks in the visualisation window.<br></li>
+<li>For further instructions about configuring track data files, you can read through the <a class="myclass" href="https://genomearchitect.readthedocs.io/en/latest/Data_loading.html">official Apollo documentation of data loading.</a></li>
+</ul><br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+
+<div id="six"></div><br><br><br><h4>6. How Do I Upload Data and Create a Genome Track via the Apollo (browser) Interface?</h4><br><p>This method is recommended for data files that are less than 2 GB, if your data files exceed 2 GB, you can upload them via the <a class="myclass" href="https://apollo-portal.genome.edu.au/userdocumentationandtutorials#five">command line</a>. To ensure you can create the visual representation of your genome in the Apollo Instance, known as a genome track, there are a minimum number of evidence files that are required. The files that are 'mandatory' for genome track creation are listed in <a class="myclass" href="https://apollo-portal.genome.edu.au/userdocumentationandtutorials#two">Table 1</a>.</p>
+
+<ol style="list-style-type:lower-alpha"><li>Log into your Apollo Instance </li>
+<li>If the Apollo Instance is newly built, please follow the instructions below to:</li>
+<ol style="list-style-type:lower-roman"><li>upload your reference genome</li>
+<li>upload your tracks once your reference genome upload is complete.</li>
+</ol><li>In the 'Annotator Panel' to the right-hand side of the view and click on 'Organism' tab.</li>
+<ol style="list-style-type:lower-roman"><li> Click on the "Upload New Organism" buttom at the bottom of the right-hand side panel <img src="/sites/default/files/inline-images/Upload_New_Organism_Button.PNG"></li> 
+<li> Follow the instruction on the pop-up menu to upload your reference genome <img src="/sites/default/files/inline-images/Upload_New_Organism_FileType.PNG"></li> 
+<li> Click on "Upload" button when finished
+</li></ol><li>In the ‘Annotator Panel’ to the right-hand side of the view and click on ‘Tracks’ tab
+<ol style="list-style-type:lower-roman"><li>Click on “New Track” button</li>
+<li>Select Track Type <br><img src="/sites/default/files/inline-images/Track_Type.PNG"></li>
+<li>Provide the information of the upload track (i.e GFF3)<br><img src="/sites/default/files/inline-images/Track_Type_gff3.PNG"></li>
+<li>Click On "Upload" button when finished
+</li></ol></li>
+
+<br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+
+<div id="seven"></div><br><br><be><h4>7. How Do I Make My Genome Public?</h4><br><p>A genome can be published via your Apollo Instance (browser) interface:</p>
+<ol><li>Log into your Apollo Instance </li>
+<li>In the ‘Annotator Panel’ to the right-hand side of the view and click on ‘Organism’ tab.</li>
+<li>Tick the ‘Public’ box at the bottom of the ‘Details’ tab.</li>
+<li>At the top of the 'Annotator Panel' above the tabs is a dropdown box to the right of a chainlink icon, select the organism from the dropdown and click on the chainlink icon.</li>
+<li>You should be offered the 'Public URL' in a new window. Right-click on 'Public URL' to select the link and copy the address to share the genome publicly.</li>
+<li>You can direct users to select the organism they wish to view by clicking on the options available on the left-hand side once accessing the link using a public URL. If only one organism is available, this organism will be shown.</li>
+
+</ol><br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p>
+
+<div id="eight"></div><br><br><br><h4>8. How Do I Manually Annotate My Genome in Apollo?</h4><br><p>Detailed documentation on the use of Apollo for manual annotation can be found in the Apollo User’s Guide. See also tutorials on manual genome annotation and Apollo in the <a class="myclass" href="https://apollo-portal.genome.edu.au/resources">Training and Help Resources</a> tab.</p><br><p><a class="myclass" href="#eight"><span class="material-icons">
+arrow_upward
+</span>Return to top of page</a></p><br></be></ol></be></be></div>
+    
+<nav class="book-navigation" role="navigation" aria-labelledby="book-label-19">
+  
+        <h2 class="visually-hidden">Book traversal links for User Documentation</h2>
+    <ul class="book-pager">
+            <li class="book-pager-item book-pager-item-previous">
+        <a href="/gettingstarted" rel="prev" title="Go to previous page"><i class="icon-long-arrow-left"></i> Getting Started </a>
+      </li>
+                  <li class="book-pager-item book-pager-item-center">
+        <a href="/resources" title="Go to parent page"><i class="icon-arrow-circle-o-up"></i> Up</a>
+      </li>
+                  <li class="book-pager-item book-pager-item-next">
+        <a href="/trainingandhelpresources" rel="next" title="Go to next page">Training, Tutorials and Other Resources <i class="icon-long-arrow-right"></i></a>
+      </li>
+        </ul>
+    </nav>
+
+</div>
+</article>
+
+  </div>
+</div> <!--/.block-content -->
+
+</div>

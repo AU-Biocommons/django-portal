@@ -18,6 +18,9 @@ blockquote {
 a {
   color: var(--link-hover);
 }
+code {
+  display: inline-block;
+}
 th {
   color: black;
   background: white;
@@ -47,6 +50,10 @@ ol li ol li ol {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.doc-nav .arrow {
+  font-size: 2rem;
+  line-height: 0.5;
 }
 
 /* Footer */

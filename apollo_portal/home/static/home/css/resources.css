@@ -9,6 +9,9 @@ h3 {
   margin-top: 2rem;
   margin-bottom: 0.6rem;
 }
+li {
+  padding: .5rem 0;
+}
 ol.alpha {
   list-style-type: lower-alpha;
 }
@@ -23,9 +26,13 @@ table th {
 table td {
   background-color: var(--table-body);
 }
+
+/* Terms of use */
 #feature-catalog-table th:first-child {
   background-color: transparent;
 }
 #feature-catalog-table td:first-child {
   white-space: nowrap;
 }
+
+/*  */
