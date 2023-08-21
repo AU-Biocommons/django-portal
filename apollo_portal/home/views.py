@@ -7,3 +7,7 @@ def index(request):
 
 def terms(request):
     return render(request, 'home/resources/terms.html')
+
+
+def getting_started(request):
+    return render(request, 'home/resources/getting-started.html')
