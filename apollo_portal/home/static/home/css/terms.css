@@ -1,0 +1,31 @@
+
+section {
+  margin-bottom: 2rem;
+}
+h1 {
+  margin-bottom: 4rem;
+}
+h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+}
+ol.alpha {
+  list-style-type: lower-alpha;
+}
+table {
+  font-size: .7rem;
+}
+table th {
+  color: black;
+  font-weight: bold;
+  background-color: var(--table-head);
+}
+table td {
+  background-color: var(--table-body);
+}
+#feature-catalog-table th:first-child {
+  background-color: transparent;
+}
+#feature-catalog-table td:first-child {
+  white-space: nowrap;
+}

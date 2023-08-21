@@ -14,6 +14,19 @@ blockquote {
   padding: 1.6rem;
   border-left: 4px solid var(--link-hover);
 }
+a {
+  color: var(--link-hover);
+}
+th {
+  color: black;
+  background: white;
+}
+ol li ol {
+  list-style: lower-alpha;
+}
+ol li ol li ol {
+  list-style: lower-roman;
+}
 .btn-primary {
   color: black;
   border-color: black;
@@ -24,9 +37,8 @@ blockquote {
   border: 1px solid var(--link-hover);
   background-color: var(--link-hover);
 }
-a {
-  color: var(--link-hover);
-}
+
+/* Footer */
 footer img {
   height: 50px;
   width: auto;
