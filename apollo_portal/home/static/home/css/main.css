@@ -3,6 +3,7 @@ body {
   background-color: white;
 }
 main {
+  padding-top: 2rem;
   margin-bottom: 100px;
 }
 section {
