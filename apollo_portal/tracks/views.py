@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def index(request):
-    return render(request, 'tracks/index.html')
+def organisms(request):
+    return render(request, 'tracks/organisms.html')

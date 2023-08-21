@@ -3,6 +3,7 @@ body {
   background-color: white;
 }
 main {
+  min-height: calc(65vh - 80px);
   padding-top: 2rem;
   margin-bottom: 100px;
 }
