@@ -1,0 +1,11 @@
+{% include "django/forms/widgets/select.html" %}
+<input type="text" name="{{ widget.name }}_other" id="other_field" value="{{ widget.other_value }}" style="display:none;">
+<script>
+  document.getElementById('id_choice_field').addEventListener('change', function() {
+    if (this.value === 'other') {
+      document.getElementById('other_field').style.display = 'block';
+    } else {
+      document.getElementById('other_field').style.display = 'none';
+    }
+  });
+</script>
