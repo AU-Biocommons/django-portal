@@ -47,6 +47,11 @@ def index(request):
     return render(request, 'home/index.html')
 
 
+def about(request):
+    # TODO
+    return render(request, 'home/about.html')
+
+
 def signup(request):
     # TODO
     return render(request, 'home/signup.html')
@@ -76,14 +81,12 @@ def training(request):
 
 
 def faqs(request):
-    # TODO
     return render(request, 'home/resources/faqs.html', {
         'nav': get_resource_nav_context(request),
     })
 
 
 def video(request):
-    # TODO
     return render(request, 'home/resources/video.html', {
         'nav': get_resource_nav_context(request),
     })

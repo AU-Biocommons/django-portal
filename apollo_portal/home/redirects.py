@@ -8,6 +8,7 @@ REDIRECT_PATHS = {
      'userdocumentationandtutorials': '/resources/documentation',
      'trainingandhelpresources': '/resources/training',
      'node/27': '/resources/faqs',
+     'video': '/resources/video',
      'termsofuse': '/resources/terms',
      'form/signup': '/signup',
 }

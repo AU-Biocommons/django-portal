@@ -34,3 +34,9 @@ table td {
 #feature-catalog-table td:first-child {
   white-space: nowrap;
 }
+
+/* Video */
+iframe.video {
+  width: 100%;
+  height: 550px;
+}

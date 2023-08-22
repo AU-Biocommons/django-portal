@@ -1,0 +1,51 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>Video Resources | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <section>
+    <h3>What is gene annotation?</h3>
+    <p>
+      May, 2015
+    </p>
+    <iframe class="video" src="https://www.youtube.com/embed/QKs20geaBbI"></iframe>
+  </section>
+
+  <section>
+    <h3>GCC Overview of main features </h3>
+    <p>
+      July, 2016
+    </p>
+    <iframe class="video" src="https://www.youtube.com/embed/2KsxldPjM9A"></iframe>
+  </section>
+
+  <section>
+    <h3>EMBL-ABR training hands-on workshop</h3>
+    <p>
+      November, 2017
+    </p>
+    <iframe class="video" src="https://www.youtube.com/embed/Wec7ZlXykQc"></iframe>
+  </section>
+
+  <section>
+    <h3>EMBL-ABR training</h3>
+    <p>
+      August, 2018
+    </p>
+    <iframe class="video" src="https://www.youtube.com/embed/K2HqLzTlaDw"></iframe>
+  </section>
+
+  <section>
+    <h3>Manual gene annotation in Apollo by Dan Lawson</h3>
+    <p>
+      VeuPathDB, May, 2020
+    </p>
+    <iframe class="video" src="https://www.youtube.com/embed/RMXZDBMh8Fo"></iframe>
+  </section>
+</div>
+{% endblock %}
