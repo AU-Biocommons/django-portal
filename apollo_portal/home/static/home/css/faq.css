@@ -1,0 +1,39 @@
+#faq-accordion .card-header {
+    padding: .25rem .5rem;
+  }
+  #faq-accordion .btn-link {
+    color: black;
+    font-weight: bold;
+    padding-left: 2rem;
+  }
+  #faq-accordion .btn-link:hover {
+    color: black;
+    text-decoration: none;
+  }
+  #faq-accordion .btn-link::before,
+  #faq-accordion .btn-link::after {
+    position: relative;
+    content: '';
+    display: block;
+    width: 10px;
+    height: 1px;
+    margin: 0;
+    background: black;
+    transition: 0.3s ease-in-out;
+  }
+  #faq-accordion .btn-link::before {
+    transform: rotate(-45deg);
+    left: -1.6rem;
+    top: 0.7rem;
+  }
+  #faq-accordion .btn-link::after {
+    transform: rotate(45deg);
+    left: -1.2rem;
+    top: -0.84rem;
+  }
+  #faq-accordion .btn-link.collapsed::before {
+    transform: rotate(45deg);
+  }
+  #faq-accordion .btn-link.collapsed::after {
+    transform: rotate(-45deg);
+  }

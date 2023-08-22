@@ -5,11 +5,11 @@ section {
 h1 {
   margin-bottom: 4rem;
 }
-h3 {
+h3, h4 {
   margin-top: 2rem;
   margin-bottom: 0.6rem;
 }
-li {
+ol li {
   padding: .5rem 0;
 }
 ol.alpha {
@@ -34,5 +34,3 @@ table td {
 #feature-catalog-table td:first-child {
   white-space: nowrap;
 }
-
-/*  */

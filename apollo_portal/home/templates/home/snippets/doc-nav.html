@@ -1,0 +1,18 @@
+<div class="doc-nav">
+  <div class="doc-nav-item">
+    {% if nav.prev %}
+    <a href="{{ nav.prev.url }}">
+      <span class="arrow">&larr;</span>
+      {{ nav.prev.label }}
+    </a>
+    {% endif %}
+  </div>
+  <div class="doc-nav-item">
+    {% if nav.next %}
+    <a href="{{ nav.next.url }}">
+      {{ nav.next.label }}
+      <span class="arrow">&rarr;</span>
+    </a>
+    {% endif %}
+  </div>
+</div>

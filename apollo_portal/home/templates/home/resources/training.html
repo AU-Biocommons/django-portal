@@ -1,0 +1,85 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>Training and Tutorials | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Training, Tutorials and Other Resources</h1>
+
+  <h3>Tutorials on Manual Genome Annotation and Apollo</h3>
+
+  <p>
+    Many resources on using Apollo have been created by the Apollo
+    developers and the user community. Although often developed for other
+    instances of Apollo they are equally useful for getting started with the
+    Apollo Service.
+  </p>
+
+  <p>Here are a few that we recommend:</p>
+
+  <ul>
+    <li>
+      For an overview of the features of Apollo see
+      <a href="https://doi.org/10.1371/journal.pcbi.1006790">
+        Dunn et al. (2019) Apollo: Democratizing genome annotation. PLoS
+        Comput Biol 15(2): e1006790.
+      </a>
+    </li>
+    <li>
+      The US Department of Agriculture's i5k initiative has a
+      <a href="https://i5k.nal.usda.gov/manual-annotation-and-apollo">
+        collection of materials, tutorials and guides on manual annotation
+        and Apollo.
+      </a>
+    </li>
+    <li>
+      Recording of
+      <a href="https://youtu.be/Wec7ZlXykQc">
+        EMBL-ABR workshop on Genome Annotation with Apollo.
+      </a>
+    </li>
+    <li>
+      <a href="https://www.slideshare.net/MonicaMunozTorres/presentations">
+        Monica Munoz-Torres' collection of slides
+      </a>
+      on Apollo from getting started to more advanced topics.
+    </li>
+    <li>
+      The
+      <a href="https://genomearchitect.readthedocs.io/en/latest/">
+        Apollo User's Guide
+      </a>
+      provides comprehensive documentation on manual annotation with Apollo.
+    </li>
+    <li>
+      The
+      <a href="https://genomearchitect.readthedocs.io/en/latest/UsersGuide.html#public-demo">
+        Apollo public demo instance
+      </a>
+      provides a self-guided tour of Apollo.
+    </li>
+    <li>
+      The Apollo development team maintain an
+      <a href="https://groups.google.com/a/lbl.gov/g/apollo">
+        Apollo User's Google Group
+      </a>
+      for developers and users of Apollo.
+    </li>
+  </ul>
+
+  <h3>How to Get Help with your Apollo Instance?</h3>
+
+  <p>
+    To access help with your Apollo Instance please email support at
+    <a class="text-nowrap" href="mailto:apollo-support@genome.edu.au"
+      >apollo-support@genome.edu.au</a>.
+  </p>
+
+  {% include 'home/snippets/doc-nav.html' %}
+
+</div>
+{% endblock %}
