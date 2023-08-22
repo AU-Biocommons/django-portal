@@ -16,7 +16,7 @@ from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(BASE_DIR.parent / '.env')
 
 
@@ -24,7 +24,7 @@ load_dotenv(BASE_DIR.parent / '.env')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1*54(u0jyfv5maz%i=fzjf49&@u5rin090=_sh#zx6-)+2h*8f'
+SECRET_KEY = 'secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,11 +135,10 @@ EMAIL_HOST = os.environ.get('MAIL_HOSTNAME')
 EMAIL_PORT = os.environ.get('MAIL_SMTP_PORT')
 EMAIL_HOST_USER = os.environ.get('MAIL_SMTP_USERNAME')
 EMAIL_HOST_PASSWORD = os.environ.get('MAIL_SMTP_PASSWORD')
-EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
+EMAIL_USE_TLS = str(os.environ.get('MAIL_USE_TLS')).lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ.get('MAIL_FROM_ADDRESS')
 EMAIL_TO_ADDRESS = os.environ.get('MAIL_TO_ADDRESS')
 SERVER_EMAIL = os.environ.get('MAIL_FROM_ADDRESS')
-# EMAIL_SUBJECT_PREFIX = ''
 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
