@@ -35,6 +35,11 @@ class SignUpForm(forms.Form):
     admin_name = forms.CharField(max_length=200)
     admin_email = forms.EmailField()
 
+    def __init__(self, *args, **kwargs):
+        """Remove ":" label suffix."""
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ""
+
     def clean_phone(self):
         data = self.cleaned_data['phone']
         if data is None:
@@ -55,4 +60,3 @@ class SignUpForm(forms.Form):
         notify.user_success(self)
         notify.admin_user_success(self)
         notify.admin(self)
-        logger.warning("\n~~~ MOCK SIGNUP DISPATCH ~~~\n")

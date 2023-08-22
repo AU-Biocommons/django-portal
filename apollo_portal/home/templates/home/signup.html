@@ -1,5 +1,7 @@
 {% extends 'home/header.html' %}
 {% load static %}
+
+<!-- See https://pypi.org/project/django-widget-tweaks/ -->
 {% load widget_tweaks %}
 
 {% block head %}
@@ -62,7 +64,7 @@
           Suggested Apollo Host Name
         </label>
         {{ form.suggested_hostname.errors }}
-        {% render_field form.suggested_hostname class="form-control" %}
+        {% render_field form.suggested_hostname class="form-control" attr="pattern:[A-z-]+" %}
         <small class="form-text text-muted">
           The Apollo Host Name is the custom name given to your Apollo Instance followed by the URL .genome.edu.au/apollo. This URL will be used to access your Apollo Instance (once created). The name of your Apollo Instance can be based on your research group, the organisms to be hosted or something else suitable that distinguishes your collection of genomes, e.g. smithlab.genome.edu.au/apollo or ausbirds.genome.edu.au/apollo.
         </small>
@@ -164,12 +166,12 @@
             name="{{ form.list_public.name }}"
             id="{{ form.list_public.name }}{{ forloop.counter }}"
             required
-            {% if form.list_public.value == val %}
+            {% if form.list_public.value|stringformat:"s" == val|stringformat:"s" %}
             checked
             {% endif %}
           >
           <label for="{{ form.list_public.name }}{{ forloop.counter }}">
-            {{ label|safe }}
+            {{ label }}
           </label>
         </div>
         {% endfor %}
@@ -187,13 +189,13 @@
             class="form-check-input"
             value="{{ val }}"
             name="{{ form.tracks_public.name }}"
-            id="{{ form.track_public.name }}{{ forloop.counter }}"
+            id="{{ form.tracks_public.name }}{{ forloop.counter }}"
             required
-            {% if form.tracks_public.value == val %}
+            {% if form.tracks_public.value|stringformat:"s" == val|stringformat:"s" %}
             checked
             {% endif %}
           >
-          <label for="{{ form.track_public.name }}{{ forloop.counter }}">
+          <label for="{{ form.tracks_public.name }}{{ forloop.counter }}">
             {{ label }}
           </label>
         </div>
@@ -252,6 +254,7 @@
 
     <section>
       {{ form.captcha }}
+      {{ form.captcha.errors }}
     </section>
 
     <button class="btn btn-primary" type="submit">Register</button>
@@ -264,10 +267,7 @@
 <script>
   $(document).ready(function() {
     $('label').each( (i, label) => {
-      if ($(label).text().slice(-1) == ':') {
-        const text = $(label).text().slice(0, -1);
-        $(label).text(text);
-      }
+      // Add * char to required labels
       if (
         $(label).siblings('input')
         .not('[type="radio"], [type="checkbox"]')

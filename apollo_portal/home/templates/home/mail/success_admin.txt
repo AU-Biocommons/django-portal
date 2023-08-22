@@ -1,8 +1,8 @@
-Submitted on {{ data.today }}
-Submitted by: {{ data.name }}
+Submitted on {{ today }}
+Submitted by: {{ data.name.value }}
 
 Submitted values are:
 
-{% for name, field in form.items %}
+{% for name, field in data.items %}
 {{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}
 {% endfor %}

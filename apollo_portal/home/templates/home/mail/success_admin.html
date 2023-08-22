@@ -6,13 +6,13 @@
   </head>
 
   <body>
-    <p>Submitted on {{ data.today }}</p>
-    <p>Submitted by: {{ data.name }}</p>
+    <p>Submitted on {{ today }}</p>
+    <p>Submitted by: {{ data.name.value }}</p>
     <p>Submitted values are:</p>
 
     <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
       <tbody>
-        {% for name, field in form.items %}
+        {% for name, field in data.items %}
         <tr>
           <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
           <td style="padding: 10px; border: 1px solid grey;">

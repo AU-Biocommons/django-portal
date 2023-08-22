@@ -7,7 +7,7 @@
 
   <body>
     <p>
-      Dear {{ data.name }},
+      Dear {{ data.name.value }},
     </p>
 
     <p>
@@ -15,7 +15,7 @@
     </p>
 
     <p>
-      We aim to create your Apollo Instance under the name {{ data.suggested_hostname }} in the next 3 - 5 business days.
+      We aim to create your Apollo Instance under the name "{{ data.suggested_hostname.value }}" in the next 3 - 5 business days.
     </p>
 
     <p>
@@ -46,7 +46,7 @@
 
     <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
       <tbody>
-        {% for name, field in form.items %}
+        {% for name, field in data.items %}
         <tr>
           <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
           <td style="padding: 10px; border: 1px solid grey;">

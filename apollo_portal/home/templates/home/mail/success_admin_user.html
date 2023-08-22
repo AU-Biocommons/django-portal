@@ -7,11 +7,11 @@
 
   <body>
     <p>
-      Dear {{ data.admin_name }},
+      Dear {{ data.admin_name.value }},
     </p>
 
     <p>
-      You have been nominated by {{ data.name }} as a Project Administrator on the {{ data.suggested_hostname }} Apollo Instance which is currently being created. The Project Administrator oversees the management of the Instance for the research group or consortium with additional powers to add users and data.
+      You have been nominated by {{ data.name.value }} as a Project Administrator on the "{{ data.suggested_hostname.value }}" Apollo Instance which is currently being created. The Project Administrator oversees the management of the Instance for the research group or consortium with additional powers to add users and data.
     </p>
 
     <p>
@@ -64,7 +64,7 @@
 
     <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
       <tbody>
-        {% for name, field in form.items %}
+        {% for name, field in data.items %}
         <tr>
           <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
           <td style="padding: 10px; border: 1px solid grey;">

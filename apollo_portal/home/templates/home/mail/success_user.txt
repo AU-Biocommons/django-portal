@@ -1,8 +1,8 @@
-Dear {{ data.name }},
+Dear {{ form.name.value }},
 
 Thank you for your application for an Apollo Instance with the Australian Apollo Service. We will endeavour to process your request and respond as quickly as possible.
 
-We aim to create your Apollo Instance under the name {{ data.suggested_hostname }} in the next 3 - 5 business days.
+We aim to create your Apollo Instance under the name "{{ form.suggested_hostname.value }}" in the next 3 - 5 business days.
 
 The Project Administrator you have nominated will receive an email following the creation of the Instance.
 
@@ -18,6 +18,6 @@ The Apollo Service Team
 
 ----------
 
-{% for name, field in form.items %}
+{% for name, field in data.items %}
 {{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}
 {% endfor %}
