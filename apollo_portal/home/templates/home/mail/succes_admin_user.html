@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Project Administrator for Apollo Instance</title>
+  </head>
+
+  <body>
+    <p>
+      Dear {{ data.admin_name }},
+    </p>
+
+    <p>
+      You have been nominated by {{ data.name }} as a Project Administrator on the {{ data.suggested_hostname }} Apollo Instance which is currently being created. The Project Administrator oversees the management of the Instance for the research group or consortium with additional powers to add users and data.
+    </p>
+
+    <p>
+      Once your Instance has been created, you have two options for uploading data to your Apollo Instance. If your data files are greater than 2 GB, we recommend uploading data to your Instance via the command line. To provide you with access to your Instance from the command line, please provide the Apollo Service Team with your public-key. If you are unsure how to generate a public key please see the following help resource.
+    </p>
+
+    <p>
+      Alternatively, if your data files are not more than 2 GB, you can upload your files via the Apollo (browser) Interface and you do not need a public-key for this purpose.
+    </p>
+
+    <p>
+      Please read and familiarise yourself with the Apollo Service Terms of Use and Policies. Some of the fine print:
+    </p>
+
+    <ul>
+      <li>
+        The Service is fully subsidised for research groups / consortia where the Principal Investigator is employed by an Australian-based academic or research institute;
+      </li>
+      <li>
+        The Principal Investigator is ultimately responsible for the hosted Apollo Instance and must ensure all users adhere to the Apollo Service Terms of Use and Policies;
+      </li>
+      <li>
+        This Service is designed for the long term storage of genome assembly and annotation data. We can guarantee, that the service will be available to the current operational horizon of the Australian BioCommons (i.e. June 2023)
+      </li>
+      <li>
+        The Service is subject to overall storage quota limits and project administrators and users must monitor their volume of large support files (e.g. BAM) and only host these for the duration they are needed; and
+      </li>
+      <li>
+        The Apollo Service is not designed for hosting sensitive data.
+      </li>
+    </ul>
+
+    <p>
+      You will be notified with login details once your Instance has been created. Additional user resources are located on the Apollo Service website.
+    </p>
+
+    <p>
+      A record of the details submitted by the Principal Investigator listed below. If you have further questions or concerns, please let us know by return email.
+    </p>
+
+    <p>
+      Kind regards,
+    </p>
+
+    <p>
+      The Apollo Service Team
+    </p>
+
+    <hr style="margin: 24px auto; width: 100%; border: 1px solid grey;">
+
+    <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
+      <tbody>
+        {% for name, field in form.items %}
+        <tr>
+          <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
+          <td style="padding: 10px; border: 1px solid grey;">
+            {% if field.value %}
+            {{ field.value }}
+            {% else %}
+            None
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

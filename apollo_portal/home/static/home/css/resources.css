@@ -1,20 +1,3 @@
-
-section {
-  margin-bottom: 2rem;
-}
-h1 {
-  margin-bottom: 4rem;
-}
-h3, h4 {
-  margin-top: 2rem;
-  margin-bottom: 0.6rem;
-}
-ol li {
-  padding: .5rem 0;
-}
-ol.alpha {
-  list-style-type: lower-alpha;
-}
 table {
   font-size: .7rem;
 }

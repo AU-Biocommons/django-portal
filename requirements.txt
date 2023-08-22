@@ -1,2 +1,5 @@
 django==4.2
-elasticsearch
+django-widget-tweaks==1.4
+django-recaptcha==3.0
+elasticsearch==8.9
+python-dotenv==1.0

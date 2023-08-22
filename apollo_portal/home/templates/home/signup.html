@@ -1,0 +1,282 @@
+{% extends 'home/header.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head %}
+<title>Sign Up | Apollo Portal</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Sign up</h1>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <section>
+      <h3>Eligibility Criteria</h3>
+  
+      <p>
+        Please note that the Principal Investigator must be affiliated with a recognised
+        <a href="/resources/terms#AusUni">Australian academic or research institute</a>.
+        All form elements marked with a * must be filled out. If you have any queries about this form or the questions therein, please contact support at
+        <a class="text nowrap" href="mailto:apollo-support@genome.edu.au">apollo-support@genome.edu.au</a>.
+      </p>
+
+      <div class="form-check mb-5">
+        {% render_field form.confirm_institution class="form-check-input" %}
+        <label for="{{ form.confirm_institution.id_for_label }}">
+          I confirm the Principal Investigator belongs to a recognised
+          Australian institute
+        </label>
+        {{ form.confirm_institution.errors }}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.group_name.id_for_label }}">
+          Research Group/Lab or Consortium name
+        </label>
+        {{ form.group_name.errors }}
+        {% render_field form.group_name class="form-control" %}
+        <small class="form-text text-muted">
+          The names of all research labs/consortia using this service are listed on
+          <a href="https://apollo-portal.genome.edu.au/organisms">
+            this page</a>.
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.group_url.id_for_label }}">
+          Website link to Research Group/Lab or Consortium
+        </label>
+        {{ form.group_url.errors }}
+        {% render_field form.group_url class="form-control" %}
+      </div>
+
+
+      <div class="form-group">
+        <label class="font-weight-bold" for="{{ form.suggested_hostname.id_for_label }}">
+          Suggested Apollo Host Name
+        </label>
+        {{ form.suggested_hostname.errors }}
+        {% render_field form.suggested_hostname class="form-control" %}
+        <small class="form-text text-muted">
+          The Apollo Host Name is the custom name given to your Apollo Instance followed by the URL .genome.edu.au/apollo. This URL will be used to access your Apollo Instance (once created). The name of your Apollo Instance can be based on your research group, the organisms to be hosted or something else suitable that distinguishes your collection of genomes, e.g. smithlab.genome.edu.au/apollo or ausbirds.genome.edu.au/apollo.
+        </small>
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h3>Principal Investigator</h3>
+
+      <p>
+        The Principal Investigator authorises the request for a hosted Apollo Instance on behalf of a Research Group or Research Consortium. The Principal Investigator is responsible for the created Apollo Instance and obliged to ensure all users of their Instance adhere to the
+        <a href="/terms">Apollo Service Terms of Use and Policies</a>.
+      </p>
+
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.name.id_for_label }}">
+          Name
+        </label>
+        {{ form.name.errors }}
+        {% render_field form.name class="form-control" %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold required" for="{{ form.institution.id_for_label }}">
+          Research Organisation/Institute
+        </label>
+        {{ form.institution.errors }}
+        {% render_field form.institution class="form-control" %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.email.id_for_label }}">
+          Email
+        </label>
+        {{ form.email.errors }}
+        {% render_field form.email class="form-control" %}
+        <small class="form-text text-muted">
+          Please use your institutional email address.
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.phone.id_for_label }}">
+          Phone
+        </label>
+        {{ form.phone.errors }}
+        {% render_field form.phone class="form-control" type="tel" %}
+      </div>
+
+      <div class="form-check mb-3">
+        {{ form.agree_terms.errors }}
+        {% render_field form.agree_terms class="form-check-input" %}
+        <label class="form-check-label" for="{{ form.agree_terms.id_for_label }}">
+          I, the Principal Investigator have read and acknowledged the
+          <a href="/resources/terms">
+            Apollo Service Terms of Use and Policies</a>
+        </label>
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h3>Research Description</h3>
+
+      <p>
+        Please provide a brief description of your research objectives in relation to your Apollo Instance.
+      </p>
+
+      <div class="form-group mb-5">
+        <label class="font-weight-bold" for="{{ form.organism_type.id_for_label }}">
+          What types of organisms will be hosted in the Instance?
+        </label>
+        {{ form.organism_type.errors }}
+        {% render_field form.organism_type class="form-control" %}
+      </div>
+
+      <div class="form-group mb-5">
+        <p class="font-weight-bold">
+          Can we list your genome organism(s) or group of organisms on a public list?&nbsp;*
+        </p>
+        <small class="form-text text-muted mb-2">
+          On our website we have a
+          <a href="/organisms">
+            list of hosted organisms
+          </a>
+          and the research groups using the Apollo Service. Would like to list a particular organism?
+        </small>
+        {{ form.list_public.errors }}
+        {% for val, label in form.fields.list_public.choices %}
+        <div class="form-check">
+          <input
+            type="radio"
+            class="form-check-input"
+            value="{{ val }}"
+            name="{{ form.list_public.name }}"
+            id="{{ form.list_public.name }}{{ forloop.counter }}"
+            required
+            {% if form.list_public.value == val %}
+            checked
+            {% endif %}
+          >
+          <label for="{{ form.list_public.name }}{{ forloop.counter }}">
+            {{ label|safe }}
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group mb-5">
+        <p class="font-weight-bold">
+          Do you plan to make any of your genomes (reference tracks) publicly available for viewing/browsing?&nbsp;*
+        </p>
+        {{ form.tracks_public.errors }}
+        {% for val, label in form.fields.tracks_public.choices %}
+        <div class="form-check">
+          <input
+            type="radio"
+            class="form-check-input"
+            value="{{ val }}"
+            name="{{ form.tracks_public.name }}"
+            id="{{ form.track_public.name }}{{ forloop.counter }}"
+            required
+            {% if form.tracks_public.value == val %}
+            checked
+            {% endif %}
+          >
+          <label for="{{ form.track_public.name }}{{ forloop.counter }}">
+            {{ label }}
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.grant_type.id_for_label }}">
+          What type of grant has the data been generated under?
+        </label>
+        {{ form.grant_type.errors }}
+        {% render_field form.grant_type class="form-control" %}
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h3>Project Administrator</h3>
+
+      <p>
+        The Project Administrator is authorised by the Principal Investigator to oversee the management of the Apollo Instance on behalf of the Research Group or Research Consortium. The Project Administrator has the ability to add, share or delete any data for any organism associated with the Instance and <b>must have command-line skills</b>. See more about roles and responsibilities
+        <a href="/resources/terms#UserType">here</a>.
+      </p>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.admin_name.id_for_label }}">
+          Name
+        </label>
+        {{ form.admin_name.errors }}
+        {% render_field form.admin_name class="form-control" %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.admin_email.id_for_label }}">
+          Email
+        </label>
+        {{ form.admin_email.errors }}
+        {% render_field form.admin_email class="form-control" %}
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h3>Acknowledgement</h3>
+
+      <p>
+        When papers acknowledge the Australian Apollo Service, they support continued research infrastructure investments by institutions and governments. When you use the Australian Apollo Service to support your publication or project, please cite its use using the following acknowledgement statement and web address. For future reference, this can also be found on the Apollo home and about pages.
+      </p>
+
+      <blockquote>
+        This work was supported by the Australian Apollo Service https://apollo-portal.genome.edu.au/ provided by the Australian BioCommons and Operational Partners.
+      </blockquote>
+    </section>
+
+    <section>
+      {{ form.captcha }}
+    </section>
+
+    <button class="btn btn-primary" type="submit">Register</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'home/js/forms.js' %}"></script>
+<script>
+  $(document).ready(function() {
+    $('label').each( (i, label) => {
+      if ($(label).text().slice(-1) == ':') {
+        const text = $(label).text().slice(0, -1);
+        $(label).text(text);
+      }
+      if (
+        $(label).siblings('input')
+        .not('[type="radio"], [type="checkbox"]')
+        .attr('required'))
+      {
+        const html = $(label).html() + '&nbsp;*';
+        $(label).html(html);
+      }
+    })
+  });
+</script>
+{% endblock %}

@@ -1,4 +1,11 @@
+import logging
+import pprint
 from django.shortcuts import render
+from django.views import View
+from .forms import SignUpForm
+
+logger = logging.getLogger('django')
+
 
 RESOURCES_PAGES = [
     {
@@ -43,22 +50,32 @@ def get_resource_nav_context(request):
     }
 
 
+class SignupView(View):
+    """Allow users to apply for an Apollo service instance."""
+
+    def get(self, request):
+        form = SignUpForm()
+        return render(request, 'home/signup.html', {'form': form})
+
+    def post(self, request):
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.dispatch()
+            return render(request, 'home/signup-success.html')
+        else:
+            logger.info("Invalid form:\n" + pprint.pformat(form.errors))
+        return render(request, 'home/signup.html', {'form': form})
+
+
 def index(request):
     return render(request, 'home/index.html')
 
 
 def about(request):
-    # TODO
     return render(request, 'home/about.html')
 
 
-def signup(request):
-    # TODO
-    return render(request, 'home/signup.html')
-
-
 def contact(request):
-    # TODO
     return render(request, 'home/contact.html')
 
 

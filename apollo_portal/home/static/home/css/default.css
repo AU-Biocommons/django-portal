@@ -1,24 +1,29 @@
-:root {
-/* Custom values */
---theme-color: #000000;
---theme-color-two: #000000;
---body-bg: #ffffff;
---sidebar-bg: #ffffff;
---body-color: #000000;
---bold-color: #000000;
---border-color: #ffffff;
---border-grey: #d6d6d6;
---link-hover: #d04425;
---button-hover: #ffffff;
---table-head: #d9d9d9;
---table-body: #f3f3f3;
+/* This was copied from the old
+   Drupal site and then modified.
+*/
 
-/* Default values */
---footer-bg: #3a3e47;
---footer-border: #7d818a;
---light: #f5f2ed;
---color-secondary: #FFA800;
---shadow: 0 0 1rem #dddddd;
+:root {
+  /* Custom values */
+  --theme-color: #000000;
+  --theme-color-two: #000000;
+  --body-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --body-color: #000000;
+  --bold-color: #000000;
+  --border-color: #ffffff;
+  --border-grey: #d6d6d6;
+  --link-hover: #d04425;
+  --button-hover: #ffffff;
+  --table-head: #d9d9d9;
+  --table-body: #f3f3f3;
+  --error: #dc3545;
+
+  /* Default values */
+  --footer-bg: #3a3e47;
+  --footer-border: #7d818a;
+  --light: #f5f2ed;
+  --color-secondary: #FFA800;
+  --shadow: 0 0 1rem #dddddd;
 }
 /* Default Box sizing */
 *,
@@ -356,102 +361,6 @@ button:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
   outline: 0;
-}
-button[disabled],
-html input[disabled] {
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-::-webkit-file-upload-button {
-  font: inherit;
-  -webkit-appearance: button;
-}
-input {
-  line-height: normal;
-}
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"] {
-  padding: 10px;
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  -webkit-transition: border 0.5s linear;
-  -moz-transition: border 0.5s linear;
-  transition: border 0.5s linear;
-}
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-textarea:focus {
-  border: 1px solid var(--theme-color);
-  outline: 0;
-}
-[type="checkbox"],
-[type="radio"] {
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-[type="search"] {
-  outline-offset: -2px;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;;
-}
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  overflow: auto;
-  -webkit-transition: border 0.3s linear;
-  -moz-transition: border 0.3s linear;
-  transition: border 0.3s linear;
-  vertical-align: top;
-}
-fieldset {
-  margin: 0 0 10px 0;
-  padding: 0.35rem 0.5rem 0.5rem 0;
-  border: 1px solid var(--border-color);
-}
-fieldset > :last-child {
-  margin-bottom: 0;
-}
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-optgroup {
-  font-weight: bold;
-}
-select {
-  padding: 4px 0;
-}
-form label {
-  font-weight: bold;
-}
-label[for] {
-  cursor: pointer;
 }
 .page-content input[type="text"],
 .page-content input[type="password"],

@@ -8,12 +8,23 @@ main {
   margin-bottom: 100px;
 }
 section {
-  padding: 1.6rem 0;
+  margin-bottom: 2rem;
 }
 blockquote {
   font-style: italic;
   padding: 1.6rem;
   border-left: 4px solid var(--link-hover);
+}
+hr {
+  border-top: 1px solid var(--border-grey);
+  margin: 3rem 0;
+}
+h1 {
+  margin-bottom: 4rem;
+}
+h3, h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
 }
 a {
   color: var(--link-hover);
@@ -31,9 +42,13 @@ ol li ol {
 ol li ol li ol {
   list-style: lower-roman;
 }
+ol li {
+  padding: .5rem 0;
+}
 .btn-primary {
   color: black;
-  border-color: black;
+  border: 1px solid black;
+  border-radius: .3rem;
   background: white;
 }
 .btn-primary:hover {
@@ -56,6 +71,23 @@ ol li ol li ol {
   line-height: 0.5;
 }
 
+/* Forms */
+.form-check-input {
+  margin-top: 0.45rem;
+}
+label.required:after {
+  content: "*";
+  color: black;
+}
+ul.errorlist {
+  margin: .5rem 0;
+  padding: .25rem .5rem;
+  color: var(--error);
+  list-style-type: none;
+  border: 1px solid var(--error);
+  border-radius: .5rem;
+}
+
 /* Footer */
 footer img {
   height: 50px;
@@ -66,6 +98,7 @@ footer .copyright {
 }
 .footer-bottom-section {
   border-top: 4px double black;
+  padding: .5rem 0;
 }
 .theme-black {
   color: white;

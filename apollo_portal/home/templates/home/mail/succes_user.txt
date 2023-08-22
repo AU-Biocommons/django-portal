@@ -1,0 +1,23 @@
+Dear {{ data.name }},
+
+Thank you for your application for an Apollo Instance with the Australian Apollo Service. We will endeavour to process your request and respond as quickly as possible.
+
+We aim to create your Apollo Instance under the name {{ data.suggested_hostname }} in the next 3 - 5 business days.
+
+The Project Administrator you have nominated will receive an email following the creation of the Instance.
+
+As the Principal Investigator of this Instance, you have already acknowledged that you have read and understood the Apollo Service Terms of Use and Policies. Please ensure all future users of your Instance also adhere to the Terms of Use and Policies.
+
+If you have further questions, please let us know by return email.
+
+A record of the details you submitted are listed below. We look forward to supporting your research.
+
+Kind regards,
+
+The Apollo Service Team
+
+----------
+
+{% for name, field in form.items %}
+{{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}
+{% endfor %}

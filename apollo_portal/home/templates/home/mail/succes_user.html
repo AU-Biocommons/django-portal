@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Thank you for registering</title>
+  </head>
+
+  <body>
+    <p>
+      Dear {{ data.name }},
+    </p>
+
+    <p>
+      Thank you for your application for an Apollo Instance with the Australian Apollo Service. We will endeavour to process your request and respond as quickly as possible.
+    </p>
+
+    <p>
+      We aim to create your Apollo Instance under the name {{ data.suggested_hostname }} in the next 3 - 5 business days.
+    </p>
+
+    <p>
+      The Project Administrator you have nominated will receive an email following the creation of the Instance.
+    </p>
+
+    <p>
+      As the Principal Investigator of this Instance, you have already acknowledged that you have read and understood the Apollo Service Terms of Use and Policies. Please ensure all future users of your Instance also adhere to the Terms of Use and Policies.
+    </p>
+
+    <p>
+      If you have further questions, please let us know by return email.
+    </p>
+
+    <p>
+      A record of the details you submitted are listed below. We look forward to supporting your research.
+    </p>
+
+    <p>
+      Kind regards,
+    </p>
+
+    <p>
+      The Apollo Service Team
+    </p>
+
+    <hr style="margin: 24px auto; width: 100%; border: 1px solid grey;">
+
+    <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
+      <tbody>
+        {% for name, field in form.items %}
+        <tr>
+          <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
+          <td style="padding: 10px; border: 1px solid grey;">
+            {% if field.value %}
+            {{ field.value }}
+            {% else %}
+            None
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

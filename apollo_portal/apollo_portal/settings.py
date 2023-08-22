@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
+from dotenv import load_dotenv
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR.parent / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
+    'captcha',
     'home',
     'tracks',
 ]
@@ -123,3 +129,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('MAIL_HOSTNAME')
+EMAIL_PORT = os.environ.get('MAIL_SMTP_PORT')
+EMAIL_HOST_USER = os.environ.get('MAIL_SMTP_USERNAME')
+EMAIL_HOST_PASSWORD = os.environ.get('MAIL_SMTP_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
+EMAIL_FROM_ADDRESS = os.environ.get('MAIL_FROM_ADDRESS')
+EMAIL_TO_ADDRESS = os.environ.get('MAIL_TO_ADDRESS')
+SERVER_EMAIL = os.environ.get('MAIL_FROM_ADDRESS')
+# EMAIL_SUBJECT_PREFIX = ''
+
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
