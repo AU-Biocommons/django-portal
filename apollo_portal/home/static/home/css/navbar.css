@@ -13,7 +13,7 @@ nav {
 .nav-item {
   padding: 4px .3rem;
 }
-.nav-item:hover {
+.nav-link:hover {
   background-color: #222;
 }
 .dropdown-menu, .dropdown-item {
