@@ -1,29 +1,40 @@
 {% include "django/forms/widgets/select.html" %}
-<br>
-<input
-  {% for k, v in widget.other_attrs.items %} {{k}}="{{v}}"{% endfor %}
-  type="text"
-  name="{{ widget.name }}__other__"
-  id="id_{{ widget.name }}__other__"
-  value="{{ widget.other_value }}"
-  style="display:none;"
+<div
+  id="id_{{ widget.name }}__other_parent__"
+  style="display: none; flex-direction: row; margin-top: .5rem;"
 >
+  <div style="display: flex; flex-direction: row; align-items: center;">
+    <p style="white-space: nowrap; margin: 0 1rem 0 0;">Please specify: </p>
+  </div>
+  <input
+    {% for k, v in widget.other_attrs.items %} {{k}}="{{v}}"{% endfor %}
+    type="text"
+    name="{{ widget.name }}__other__"
+    id="id_{{ widget.name }}__other__"
+    value="{{ widget.other_value }}"
+  >
+</div>
 
 <script>
   const otherValue = 'other';
   const selectFieldId = 'id_{{ widget.name }}';
   const otherFieldId = 'id_{{ widget.name }}__other__';
+  const otherFieldParentId = 'id_{{ widget.name }}__other_parent__';
 
   function showOtherField() {
     const otherField = document.getElementById(otherFieldId);
-    otherField.style.display = 'block';
+    const otherParentField = document.getElementById(otherFieldParentId);
+    otherParentField.style.display = 'flex';
     otherField.name = '{{ widget.name }}';
+    otherField.required = true;
   }
 
   function hideOtherField() {
     const otherField = document.getElementById(otherFieldId);
-    otherField.style.display = 'none';
+    const otherParentField = document.getElementById(otherFieldParentId);
+    otherParentField.style.display = 'none';
     otherField.name = '{{ widget.name }}__other__';
+    otherField.required = false;
   }
 
   document.getElementById(selectFieldId).addEventListener('change', function() {
@@ -33,9 +44,11 @@
       hideOtherField();
     }
   });
-  document.onload(function() {
-    if (document.getElementById(selectFieldId).value === otherValue) {
-      hideOtherField();
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const selectValue = document.getElementById(selectFieldId).value;
+    console.log(`selectValue: ${selectValue}`);
+    if (selectValue === otherValue) {
+      showOtherField();
     }
   });
 </script>
