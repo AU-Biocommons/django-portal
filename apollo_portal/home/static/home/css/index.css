@@ -6,7 +6,7 @@ main {
 }
 #cover-image .container {
   position: relative;
-  margin-top: 14vh;
+  padding-top: 14vh;
 }
 #cover-image img {
   width: 100%;
