@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from .redirects import redirect_patterns
+from .groups import degnan
 from . import views
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('resources/faqs', views.faqs, name='faqs'),
     path('resources/video', views.video, name='video'),
     path('resources/terms', views.terms, name='terms'),
+    path('degnan', include(degnan.urls)),
 ] + redirect_patterns

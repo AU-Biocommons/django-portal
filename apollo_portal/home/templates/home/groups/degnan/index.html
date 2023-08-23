@@ -1,0 +1,129 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>Degnan Marine Genomics | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/degnan.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <img
+    class="img-header"
+    src="{% static 'degnan/img/index-crop.jpg' %}"
+  />
+
+  <h1 class="page-title">Degnan marine genomics lab</h1>
+
+  <div class="w-100">
+    <table>
+      <tr>
+        <td>
+          <img
+            class="img-logo"
+            src="{% static 'degnan/img/uq.png' %}"
+            alt="University of Queensland logo"
+          >
+        </td>
+        <td>
+          <p class="pl-3">
+            The Marine Genomics Lab at UQ is jointly led by
+            <a href="https://researchers.uq.edu.au/researcher/724" target="_blank">Sandie Degnan</a>
+            and
+            <a href="https://researchers.uq.edu.au/researcher/350" target="_blank">Bernie Degnan</a>.
+            Our research is driven by a fascination with genomes that carry within them
+            endless, brilliant solutions forged by evolution over millions of years in
+            response to a constantly changing ocean. We tap into this to learn how the
+            genome interacts with the environment to shape the ecology of coral reef
+            invertebrates throughout their life cycle.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <h3 class="text-center">Available genomes</h3>
+
+  <br>
+
+  <div class="card-deck justify-content-center text-center">
+    <div class="card">
+      <img class="card-img-top" src="{% static 'degnan/img/cots1-crop.jpg' %}" alt="Crown of thorns starfish">
+      <div class="card-body">
+        <p class="card-title">Crown-of-thorns starfish<br/><i>Acanthaster planci</i></p>
+      </div>
+      <div class="card-footer">
+        <a class="card-btn" href="/degnan/cots">
+          View profile
+        </a>
+
+        <a
+          class="card-btn"
+          href="https://degnanmarine.genome.edu.au/apollo/6647/jbrowse/index.html"
+          target="_blank"
+        >View browser</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img-top" src="{% static 'degnan/img/amphimedon-bacteria.jpg' %}" alt="Amphimedon sea sponge bacterial holobiont">
+      <div class="card-body">
+        <p class="card-title">Sea sponge holobiont<br/><i>Amphimedon queenslandica</i></p>
+      </div>
+      <div class="card-footer">
+        <a class="card-btn" href="/degnan/amphimedon">
+          View profile
+        </a>
+
+        <a class="card-btn" style="visibility: hidden;">
+          View browser
+        </a>
+      </div>
+    </div>
+
+    <!-- <div class="card">
+      <img src="{% static 'degnan/images/cots1-crop.jpg' %}" alt="Crown of thorns starfish">
+
+      <p>Crown-of-thorns starfish<br/><i>Acanthaster planci</i></p>
+
+      <a
+        class="btn"
+        href="/degnan/cots">
+        View profile
+      </a>
+
+      <a
+        class="btn"
+        href="https://degnanmarine.genome.edu.au/apollo/6647/jbrowse/index.html"
+        target="_blank"
+      >
+        View browser
+      </a>
+    </div>
+
+    <div class="card">
+      <img src="{% static 'degnan/images/amphimedon-bacteria.jpg' %}" alt="Crown of thorns starfish">
+
+      <p>Sea sponge holobiont<br/><i>Amphimedon queenslandica</i></p>
+
+      <a
+        class="btn"
+        href="/degnan/amphimedon"
+      >
+        View profile
+      </a>
+
+      <a
+        class="btn"
+        style="visibility: hidden;"
+      >
+      View browser
+      </a>
+    </div> -->
+  </div>
+
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
