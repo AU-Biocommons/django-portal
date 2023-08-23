@@ -63,7 +63,8 @@ class SignupView(View):
             form.dispatch()
             return render(request, 'home/signup-success.html')
         else:
-            logger.info("Invalid form:\n" + pprint.pformat(form.errors))
+            logger.info(
+                "Invalid form submission:\n" + pprint.pformat(form.errors))
         return render(request, 'home/signup.html', {'form': form})
 
 

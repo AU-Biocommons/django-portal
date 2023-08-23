@@ -1,11 +1,41 @@
 {% include "django/forms/widgets/select.html" %}
-<input type="text" name="{{ widget.name }}_other" id="other_field" value="{{ widget.other_value }}" style="display:none;">
+<br>
+<input
+  {% for k, v in widget.other_attrs.items %} {{k}}="{{v}}"{% endfor %}
+  type="text"
+  name="{{ widget.name }}__other__"
+  id="id_{{ widget.name }}__other__"
+  value="{{ widget.other_value }}"
+  style="display:none;"
+>
+
 <script>
-  document.getElementById('id_choice_field').addEventListener('change', function() {
-    if (this.value === 'other') {
-      document.getElementById('other_field').style.display = 'block';
+  const otherValue = 'other';
+  const selectFieldId = 'id_{{ widget.name }}';
+  const otherFieldId = 'id_{{ widget.name }}__other__';
+
+  function showOtherField() {
+    const otherField = document.getElementById(otherFieldId);
+    otherField.style.display = 'block';
+    otherField.name = '{{ widget.name }}';
+  }
+
+  function hideOtherField() {
+    const otherField = document.getElementById(otherFieldId);
+    otherField.style.display = 'none';
+    otherField.name = '{{ widget.name }}__other__';
+  }
+
+  document.getElementById(selectFieldId).addEventListener('change', function() {
+    if (this.value === otherValue) {
+      showOtherField();
     } else {
-      document.getElementById('other_field').style.display = 'none';
+      hideOtherField();
+    }
+  });
+  document.onload(function() {
+    if (document.getElementById(selectFieldId).value === otherValue) {
+      hideOtherField();
     }
   });
 </script>

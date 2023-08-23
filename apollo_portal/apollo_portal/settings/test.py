@@ -13,3 +13,7 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+# Google's test keys always pass validation
+RECAPTCHA_PUBLIC_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+RECAPTCHA_PRIVATE_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
