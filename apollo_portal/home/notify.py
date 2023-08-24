@@ -37,6 +37,7 @@ def admin(form):
 
 def send_email(form, subject, to_addresses, template):
     """Send email for given form."""
+    logger.info(f'Sending email to {to_addresses} Subject: {subject}')
     from_address = settings.EMAIL_FROM_ADDRESS
     context = {
         'today': date.today().strftime('%d-%m-%Y'),

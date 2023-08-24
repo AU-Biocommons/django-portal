@@ -1,0 +1,33 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>TraDIS-Vault | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/tradis.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>TraDIS-Vault</h1>
+
+  <section>
+    <p>
+      TraDIS-vault is an online browser for viewing and searching transposon insertion-sequencing data. Display up to 32 tracks, explore by organism, condition or genetic interactions and export your chosen region of interest.
+    </p>
+
+    <p>
+      Access our
+      <a href="/tradis/tutorial">tutorial</a>
+      to learn how to use this resource.
+    </p>
+
+    <p>
+      If you have any questions about TraDIS-vault or are experiencing any
+      technical difficulties in using it, please get in
+      <a href="/tradis/contact">contact with us</a>.
+    </p>
+
+    <h1 class="text-danger">Tracks table TBC</h1>
+  </section>
+</div>
+{% endblock %}

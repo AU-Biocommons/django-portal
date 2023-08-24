@@ -1,0 +1,70 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+<!-- See https://pypi.org/project/django-widget-tweaks/ -->
+{% load widget_tweaks %}
+
+{% block head %}
+<title>TraDIS-Vault contact | Apollo Portal</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>TraDIS-Vault</h1>
+
+  
+  <form method="post">
+
+    {% csrf_token %}
+
+    <section>
+      <h3>Contact us</h3>
+    </section>
+
+    <section>
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.name.id_for_label }}">
+          {{ form.name.label }}
+        </label>
+        {{ form.name.errors }}
+        {% render_field form.name class="form-control" %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.email.id_for_label }}">
+          {{ form.email.label }}
+        </label>
+        {{ form.email.errors }}
+        {% render_field form.email class="form-control" %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.subject.id_for_label }}">
+          {{ form.subject.label }}
+        </label>
+        {{ form.subject.errors }}
+        {% render_field form.subject class="form-control" %}
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.message.id_for_label }}">
+          {{ form.message.label }}
+        </label>
+        {{ form.message.errors }}
+        {% render_field form.message class="form-control" %}
+      </div>
+    </section>
+
+    <section>
+      {{ form.captcha }}
+      {{ form.captcha.errors }}
+    </section>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'home/js/forms.js' %}"></script>
+{% endblock %}

@@ -10,6 +10,23 @@ function scrollToErrors() {
   }
 }
 
+
+$(document).ready(function() {
+  $('label').each( (i, label) => {
+    // Add * char to required labels
+    if (
+      $(label).siblings('input')
+        .not('[type="radio"], [type="checkbox"]')
+        .attr('required')
+      || $(label).siblings('textarea')
+        .attr('required')
+    ) {
+      const html = $(label).html() + '&nbsp;*';
+      $(label).html(html);
+    }
+  })
+});
+
 // $('form').submit( () => {
 //   $('button[type="submit"]').prop('disabled', true);
 //   $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');

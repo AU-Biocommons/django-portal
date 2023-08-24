@@ -1,0 +1,10 @@
+Thank you for contacting the TraDIS-Vault team on the Apollo Portal. We will aim to get back to you within 5 working days.
+
+Regards,
+The Apollo Team
+
+Your submitted values are:
+
+{% for name, field in data.items %}
+{{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}
+{% endfor %}

@@ -16,4 +16,5 @@ urlpatterns = [
     path('resources/video', views.video, name='video'),
     path('resources/terms', views.terms, name='terms'),
     path('degnan/', include('home.groups.degnan.urls')),
+    path('tradis/', include('home.groups.tradis.urls')),
 ] + redirect_patterns

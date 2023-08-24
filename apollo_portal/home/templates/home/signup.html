@@ -264,19 +264,4 @@
 
 {% block script %}
 <script src="{% static 'home/js/forms.js' %}"></script>
-<script>
-  $(document).ready(function() {
-    $('label').each( (i, label) => {
-      // Add * char to required labels
-      if (
-        $(label).siblings('input')
-        .not('[type="radio"], [type="checkbox"]')
-        .attr('required'))
-      {
-        const html = $(label).html() + '&nbsp;*';
-        $(label).html(html);
-      }
-    })
-  });
-</script>
 {% endblock %}
