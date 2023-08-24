@@ -2,12 +2,78 @@
 {% load static %}
 
 {% block head %}
-<title>... | Apollo Portal</title>
+<title>Amphimedon queenslandica holobiont | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/degnan.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-  
+  <h3 class="mb-5">
+    <a href="/degnan">
+      Degnan marine genomics lab
+    </a> &gt; Amphimedon
+  </h3>
+
+  <section class="cover" style="background-image: url({% static 'degnan/img/amphimedon/amphimedon-faded.jpg' %});">
+    <h3>
+      Sea sponge holobiont genome
+    </h3>
+    <h4>
+      <i>Amphimedon queenslandica</i>
+    </h4>
+
+    <ul class="keynotes">
+      <li>Origin and evolution of animals</li>
+      <li>Evolution of genome regulation</li>
+      <li>Animal-bacterial symbiosis</li>
+    </ul>
+
+    <p>
+      <a
+        class="btn"
+        style="visibility: hidden;"
+      >
+        View genome browser
+      </a>
+    </p>
+
+    <br>
+
+    <p>
+      The coral reef sponge <i>Amphimedon queenslandica</i> houses three
+      maternally-inherited bacterial symbionts (<i>AqS1</i>, <i>AqS2</i> and
+      <i>AqS3</i>) that constitute up to 95% of the adult microbiome. This holobiont
+      provides a tractable system to explore how animals and symbionts work together
+      from egg to adult through changing life cycle and environmental conditions.
+      Given that sponges diverged from other animals over 700 million years ago, the
+      <i>Amphimedon</i> holobiont also provides insights into the last common
+      ancestor of modern animals and helps us to identify cardinal features of
+      animal multicellularity.
+    </p>
+
+    <p>
+      Extensive RNA-Seq, ChIP-Seq, ATAC-Seq data across development, and changing
+      ecological and environmental conditions provide insights into sponge and
+      symbiont function, and the origin and early evolution of the animal kingdom.
+    </p>
+  </section>
+
+  <div class="text-center">
+    <h3>Funding</h3>
+    <p>We would like to acknowledge the following funding bodies for their support of this project</p>
+
+    <div class="container">
+      <div class="row justify-content-center my-3">
+        <img style="height: 100px; margin: 0 1rem;" src="{% static 'degnan/img/logo/arc-logo.jpg' %}" alt="Australian Research Council logo">
+        <img style="height: 70px; margin: 15px 1rem;" src="{% static 'degnan/img/logo/gbmf-logo.png' %}" alt="Gordon and Betty Moore Foundation">
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <hr style="border-color: black;">
+
 </div>
 {% endblock %}
 
