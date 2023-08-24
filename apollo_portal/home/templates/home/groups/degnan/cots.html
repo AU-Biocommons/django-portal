@@ -1,0 +1,179 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>Degnan Marine - Crown of Thorns Starfish | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/degnan.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <a href="/degnan">
+    <h1>Degnan marine genomics lab</h1>
+  </a>
+
+  <section class="cover" style="background-image: url({% static 'degnan/img/cots/cots-faded.jpg' %})">
+    <h3>
+      Crown-of-thorns starfish (COTS) genome
+    </h3>
+    <h4>
+      <i>Acanthaster planci</i>
+    </h4>
+
+    <ul class="keynotes">
+      <li>Animal communication in the ocean</li>
+      <li>Genome-guided biocontrol</li>
+    </ul>
+
+    <p>
+      <a
+        class="btn btn-outline-white"
+        href="https://degnanmarine.genome.edu.au/apollo/6647/jbrowse/index.html">
+        View genome browser
+      </a>
+    </p>
+
+    <br>
+
+    <p>
+      <i>Acanthaster planci</i> is a highly fecund predator of reef-building corals
+      throughout the Indo-Pacific region. Population outbreaks of this starfish
+      cause substantial loss of coral cover, diminishing the integrity and
+      resilience of reef ecosystems. The genome from a Great Barrier Reef COTS
+      provides insights into conspecific communication that may guide the generation
+      of biocontrol mimetics for use on reefs with COTS outbreaks.
+    </p>
+
+    <p>
+      More than 150 transcriptomes from Great Barrier Reef COTS that allow for the
+      analysis of gene activity between sexes of wild COTS across breeding and
+      non-breeding seasons, between multiple discrete tissues and organs, and when
+      starfish are translocated from the wild into captivity.
+    </p>
+  </section>
+
+  <h3>COTS Browser guide </h3>
+
+  <div>
+    <div class="mb-5">
+      <p>
+        The COTS Apollo browser allows visualisation of gene models and of mapped RNA-Seq
+        and CEL-Seq2 reads. For general navigation of the Apollo browser, we refer you to
+        <a href="https://genomearchitect.readthedocs.io/en/latest/UsersGuide.html" target="_blank">
+          the Apollo user guide</a>.
+      </p>
+
+      <p>
+        The v1.1 PASA gene models are shown by default on the COTS browser. Below is an
+        example view of the browser with two mapped transcriptomes.
+      </p>
+
+      <img class="screenshot" src="{% static 'degnan/img/cots/cots-1-tracks.png' %}" alt="COTS genome browser with two tracks">
+
+      <p>
+        You can select to view older gene models and specific transcriptomes by clicking on the
+        <code>Select tracks</code> tab in the top left corner. Here you can select specific tracks
+        (transcriptomes and gene model versions) and how you would like to view them. It looks
+        like this:
+      </p>
+
+      <img class="screenshot" src="{% static 'degnan/img/cots/cots-2-table.png' %}" alt="COTS genome track table view">
+
+      <p>
+        You can select specific elements in the left column according to your interest. For
+        instance, to view CEL-Seq2 reads mapping to forward and reverse strands of the genome from
+        transcriptomes made from gonads of wild female COTS sampled from Davies Reef (on the
+        Great Barrier Reef), you would select the following elements (in blue):
+      </p>
+
+      <img class="screenshot" src="{% static 'degnan/img/cots/cots-3-select.png' %}" alt="Selected COTS tracks">
+
+      <p>
+        You can add or subtract from this list by selecting and deselecting individual elements
+        or groups of elements. If you wish to create a new set of tracks, it is best to refresh
+        the browser to clear your previous views.
+      </p>
+    </div>
+
+    <section class="box px-5">
+      <h3>Transcriptome track fields</h3>
+      <p>Transcriptomes are grouped and identified by the following fields:</p>
+
+      <p><b>Category</b></p>
+      <ul>
+        <li>Captive - COTS maintained in captivity</li>
+        <li>Wild - COTS sampled in the field</li>
+      </ul>
+
+      <p><b>File format</b> - BAM files to show RNA-Seq reads mapped to</p>
+
+      <ul>
+        <li>Both forward and reverse strands of the genome</li>
+        <li>Forward strand only</li>
+        <li>Reverse strand only</li>
+      </ul>
+
+      <p><b>Sample and tissue/organ type</b></p>
+      <ul>
+        <li>Coelomocytes (Co) </li>
+        <li>Gonads (Go)</li>
+        <li>Papulae (Pa)</li>
+        <li>Radial nerves (Rn) </li>
+        <li>Sensory tentacles (St)</li>
+        <li>Skin (Sk)</li>
+        <li>Spines (Sp)</li>
+        <li>Tube feet (Tf)</li>
+      </ul>
+
+      <p><b>Sex</b></p>
+      <ul>
+        <li>Male</li>
+        <li>Female</li>
+        <li>Unknown - animals whose sex could not be determined because of season or age (i.e. non-reproductive)</li>
+      </ul>
+
+      <p>
+        <b>Location</b>: either captivity or the specific reef of capture.
+      </p>
+
+      <p>
+        <b>Time</b>: either specific season of collection, or experimental time point
+      </p>
+
+      <p>
+        <b>Status</b>: related to observation at time of field collection relative to other COTS,
+        or type of experimental treatment. See relevant literature for details.
+      </p>
+
+      <p>
+        <b>Individual & Sample ID</b>: corresponds to individual COTS and tissues sampled, and matches transcriptome identifiers in
+        <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA821257" target="_blank">NCBI BioProject PRJNA821257</a>.
+      </p>
+
+      <p>
+        <b>Name</b>: combined name of specific transcriptome.  This is listed to the left of the browser and corresponds to the NCBI BioProject identifier.
+      </p>
+    </section>
+  </div>
+
+  <br><br>
+
+  <div class="text-center">
+    <h3>Funding</h3>
+    <p>We would like to acknowledge the following funding bodies for their support of this project</p>
+
+    <div class="container">
+      <div class="row justify-content-center my-3"">
+        <img class="mx-3" src="{% static 'degnan/img/logo/arc-logo.jpg' %}" alt="Australian Research Coucil logo" style="height: 100px;">
+        <img class="mx-3" src="{% static 'degnan/img/logo/gbrf-logo.png' %}" alt="Great barrier reef foundation logo" style="height: 100px;">
+        <img class="mx-3" src="{% static 'degnan/img/logo/aims-logo.jpg' %}" alt="Australian Institute for Marine Science logo" style="height: 100px;">
+      </row>
+    </div>
+  </div>
+
+  <br>
+
+  <hr style="border-color: black;">
+
+</div>
+{% endblock %}
