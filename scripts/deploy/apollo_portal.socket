@@ -1,6 +1,6 @@
 [Unit]
 Description=Apollo Portal website socket
 [Socket]
-ListenStream=/run/gunicorn.sock
+ListenStream=/run/apollo_portal.sock
 [Install]
 WantedBy=sockets.target
