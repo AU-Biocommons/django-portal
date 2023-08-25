@@ -88,6 +88,7 @@ DATABASES = {
     }
 }
 
+SEARCH_INDEX_DIR = BASE_DIR / 'apollo_portal/whoosh_index'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

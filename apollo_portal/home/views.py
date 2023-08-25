@@ -3,6 +3,7 @@ import pprint
 from django.shortcuts import render
 from django.views import View
 from .forms import SignUpForm
+from . import search
 
 logger = logging.getLogger('django')
 
@@ -66,6 +67,20 @@ class SignupView(View):
             logger.info(
                 "Invalid form submission:\n" + pprint.pformat(form.errors))
         return render(request, 'home/signup.html', {'form': form})
+
+
+class SearchView(View):
+    """Search Apollo webpages."""
+
+    def get(self, request):
+        query = request.GET.get('q', '')
+        if not query:
+            return render(request, 'home/search.html', {'query': query})
+        else:
+            return render(request, 'home/search.html', {
+                'query': query,
+                'results': search.search(query),
+            })
 
 
 def index(request):

@@ -1,6 +1,7 @@
 # Project paths
 *.sqlite3
 .vscode/
+whoosh_index/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,5 +1,6 @@
-django==4.2
-django-widget-tweaks==1.4
-django-recaptcha==3.0
-elasticsearch==8.9
-python-dotenv==1.0
+django==4.*
+django-widget-tweaks==1.*
+django-recaptcha==3.*
+whoosh==2.*
+python-dotenv==1.*
+BeautifulSoup4==4.*
