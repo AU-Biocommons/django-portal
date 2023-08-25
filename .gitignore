@@ -2,6 +2,7 @@
 *.sqlite3
 .vscode/
 whoosh_index/
+static/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
