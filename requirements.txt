@@ -4,3 +4,4 @@ django-recaptcha==3.*
 whoosh==2.*
 python-dotenv==1.*
 BeautifulSoup4==4.*
+gunicorn

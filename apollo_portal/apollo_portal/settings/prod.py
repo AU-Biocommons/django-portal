@@ -4,4 +4,7 @@ import os
 
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
-ALLOWED_HOSTS.append('apollo-portal.genome.edu.au')
+ALLOWED_HOSTS += [
+    'apollo-portal.genome.edu.au',
+    'django-sandpit.genome.edu.au',
+]

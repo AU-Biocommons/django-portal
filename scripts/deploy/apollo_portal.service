@@ -1,0 +1,21 @@
+[Unit]
+Description=Gunicorn for Apollo Portal website
+Requires=apollo_portal.socket
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User = www-data
+Group = www-data
+RuntimeDirectory=gunicorn
+WorkingDirectory=/srv/sites/apollo_portal
+Environment="PATH=/srv/sites/apollo_portal/venv/bin:$PATH"
+ExecStart=/srv/sites/apollo_portal/venv/bin/gunicorn --pid /run/gunicorn/pid   \
+          --bind unix:/run/apollo_portal.sock       \
+          -c /srv/sites/apollo_portal/scripts/deploy/gunicorn.py apollo_portal.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
