@@ -75,6 +75,6 @@ ul {
 }
 .btn-outline-white:hover {
   color: white;
-  background-color: var(--link-hover);
-  border: solid 2px var(--link-hover);
+  background-color: var(--link);
+  border: solid 2px var(--link);
 }

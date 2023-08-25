@@ -13,7 +13,7 @@ section {
 blockquote {
   font-style: italic;
   padding: 1.6rem;
-  border-left: 4px solid var(--link-hover);
+  border-left: 4px solid var(--link);
 }
 hr {
   border-top: 1px solid var(--border-grey);
@@ -27,6 +27,9 @@ h3, h4 {
   margin-bottom: 0.6rem;
 }
 a {
+  color: var(--link);
+}
+a:hover {
   color: var(--link-hover);
 }
 code {
@@ -53,8 +56,8 @@ ol li {
 }
 .btn-primary:hover {
   color: white;
-  border: 1px solid var(--link-hover);
-  background-color: var(--link-hover);
+  border: 1px solid var(--link);
+  background-color: var(--link);
 }
 .doc-nav {
   margin-top: 4rem;

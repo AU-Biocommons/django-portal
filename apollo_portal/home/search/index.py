@@ -38,7 +38,6 @@ class Runserver:
         try:
             self.server = subprocess.Popen(
                 self.ARGS,
-                # stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
             )
         except subprocess.CalledProcessError as exc:
@@ -85,7 +84,7 @@ def build_index():
                     ' valid.')
                 server.terminate()
                 return 0
-            content = extract_properties(html)
+            content = extract_data_fields(html)
             doc = {**content, 'url': relpath}
             docs.append(doc)
 
@@ -100,17 +99,18 @@ def build_index():
     return ix_count
 
 
-def extract_properties(html):
+def extract_data_fields(html):
     """Strip HTML tags and return text."""
     def get_text(selector):
-        match = soup.find('title')
+        match = soup.find(selector)
         if match:
             return match.get_text()
+        return ''
 
     soup = BeautifulSoup(html, features="html.parser")
     for script in soup(["script", "style"]):
         script.extract()
-    title = get_text('title')
+    title = get_text('title').replace('| Apollo Portal', '')
     description = get_text('meta[name="description"]')
     headings = '\n'.join([
         h.get_text()

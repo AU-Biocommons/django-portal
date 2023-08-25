@@ -1,14 +1,14 @@
 """Search ElasticSearch index for webpage content."""
 
 from django.conf import settings
-from whoosh import index
+from whoosh import index, highlight
 from whoosh.qparser import MultifieldParser, OrGroup
 
 SEARCH_FIELDS = [
     "url",
     "title",
-    "desciption",
-    "headers",
+    "description",
+    "headings",
     "body",
 ]
 
@@ -28,5 +28,15 @@ def search(query):
             sortedby="",
             terms=True,
         )
+        fragmenter = highlight.ContextFragmenter(maxchars=100, surround=75)
+        hits.fragmenter = fragmenter
 
-        return hits
+        return [
+            {
+                "url": hit["url"],
+                "title": hit["title"],
+                "description": hit["description"],
+                "highlight": hit.highlights("body"),
+            }
+            for hit in hits
+        ]

@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from ..import whoosh
+from home import search
 
 
 class Command(BaseCommand):
@@ -7,7 +7,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         self.stdout.write('')
-        count = whoosh.build_index()
+        count = search.build_index()
         if count:
             self.stdout.write(self.style.SUCCESS(
                 f'\nSuccessfully indexed {count} pages\n'))

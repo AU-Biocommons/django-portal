@@ -69,18 +69,13 @@ class SignupView(View):
         return render(request, 'home/signup.html', {'form': form})
 
 
-class SearchView(View):
+def search_pages(request):
     """Search Apollo webpages."""
-
-    def get(self, request):
-        query = request.GET.get('q', '')
-        if not query:
-            return render(request, 'home/search.html', {'query': query})
-        else:
-            return render(request, 'home/search.html', {
-                'query': query,
-                'results': search.search(query),
-            })
+    query = request.GET.get('q', '')
+    return render(request, 'home/search.html', {
+        'query': query,
+        'hits': search.search(query),
+    })
 
 
 def index(request):

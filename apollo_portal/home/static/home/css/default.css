@@ -12,7 +12,8 @@
   --bold-color: #000000;
   --border-color: #ffffff;
   --border-grey: #d6d6d6;
-  --link-hover: #d04425;
+  --link: #d04425;
+  --link-hover: #FFA800;
   --button-hover: #ffffff;
   --table-head: #d9d9d9;
   --table-body: #f3f3f3;
@@ -145,7 +146,7 @@ li a.active {
   color: var(--theme-color);
 }
 a:hover {
-  color: var(--color-secondary);
+  color: var(--link-hover);
 }
 a:active,
 a:hover,
