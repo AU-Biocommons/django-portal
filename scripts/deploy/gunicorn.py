@@ -8,5 +8,5 @@ workers = 2
 
 # Environment variables
 raw_env = [
-    "DJANGO_SETTINGS_MODULE=webapp.settings.prod"
+    "DJANGO_SETTINGS_MODULE=apollo_portal.settings.prod"
 ]
