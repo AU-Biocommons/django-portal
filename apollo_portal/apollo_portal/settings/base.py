@@ -143,3 +143,23 @@ SERVER_EMAIL = os.environ.get('MAIL_FROM_ADDRESS')
 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+
+# Pages that will be indexed for searching:
+SITE_SEARCH_URLS = [
+    '/',
+    '/about',
+    '/signup',
+    '/contact',
+    '/resources/start',
+    '/resources/documentation',
+    '/resources/training',
+    '/resources/faqs',
+    '/resources/video',
+    '/resources/terms',
+    '/degnan',
+    '/degnan/cots',
+    '/degnan/amphimedon',
+    '/tradis',
+    '/tradis/tutorial',
+    '/tradis/contact',
+]

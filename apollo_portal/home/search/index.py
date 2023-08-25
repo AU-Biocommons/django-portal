@@ -12,8 +12,6 @@ from whoosh.fields import SchemaClass, ID, TEXT
 from whoosh.analysis import StemmingAnalyzer
 from whoosh import index
 
-from .url import URL_PATHS
-
 RUNSERVER_WAIT_SECONDS = 3
 
 
@@ -70,7 +68,7 @@ def build_index():
 
     docs = []
     with Runserver() as server:
-        for relpath in URL_PATHS:
+        for relpath in settings.SITE_SEARCH_URLS:
             url = f'http://127.0.0.1:8000/{relpath.strip("/")}'
             print(f"Fetching HTML content for webpage: {url}")
             try:
