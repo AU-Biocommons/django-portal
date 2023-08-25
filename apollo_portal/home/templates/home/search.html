@@ -10,13 +10,13 @@
   <h1>Search results</h1>
 
   {% for hit in hits %}
-  <div class="my-5">
+  <div class="hit">
     <a href="{{ hit.url }}">
       <p class="lead my-0">{{ hit.title }}</p>
-      <p><small>{{request.scheme}}://{{request.headers.Host}}{{ hit.url }}</small></p>
+      <p class="link">{{request.scheme}}://{{request.headers.Host}}{{ hit.url }}</p>
     </a>
     <p>{{ hit.description }}</p>
-    <p><small>{{ hit.highlight|safe }}</small></p>
+    <p class="highlight">{{ hit.highlight|safe }}</p>
   </div>
   {% endfor %}
 </div>
