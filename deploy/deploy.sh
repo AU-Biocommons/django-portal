@@ -1,22 +1,8 @@
 # Deploy to ubuntu server
 
-# ! TODO: recreate venv in $REPO_DIR
-
 set -e
 
-CERTBOT_EMAIL=c.hyde@qcif.edu.au
-BUILD_USER=root
-RUN_USER=www-data
-RUN_GROUP=www-data
-HOSTNAME=django-sandpit.genome.edu.au
-APP_DIRNAME=apollo_portal
-REPO_DIR=/srv/sites/apollo_portal
-APP_DIR=$REPO_DIR/$APP_DIRNAME
-VENV_DIR=$REPO_DIR/venv
-STATIC_ROOT=$APP_DIR/apollo_portal/static
-GITHUB_URL=https://github.com/AU-Biocommons/django-portal.git
-SQLITE_FILEPATH=$APP_DIR/db.sqlite3
-DJANGO_SETTINGS_MODULE=apollo_portal.settings.prod
+. $(dirname $0)/vars.sh
 
 sudo su $BUILD_USER
 
@@ -30,10 +16,6 @@ virtualenv $VENV_DIR
 source $VENV_DIR/bin/activate
 pip install -r $REPO_DIR/requirements.txt
 echo "export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE" >> $VENV_DIR/bin/activate
-
-# Setup site dir
-sudo mkdir /srv/sites
-sudo ln -s $REPO_DIR /srv/sites/$APP_DIRNAME
 
 # Setup nginx
 sudo apt install -y nginx
