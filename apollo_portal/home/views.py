@@ -90,6 +90,10 @@ def contact(request):
     return render(request, 'home/contact.html')
 
 
+def resources(request):
+    return render(request, 'home/resources/index.html')
+
+
 def getting_started(request):
     return render(request, 'home/resources/getting-started.html', {
         'nav': get_resource_nav_context(request),

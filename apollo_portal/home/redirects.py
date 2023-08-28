@@ -11,7 +11,6 @@ REDIRECT_PATHS = {
      'video': '/resources/video',
      'termsofuse': '/resources/terms',
      'form/signup': '/signup',
-     'resources': '/',
 }
 
 

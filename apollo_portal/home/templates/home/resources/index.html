@@ -1,0 +1,51 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>Resources | Apollo Portal</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Apollo Service Resources</h1>
+
+  <p>
+    <a href="/resources/start">
+      <span class="material-icons">description</span>
+      Gettings Started
+    </a>
+  </p>
+
+  <p>
+    <a href="/resources/documentation">
+      <span class="material-icons">description</span>
+      User Documentation
+    </a>
+  </p>
+
+  <p>
+    <a href="/resources/training">
+      <span class="material-icons">description</span>
+      Training, Tutorials and Other Resources
+    </a>
+  </p>
+
+  <p>
+    <a href="/resources/faqs">
+      <span class="material-icons">description</span>
+      FAQs
+    </a>
+  </p>
+
+  <p>
+    <a href="/resources/video">
+      <span class="material-icons">description</span>
+      Video Resources
+    </a>
+  </p>
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
