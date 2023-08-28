@@ -18,7 +18,7 @@
   bottom: 0;
   text-align: right;
   color: white;
-  background-color: rgba(0.1,0.1,0.1,0.9);
+  background-color: rgba(0.1,0.1,0.1,0.95);
 }
 #search .backdrop span {
   cursor: pointer;
@@ -30,6 +30,9 @@
   width: 90%;
   max-width: 600px;
   padding: 30px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 #search input {
   color: white;
@@ -42,10 +45,11 @@
   outline: none;
 }
 #search button {
-  font-size: 1.5rem;
-  background: transparent;
   width: 100px;
-  text-align: center;
+  background: transparent;
+}
+#search button span.material-icons {
+  font-size: 2rem;
 }
 #search button:focus {
   outline: none;

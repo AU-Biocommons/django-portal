@@ -11,6 +11,10 @@ table td {
 }
 
 /* Terms of use */
+#feature-catalog-table {
+  max-width: 100%;
+  overflow-x: auto;
+}
 #feature-catalog-table th:first-child {
   background-color: transparent;
 }
@@ -22,4 +26,11 @@ table td {
 iframe.video {
   width: 100%;
   height: 550px;
+}
+
+@media (max-width: 992px) {
+  iframe.video {
+    width: 100%;
+    height: 60vw;
+  }
 }

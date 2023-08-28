@@ -92,9 +92,6 @@ main {
 
 }
 @media (max-width: 576px){
-  :root {
-    font-size: 14px;
-  }
   #cover-image .fish {
     width: 100%;
     margin-left: -45px;
