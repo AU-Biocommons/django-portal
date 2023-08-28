@@ -69,7 +69,7 @@ def build_index():
     docs = []
     with Runserver() as server:
         for relpath in settings.SITE_SEARCH_URLS:
-            url = f'http://127.0.0.1:8000/{relpath.strip("/")}'
+            url = f'http://127.0.0.1:8000/{relpath}'.strip("/")
             print(f"Fetching HTML content for webpage: {url}")
             try:
                 html = urlopen(url).read()
