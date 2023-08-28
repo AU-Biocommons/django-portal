@@ -3,6 +3,7 @@
 .vscode/
 whoosh_index/
 static/
+logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
