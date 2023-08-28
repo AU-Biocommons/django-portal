@@ -21,7 +21,12 @@ load_dotenv(BASE_DIR.parent / '.env')
 SECRET_KEY = 'secret'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+    '192.168.1.146',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
