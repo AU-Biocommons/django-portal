@@ -6,14 +6,14 @@ main {
 }
 #cover-image .container {
   position: relative;
-  padding-top: 14vh;
+  padding-top: calc(45vh - 300px);
 }
 #cover-image img {
   width: 100%;
 }
 #cover-text {
   position: absolute;
-  top: 0;
+  top: 25vh;
   z-index: 1;
   max-width: 35%;
   height: 100%;
@@ -25,20 +25,20 @@ main {
   position: relative;
 }
 #cover-image h1 {
-  top: 150px;
+  top: 0;
 }
 #cover-image h5 {
-  top: 225px;
+  top: 0;
 }
 #cover-image a {
-  top: 275px;
+  top: 50px;
 }
 .apollo-cards a {
   display: block;
   border: 1px solid black;
   border-radius: 5px;
   padding: 1rem;
-  margin: 0 .5rem;
+  margin: .5rem;
 }
 .apollo-cards a {
  color: black;
@@ -62,4 +62,50 @@ main {
 .apollo-cards .material-icons {
   transition: color .4s ease;
   font-size: 2.5rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #cover-image .fish {
+    width: 80%;
+    margin-left: 20%;
+  }
+  #cover-image .container {
+    padding-top: calc(45vh - 200px);
+  }
+  #cover-text {
+    top: 30vh;
+    height: 100%;
+    max-width: 35%;
+  }
+  /* #cover-image h1 {
+    top: 30vh;
+  }
+  #cover-image h5 {
+    top: 30vh;
+  }
+  #cover-image a {
+    top: 35vh;
+  } */
+}
+@media (max-width: 768px) {
+
+}
+@media (max-width: 576px){
+  :root {
+    font-size: 14px;
+  }
+  #cover-image .fish {
+    width: 100%;
+    margin-left: -45px;
+  }
+  #cover-image .container {
+    padding-top: calc(45vh - 300px);
+  }
+  #cover-text {
+    top: 40vh;
+    height: 100%;
+    max-width: 80%;
+    margin-left: 10%;
+  }
 }

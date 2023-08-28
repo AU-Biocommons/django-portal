@@ -34,6 +34,7 @@ nav {
   line-height: 1;
   cursor: pointer;
   padding: 8px;
+  width: fit-content;
   border: 2px solid #fff;
   border-radius: 50%;
 }

@@ -92,9 +92,12 @@ ul.errorlist {
 }
 
 /* Footer */
-footer img {
+footer .logo img {
   height: 50px;
   width: auto;
+}
+footer .logo {
+  padding: .5rem;
 }
 footer .copyright {
   font-size: .8rem;
