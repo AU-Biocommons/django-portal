@@ -1,33 +1,35 @@
-{% extends 'home/header.html' %}
+{% extends 'home/groups/tradis/header.html' %}
 {% load static %}
 
 {% block head %}
-<title>TraDIS-Vault | Apollo Portal</title>
-<link rel="stylesheet" href="{% static 'home/css/tradis.css' %}">
 {% endblock %}
 
-{% block content %}
-<div class="container">
-  <h1>TraDIS-Vault</h1>
-
-  <section>
-    <p>
+{% block main %}
+<section class="theme-black-2">
+  <div class="container py-5 text-center" style="max-width: 550px;">
+    <img class="mx-auto" src="{% static 'tradis/img/logo.png' %}" alt="TraDIS-Vault radial graph logo">
+    <h3 style="color: inherit;">Welcome to TraDIS-Vault</h3>
+    <p class="text-muted">
       TraDIS-vault is an online browser for viewing and searching transposon insertion-sequencing data. Display up to 32 tracks, explore by organism, condition or genetic interactions and export your chosen region of interest.
     </p>
+  </div>
+</section>
 
-    <p>
-      Access our
-      <a href="/tradis/tutorial">tutorial</a>
-      to learn how to use this resource.
-    </p>
+<section class="container">
+  <p>
+    Access our
+    <a href="/tradis/tutorial">tutorial</a>
+    to learn how to use this resource.
+  </p>
 
-    <p>
-      If you have any questions about TraDIS-vault or are experiencing any
-      technical difficulties in using it, please get in
-      <a href="/tradis/contact">contact with us</a>.
-    </p>
+  <p>
+    If you have any questions about TraDIS-vault or are experiencing any
+    technical difficulties in using it, please get in
+    <a href="/tradis/contact">contact with us</a>.
+  </p>
+</section>
 
-    <h1 class="text-danger">Tracks table TBC</h1>
-  </section>
-</div>
+<section class="container">
+  <h1 class="text-danger">Tracks table TBC</h1>
+</section>
 {% endblock %}

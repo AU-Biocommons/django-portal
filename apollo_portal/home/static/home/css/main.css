@@ -48,6 +48,9 @@ ol li ol li ol {
 ol li {
   padding: .5rem 0;
 }
+.page-align-top {
+  margin-top: -2rem;
+}
 .btn-primary {
   color: black;
   border: 1px solid black;
@@ -75,6 +78,58 @@ ol li {
 .doc-nav .arrow {
   font-size: 2rem;
   line-height: 0.5;
+}
+
+/* Theming */
+.theme-black {
+  color: white;
+  background-color: var(--theme-color);
+}
+.theme-black .btn-primary {
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+}
+.theme-black p.text-muted {
+  color: #aaa !important;
+}
+
+.theme-black-2 {
+  color: white;
+  background-color: var(--theme-color-2);
+}
+.theme-black-2 a {
+  color: white;
+}
+.theme-black-2 a:hover {
+  color: var(--link);
+}
+
+/* Sidebar nav */
+.sidebar {
+  --sidebar-width: 250px;
+  display: flex;
+  flex-direction: row;
+}
+.sidebar nav {
+  position: fixed;
+  top: 70px;
+  height: auto;
+  width: var(--sidebar-width);
+  text-align: center;
+  height: 125px;
+  overflow-y: hidden;
+  transition-duration: 1.5s;
+  background-color: transparent;
+}
+.sidebar nav:hover {
+  height: 500px;
+}
+.sidebar nav ul {
+  padding: 0;
+}
+.sidebar .main {
+  flex: 1;
 }
 
 /* Forms */
@@ -108,13 +163,4 @@ footer .copyright {
 .footer-bottom-section {
   border-top: 4px double black;
   padding: .5rem 0;
-}
-.theme-black {
-  color: white;
-  background-color: var(--theme-color);
-}
-.theme-black .btn-primary {
-  color: white;
-  background: transparent;
-  border: 1px solid white;
 }

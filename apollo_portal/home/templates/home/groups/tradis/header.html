@@ -1,0 +1,34 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>TraDIS-Vault | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'home/css/tradis.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="sidebar page-align-top">
+  <nav>
+    <img class="mx-auto my-3" src="{% static 'tradis/img/logo.png' %}" alt="TraDIS-Vault radial graph logo" style="width: 100px;">
+    <ul>
+      <li>
+        <a href="/tradis">Home</a>
+      </li>
+      <li>
+        <a href="/tradis/tutorial">Tutorial</a>
+      </li>
+      <li>
+        <a href="/tradis/contact">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="main">
+    {% block main %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
