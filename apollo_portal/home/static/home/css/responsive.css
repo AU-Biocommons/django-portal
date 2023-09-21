@@ -1,0 +1,21 @@
+@media (max-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+}
+@media (max-width: 576px){
+  :root {
+    font-size: 14px;
+  }
+  footer .logo img {
+    height: 30px;
+  }
+  #search form {
+    flex-wrap: wrap;
+  }
+  #search button span.material-icons {
+    padding: 2rem;
+    font-size: 4rem;
+  }
+}
