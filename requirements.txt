@@ -5,3 +5,5 @@ whoosh==2.*
 python-dotenv==1.*
 BeautifulSoup4==4.*
 gunicorn
+Pillow==10.0
+factory_boy==3.3

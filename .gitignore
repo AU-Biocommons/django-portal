@@ -2,8 +2,9 @@
 *.sqlite3
 .vscode/
 whoosh_index/
-static/
+apollo_portal/static/
 logs/
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
