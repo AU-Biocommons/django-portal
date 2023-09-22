@@ -1,7 +1,7 @@
 # Vars for running scripts
 
 CERTBOT_EMAIL=c.hyde@qcif.edu.au
-BUILD_USER=root
+BUILD_USER=c.hyde
 RUN_USER=www-data
 RUN_GROUP=www-data
 HOSTNAME=django-sandpit.genome.edu.au
