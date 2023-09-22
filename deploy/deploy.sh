@@ -44,7 +44,8 @@ cd $APP_DIR
 python manage.py migrate
 python manage.py build_index
 python manage.py collectstatic --noinput
-sudo chown $RUN_USER:$RUN_GROUP $SQLITE_FILEPATH
+sudo chmod 775 $SQLITE_FILEPATH
+sudo chown $BUILD_USER:$RUN_GROUP $SQLITE_FILEPATH
 sudo chown -R $RUN_USER:$RUN_GROUP $STATIC_ROOT
 sudo usermod -a -G $RUN_GROUP $BUILD_USER
 
