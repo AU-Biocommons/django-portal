@@ -26,10 +26,12 @@ class PageSchema(SchemaClass):
 class Runserver:
     """Run Django development server to be queried by ElasticSearch."""
 
+    HOSTNAME = '127.0.0.1:8000'
     ARGS = (
         sys.executable,
         'manage.py',
         'runserver',
+        HOSTNAME,
     )
 
     def __init__(self):
@@ -69,7 +71,7 @@ def build_index():
     docs = []
     with Runserver() as server:
         for relpath in settings.SITE_SEARCH_URLS:
-            url = f'http://127.0.0.1:8000/{relpath}'.strip("/")
+            url = f'http://{server.HOSTNAME}{relpath}'.strip("/")
             print(f"Fetching HTML content for webpage: {url}")
             try:
                 html = urlopen(url).read()
