@@ -20,7 +20,7 @@ cd $APP_DIR
 python manage.py migrate
 python manage.py build_index
 python manage.py collectstatic --noinput
-sudo chown $RUN_USER:$RUN_GROUP $SQLITE_FILEPATH
+sudo chown $BUILD_USER:$RUN_GROUP $SQLITE_FILEPATH
 
 # Start application
 sudo systemctl restart apollo_portal.service
