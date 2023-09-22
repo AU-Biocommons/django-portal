@@ -18,8 +18,8 @@ git pull
 cd $APP_DIR
 . $VENV_DIR/bin/activate
 python manage.py migrate
-python manage.py build_index
 python manage.py collectstatic --noinput
+python manage.py build_index
 sudo chown $BUILD_USER:$RUN_GROUP $SQLITE_FILEPATH
 
 # Start application
