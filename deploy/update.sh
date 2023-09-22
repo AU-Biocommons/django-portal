@@ -1,4 +1,4 @@
-# Update to latest commit
+#/usr/bin/env bash
 
 set -e
 
