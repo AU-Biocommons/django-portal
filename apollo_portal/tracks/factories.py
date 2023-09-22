@@ -20,6 +20,7 @@ class GenomeFactory(DjangoModelFactory):
     strain = factory.Faker("word")
     condition = factory.Faker("word")
     thumbnail = factory.django.ImageField(color="blue")
+    apollo_url = factory.Faker("url")
 
 
 class LabFactory(DjangoModelFactory):

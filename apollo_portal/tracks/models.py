@@ -24,6 +24,7 @@ class Genome(models.Model):
     strain = models.CharField(max_length=255, null=True)
     condition = models.CharField(max_length=255, null=True)
     thumbnail = models.ImageField(null=True, upload_to="genomes")
+    apollo_url = models.URLField(null=True)
     _metadata = models.TextField(null=True)
 
     @property
@@ -37,6 +38,23 @@ class Genome(models.Model):
         data = json.loads(self._metadata)
         data[k] = v
         self._metadata = json.dumps(data)
+
+    def as_json(self):
+        """Serialize model for JSON encoding."""
+        return {
+            "id": self.id,
+            "created": self.datetime_created.isoformat(),
+            "modified": self.datetime_modified.isoformat(),
+            "accession_id": self.accession_id,
+            "lab": self.lab.name,
+            "name": self.name,
+            "species": self.species,
+            "strain": self.strain,
+            "condition": self.condition,
+            "thumbnail": self.thumbnail.url if self.thumbnail else None,
+            "apollo_url": self.apollo_url,
+            "metadata": self.metadata,
+        }
 
 
 class Track(models.Model):
