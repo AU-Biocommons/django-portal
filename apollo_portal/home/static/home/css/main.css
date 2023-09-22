@@ -80,6 +80,11 @@ ol li {
   line-height: 0.5;
 }
 
+/* Font */
+.monospace {
+  font-family: monospace;
+}
+
 /* Theming */
 .theme-black {
   color: white;
@@ -107,30 +112,33 @@ ol li {
 
 /* Sidebar nav */
 .sidebar {
-  --sidebar-width: 250px;
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+.sidebar .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 80px 1rem 1rem 1rem;
+  box-shadow: 0 0 10px 5px rgba(0,0,0,.5);
 }
 .sidebar nav {
-  position: fixed;
-  top: 70px;
-  height: auto;
-  width: var(--sidebar-width);
   text-align: center;
-  height: 125px;
-  overflow-y: hidden;
-  transition-duration: 1.5s;
   background-color: transparent;
-}
-.sidebar nav:hover {
-  height: 500px;
 }
 .sidebar nav ul {
   padding: 0;
+  list-style-type: none;
+}
+
+/* .sidebar nav:hover {
+  height: 500px;
 }
 .sidebar .main {
   flex: 1;
-}
+} */
 
 /* Forms */
 .form-check-input {

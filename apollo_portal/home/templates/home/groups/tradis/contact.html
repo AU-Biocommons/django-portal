@@ -1,14 +1,17 @@
-{% extends 'home/header.html' %}
+{% extends 'home/groups/tradis/header.html' %}
 {% load static %}
 
 <!-- See https://pypi.org/project/django-widget-tweaks/ -->
 {% load widget_tweaks %}
 
+
 {% block head %}
-<title>TraDIS-Vault contact | Apollo Portal</title>
+<title>TraDIS-Vault Contact | Apollo Portal</title>
+<link rel="stylesheet" href="{% static 'tradis/css/index.css' %}">
 {% endblock %}
 
-{% block content %}
+
+{% block main %}
 <div class="container">
   <h1>
     <a href="/tradis">
@@ -64,6 +67,6 @@
 </div>
 {% endblock %}
 
-{% block script %}
+{% block tradisscript %}
 <script src="{% static 'home/js/forms.js' %}"></script>
 {% endblock %}
