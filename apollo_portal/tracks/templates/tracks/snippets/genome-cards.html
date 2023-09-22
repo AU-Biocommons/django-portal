@@ -1,0 +1,220 @@
+<!-- Pass a list of Genome models into a card-rows view with filters -->
+
+<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.css">
+
+<div id="app">
+  <!-- Filter bar -->
+  <v-flex>
+    <div>
+      <div>
+        <multiselect
+          v-model="filters.lab.selected"
+          :options="filters.lab.options"
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="true"
+          :preserve-search="true"
+          :preselect-first="false"
+          placeholder="Lab"
+        />
+          <template slot="selection" slot-scope="{ values, search, isOpen }">
+            <span
+              class="multiselect__single"
+              v-if="values.length"
+              v-show="!isOpen"
+            > {{ values.length }} options selected
+            </span>
+          </template>
+        </multiselect>
+      </div>
+
+      <div>
+        <multiselect
+          v-model="filters.species.selected"
+          :options="filters.species.options"
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="true"
+          :preserve-search="true"
+          :preselect-first="false"
+          placeholder="Species"
+        />
+          <template slot="selection" slot-scope="{ values, search, isOpen }">
+            <span
+              class="multiselect__single"
+              v-if="values.length"
+              v-show="!isOpen"
+            > {{ values.length }} options selected
+            </span>
+          </template>
+        </multiselect>
+      </div>
+
+      <div>
+        <multiselect
+          v-model="filters.strain.selected"
+          :options="filters.strain.options"
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="true"
+          :preserve-search="true"
+          :preselect-first="false"
+          placeholder="Strain"
+        />
+          <template slot="selection" slot-scope="{ values, search, isOpen }">
+            <span
+              class="multiselect__single"
+              v-if="values.length"
+              v-show="!isOpen"
+            > {{ values.length }} options selected
+            </span>
+          </template>
+        </multiselect>
+      </div>
+
+      <div>
+        <multiselect
+          v-model="filters.condition.selected"
+          :options="filters.condition.options"
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="true"
+          :preserve-search="true"
+          :preselect-first="false"
+          placeholder="Condition"
+        />
+          <template slot="selection" slot-scope="{ values, search, isOpen }">
+            <span
+              class="multiselect__single"
+              v-if="values.length"
+              v-show="!isOpen"
+            > {{ values.length }} options selected
+            </span>
+          </template>
+        </multiselect>
+      </div>
+    </div>
+
+    <div>
+      <button
+        class="btn btn-primary"
+        @click="filterGenomes"
+      >Apply filter</button>
+    </div>
+  </v-flex>
+
+  <v-row>
+    <v-col
+      v-for="genome in filteredGenomes"
+      :key="genome.id"
+      cols="12"
+      sm="6"
+      md="4"
+      lg="3"
+    >
+      <v-card>
+        <v-img
+          :src="genome.image.url"
+          height="200px"
+        >
+          <v-card-title class="white--text">
+            {{ genome.name }}
+          </v-card-title>
+        </v-img>
+
+        <v-card-text>
+          <div>
+            <strong>Lab:</strong> {{ genome.lab }}
+          </div>
+          <div>
+            <strong>Species:</strong> {{ genome.species }}
+          </div>
+          <div>
+            <strong>Strain:</strong> {{ genome.strain }}
+          </div>
+          <div>
+            <strong>Condition:</strong> {{ genome.condition }}
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <button
+            class="btn btn-primary"
+            :href="genome.url"
+            target="_blank"
+          >
+            View
+          </button>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
+</div>
+
+<script src='https://cdn.jsdelivr.net/npm/vue@3.x/dist/vue.min.js'></script>
+<script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
+<script>
+  new Vue({
+    el: '#app',
+    components: {
+      Multiselect,
+    },
+    data () {
+      return {
+        loading: true,
+        genomes: [],
+        filters: {
+          lab: {
+            selected: [],
+            options: [],
+          },
+          species: {
+            selected: [],
+            options: [],
+          },
+          strain: {
+            selected: [],
+            options: [],
+          },
+          condition: {
+            selected: [],
+            options: [],
+          },
+        },
+        filteredGenomes: [],
+      }
+    },
+    mounted () {
+      this.fetchGenomes();
+      this.getFilters();
+    },
+    methods: {
+      fetchGenomes () {
+        fetch('/tracks/api/genomes/')
+          .then(response => response.json())
+          .then(data => {
+            this.genomes = data;
+            this.filteredGenomes = data;
+          })
+      },
+      setFilterOptions () {
+        Objects.keys(this.filters).forEach(field => {
+          this.filters[field].options = this.getFilterOptions(field);
+        });
+      },
+      getFilterOptions (field) {
+        return this.genomes.map(genome => genome[field])
+          .filter((value, index, self) => self.indexOf(value) === index)
+          .sort();
+      },
+      filterGenomes () {
+        this.filteredGenomes = this.genomes.filter(genome => {
+          return this.filters.lab.selected.includes(genome.lab) &&
+            this.filters.species.selected.includes(genome.species) &&
+            this.filters.strain.selected.includes(genome.strain) &&
+            this.filters.condition.selected.includes(genome.condition);
+        });
+      },
+    },
+  });
+</script>
