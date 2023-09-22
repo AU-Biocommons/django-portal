@@ -4,8 +4,13 @@ set -e
 
 . $(dirname $0)/vars.sh
 
+# Exit if user is not build user:
+if [ "$USER" != "$BUILD_USER" ]; then
+    echo "ERROR: Must be run as $BUILD_USER"
+    exit 1
+fi
+
 # Pull changes
-sudo su $BUILD_USER
 cd $REPO_DIR
 git pull
 
