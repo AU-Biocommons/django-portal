@@ -11,6 +11,10 @@ class Lab(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        """Return string representation."""
+        return self.name
+
 
 class Genome(models.Model):
     """Represents a genome reference on an Apollo instance."""
@@ -26,6 +30,10 @@ class Genome(models.Model):
     thumbnail = models.ImageField(null=True, upload_to="genomes")
     apollo_url = models.URLField(null=True)
     _metadata = models.TextField(default="{}")
+
+    def __str__(self):
+        """Return string representation."""
+        return f"{self.lab.name}: {self.name}"
 
     @property
     def metadata(self):
@@ -74,6 +82,10 @@ class Track(models.Model):
     accession_id = models.CharField(max_length=255, null=True)
     track_type = models.CharField(max_length=255)
     _metadata = models.TextField(null=True)
+
+    def __str__(self):
+        """Return string representation."""
+        return f"{self.genome.lab.name}: {self.genome.name}: {self.name}"
 
     @property
     def metadata(self):
