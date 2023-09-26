@@ -66,7 +66,7 @@
         {{ form.suggested_hostname.errors }}
         {% render_field form.suggested_hostname class="form-control" attr="pattern:[A-z-]+" %}
         <small class="form-text text-muted">
-          The Apollo Host Name is the custom name given to your Apollo Instance followed by the URL .genome.edu.au/apollo. This URL will be used to access your Apollo Instance (once created). The name of your Apollo Instance can be based on your research group, the organisms to be hosted or something else suitable that distinguishes your collection of genomes, e.g. smithlab.genome.edu.au/apollo or ausbirds.genome.edu.au/apollo.
+          The Apollo Host Name is the custom name given to your Apollo Instance followed by the URL .genome.edu.au/apollo. This URL will be used to access your Apollo Instance (once created). The name of your Apollo Instance can be based on your research group, the genomes to be hosted or something else suitable that distinguishes your collection of genomes, e.g. smithlab.genome.edu.au/apollo or ausbirds.genome.edu.au/apollo.
         </small>
       </div>
     </section>
@@ -139,7 +139,7 @@
 
       <div class="form-group mb-5">
         <label class="font-weight-bold" for="{{ form.organism_type.id_for_label }}">
-          What types of organisms will be hosted in the Instance?
+          What types of organisms would you like to host genomes for?
         </label>
         {{ form.organism_type.errors }}
         {% render_field form.organism_type class="form-control" %}
@@ -147,14 +147,14 @@
 
       <div class="form-group mb-5">
         <p class="font-weight-bold">
-          Can we list your genome organism(s) or group of organisms on a public list?&nbsp;*
+          Can we list your genome(s) or organisms publicly?&nbsp;*
         </p>
         <small class="form-text text-muted mb-2">
           On our website we have a
           <a href="/tracks">
-            list of hosted organisms
+            list of hosted genomes
           </a>
-          and the research groups using the Apollo Service. Would like to list a particular organism?
+          and the research groups using the Apollo Service. Would like a particular genome to be listed here?
         </small>
         {{ form.list_public.errors }}
         {% for val, label in form.fields.list_public.choices %}
