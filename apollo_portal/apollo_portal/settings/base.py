@@ -172,4 +172,5 @@ SITE_SEARCH_URLS = [
     '/tradis',
     '/tradis/tutorial',
     '/tradis/contact',
+    'tracks',
 ]
