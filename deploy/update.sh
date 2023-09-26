@@ -21,6 +21,9 @@ python manage.py migrate
 python manage.py collectstatic --noinput
 python manage.py build_index
 sudo chown $BUILD_USER:$RUN_GROUP $SQLITE_FILEPATH
+sudo chown $BUILD_USER:$RUN_GROUP $SQLITE_DIR
+sudo chmod 664 $SQLITE_FILEPATH
+sudo chmod 775 $SQLITE_DIR
 
 # Start application
 sudo systemctl restart apollo_portal.service
