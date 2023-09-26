@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'home/css/default.css' %}">
     <link rel="stylesheet" href="{% static 'home/css/animation.css' %}">
@@ -41,7 +41,6 @@
 
     <script>
       // Set active navbar item
-
       $(document).ready( () => {
         const PAGES = {
           '/': 'home',
@@ -60,6 +59,19 @@
           }
         });
       });
+
+      // Load material icons and display when page has loaded
+      $('.material-icons').css('opacity', 0);
+      document.fonts.onloadingdone = () => {
+        $('.material-icons').css({
+          'opacity': 1,
+          'max-width': 'unset',
+          'overflow': 'visible'
+        });
+      }
+
+      // Enable bootstrap tooltips
+      $( () => $('[data-toggle="tooltip"]').tooltip() );
     </script>
 
     {% block script %}

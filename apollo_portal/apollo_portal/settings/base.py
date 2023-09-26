@@ -133,6 +133,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'apollo_portal/static'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'apollo_portal/media'
 
 # Default primary key field type

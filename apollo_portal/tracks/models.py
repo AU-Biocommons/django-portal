@@ -25,7 +25,7 @@ class Genome(models.Model):
     condition = models.CharField(max_length=255, null=True)
     thumbnail = models.ImageField(null=True, upload_to="genomes")
     apollo_url = models.URLField(null=True)
-    _metadata = models.TextField(null=True)
+    _metadata = models.TextField(default="{}")
 
     @property
     def metadata(self):
