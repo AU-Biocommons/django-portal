@@ -12,4 +12,5 @@ VENV_DIR=$REPO_DIR/venv
 STATIC_ROOT=$APP_DIR/apollo_portal/static
 GITHUB_URL=https://github.com/AU-Biocommons/django-portal.git
 SQLITE_FILEPATH=$APP_DIR/db.sqlite3
+SQLITE_DIR=$(dirname $SQLITE_FILEPATH)
 DJANGO_SETTINGS_MODULE=apollo_portal.settings.prod
