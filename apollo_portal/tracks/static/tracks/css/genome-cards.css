@@ -33,3 +33,15 @@
 .genome-card .card-footer {
   background: var(--table-head);
 }
+
+/* Media queries */
+@media (max-width: 768px) {
+  .genome-card {
+    min-width: 240px;
+  }
+}
+@media (max-width: 560px) {
+  .genome-cards .row {
+    justify-content: center;
+  }
+}

@@ -6,6 +6,9 @@ apollo_portal/static/
 logs/
 media/
 
+# Special files
+apollo_portal/tracks/data/factory/species_images/index.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

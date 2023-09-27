@@ -7,8 +7,8 @@ from django.core.management.base import BaseCommand
 from tracks.models import Lab
 from tracks.factories import GenomeFactory, LabFactory
 
-DEFAULT_GENOMES = 10
-DEFAULT_LABS = 3
+DEFAULT_GENOMES = 50
+DEFAULT_LABS = 2  # in addition to Degnan, TraDIS-Vault
 
 
 class Command(BaseCommand):
@@ -57,6 +57,8 @@ class Command(BaseCommand):
             LabFactory()
             for _ in range(labs)
         ]
+        labs += [LabFactory(name="Degnan")]
+        labs += [LabFactory(name="TraDIS-Vault")]
 
         self.stdout.write(f"\nCreating {genomes} Genome records...\n")
         for _ in range(genomes):

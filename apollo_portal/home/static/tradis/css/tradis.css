@@ -5,3 +5,10 @@ img.screenshot {
 #tradis-header {
   margin-top: -3rem;
 }
+
+/* Media queries */
+@media (max-width: 767px) {
+  .sidebar .nav {
+    display: none;
+  }
+}

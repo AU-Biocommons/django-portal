@@ -4,7 +4,7 @@
 
 {% block head %}
 <title>TraDIS-Vault | Apollo Portal</title>
-<link rel="stylesheet" href="{% static 'tradis/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'tradis/css/tradis.css' %}">
 {% endblock %}
 
 
@@ -37,14 +37,21 @@
 
 {% block script %}
 <script>
-  $(document).ready( () => {
-    // $('.sidebar .nav').css('height', $(document).height() - 70);
-    $('.sidebar').css('padding-left', $('.sidebar .nav').outerWidth());
-    $('footer').css('padding-left', $('.sidebar .nav').outerWidth());
-  });
+  function setSidebarPadding() {
+    if (window.innerWidth >= 768) {
+      // Dynamic padding for sidebar nav
+      $('.sidebar').css('padding-left', $('.sidebar .nav').outerWidth());
+      $('footer').css('padding-left', $('.sidebar .nav').outerWidth());
+    } else {
+      $('.sidebar').css('padding-left', 0);
+      $('footer').css('padding-left', 0);
+    }
+  }
+  $(document).ready(setSidebarPadding);
+  $(window).on("resize", setSidebarPadding);
 </script>
 
-{% block tradisscript %}
+{% block tradis_script %}
 {% endblock %}
 
 {% endblock %}

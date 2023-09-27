@@ -14,6 +14,7 @@
     </div>
     <div class="filter">
       <multiselect
+        v-if="!filters.lab.hidden"
         v-model="filters.lab.selected"
         :options="filters.lab.options"
         :multiple="true"
@@ -36,6 +37,7 @@
 
     <div class="filter">
       <multiselect
+        v-if="!filters.species.hidden"
         v-model="filters.species.selected"
         :options="filters.species.options"
         :multiple="true"
@@ -58,6 +60,7 @@
 
     <div class="filter">
       <multiselect
+        v-if="!filters.strain.hidden"
         v-model="filters.strain.selected"
         :options="filters.strain.options"
         :multiple="true"
@@ -80,6 +83,7 @@
 
     <div class="filter">
       <multiselect
+        v-if="!filters.condition.hidden"
         v-model="filters.condition.selected"
         :options="filters.condition.options"
         :multiple="true"
@@ -109,7 +113,7 @@
 
 
   <!-- Genome cards -->
-  <div>
+  <div class="genome-cards">
     <div v-if="loading">
       <p class="lead">
         Loading...
@@ -186,18 +190,22 @@
           lab: {
             selected: [],
             options: [],
+            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('lab'),
           },
           species: {
             selected: [],
             options: [],
+            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('species'),
           },
           strain: {
             selected: [],
             options: [],
+            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('strain'),
           },
           condition: {
             selected: [],
             options: [],
+            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('condition'),
           },
         },
       }
@@ -217,13 +225,27 @@
     },
     methods: {
       fetchGenomes () {
-        return fetch('/tracks/api/genomes')
-          .then(response => response.json())
+        let params = {};
+        let urlParams = "";
+        if (typeof FILTER_GENOMES_PARAMS !== 'undefined') {
+          params = FILTER_GENOMES_PARAMS;
+          urlParams = "?" + new URLSearchParams(params);
+        }
+        return fetch('/tracks/api/genomes' + urlParams)
+          .catch(error => {
+            alert(error);
+          })
+          .then(response => {
+            if (!response.ok) {
+              alert(`Error fetching genomes: ${response.statusText} (${response.status})`);
+            }
+            return response.json();
+          })
           .then(data => {
             this.genomes = data.genomes;
             this.setFilterOptions();
             this.loading = false;
-          })
+          });
       },
       setFilterOptions () {
         Object.keys(this.filters).forEach(field => {
@@ -239,7 +261,7 @@
         Object.keys(this.filters).forEach(field => {
           this.filters[field].selected = [];
         });
-      }
+      },
     },
   });
 </script>

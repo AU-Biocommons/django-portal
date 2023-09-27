@@ -27,7 +27,14 @@
   </p>
 </section>
 
-<section class="container">
-  <h1 class="text-danger">Tracks table TBC</h1>
+<section class="container my-3">
+  <script>
+    const FILTER_GENOMES_PARAMS = {
+      labs: 'tradis-vault',
+    }
+    const HIDE_FILTERS = ['lab']
+  </script>
+  {% include 'tracks/snippets/genome-cards.html' %}
 </section>
+
 {% endblock %}
