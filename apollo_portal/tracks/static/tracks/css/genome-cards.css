@@ -28,6 +28,7 @@
   width: calc(25% - .5rem);
   min-width: 250px;
   background: var(--table-body);
+  box-shadow: 0 0 8px rgba(0,0,0,.5);
 }
 .genome-card .card-footer {
   background: var(--table-head);
