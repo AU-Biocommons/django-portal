@@ -43,7 +43,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         """Run the command."""
         input(
-            "\nWARNING: This will delete all database content!\n\n"
+            "\nWARNING: This will delete all Lab & Genome records!\n\n"
             "Press ENTER to continue or CTRL+C to cancel."
         )
 
