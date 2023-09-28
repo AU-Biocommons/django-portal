@@ -4,18 +4,43 @@ from django.http import JsonResponse
 from django.db.models.functions import Lower
 
 from apollo_portal.utils.api import api_view
-from tracks.models import Genome
+from tracks.models import Genome, Lab
+
+
+@api_view(['GET'])
+def labs(request):
+    """Return requested labs as json."""
+    labs = Lab.objects.all()
+    filter_labs_str = request.GET.get('labs')
+    if filter_labs_str:
+        filter_labs = [
+            lab.lower()
+            for lab in filter_labs_str.split(',')
+        ]
+        # Case insensitive filter by lab.name
+        labs = (
+            labs
+            .annotate(lower_name=Lower('name'))
+            .filter(lower_name__in=filter_labs)
+        )
+
+    return JsonResponse({
+        'labs': {
+            lab.name: lab.as_json()
+            for lab in labs
+        }
+    })
 
 
 @api_view(['GET'])
 def genomes(request):
     """Return requested genomes as json."""
     genomes = Genome.objects.all()
-    filter_labs = request.GET.get('labs')
-    if filter_labs:
+    filter_labs_str = request.GET.get('labs')
+    if filter_labs_str:
         labs = [
             lab.lower()
-            for lab in filter_labs.split(',')
+            for lab in filter_labs_str.split(',')
         ]
         # Case insensitive filter by genome.lab.name
         genomes = (
@@ -24,9 +49,7 @@ def genomes(request):
             .filter(lab_lower_name__in=labs)
         )
 
-    data = {'genomes': [
+    return JsonResponse({'genomes': [
         g.as_json()
         for g in genomes
-    ]}
-
-    return JsonResponse(data)
+    ]})

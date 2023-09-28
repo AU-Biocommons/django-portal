@@ -5,22 +5,36 @@ from django.db import models
 
 
 class Lab(models.Model):
-    """A research group with an Apollo instance.
-
-    Add fields:
-        - description
-        - website_url
-        - email
-        - picture?
-    """
+    """A research group with an Apollo instance."""
 
     name = models.CharField(max_length=255)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
+    description_html = models.TextField(null=True)
+    website_url = models.URLField(null=True)
+    apollo_url = models.URLField(null=True)
+    principle_investigator = models.CharField(max_length=255, null=True)
+    email = models.EmailField(null=True)
+    image = models.ImageField(null=True, upload_to="labs")
 
     def __str__(self):
         """Return string representation."""
         return self.name
+
+    def as_json(self):
+        """Serialize model for JSON encoding."""
+        return {
+            "id": self.id,
+            "created": self.datetime_created.isoformat(),
+            "modified": self.datetime_modified.isoformat(),
+            "name": self.name,
+            "description_html": self.description_html,
+            "website_url": self.website_url,
+            "apollo_url": self.apollo_url,
+            "principle_investigator": self.principle_investigator,
+            "email": self.email,
+            "image": self.image.url if self.image else None,
+        }
 
 
 class Genome(models.Model):

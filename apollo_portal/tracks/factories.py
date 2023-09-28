@@ -53,3 +53,9 @@ class LabFactory(DjangoModelFactory):
         django_get_or_create = ('name',)
 
     name = factory.Faker("name")
+    description_html = factory.Faker("paragraph")
+    website_url = factory.Faker("url")
+    email = factory.Faker("email")
+    image = factory.django.ImageField(format='PNG')
+    principle_investigator = factory.Faker("name")
+    apollo_url = factory.Faker("url")

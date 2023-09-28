@@ -30,8 +30,14 @@
   background: var(--table-body);
   box-shadow: 0 0 8px rgba(0,0,0,.5);
 }
+.genome-card .card-title,
 .genome-card .card-footer {
   background: var(--table-head);
+}
+.lab-img {
+  height: 300px;
+  width: auto;
+  margin: 0 auto;
 }
 
 /* Media queries */
