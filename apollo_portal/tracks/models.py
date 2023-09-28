@@ -5,7 +5,14 @@ from django.db import models
 
 
 class Lab(models.Model):
-    """A research group with an Apollo instance."""
+    """A research group with an Apollo instance.
+
+    Add fields:
+        - description
+        - website_url
+        - email
+        - picture?
+    """
 
     name = models.CharField(max_length=255)
     datetime_created = models.DateTimeField(auto_now_add=True)
@@ -17,7 +24,16 @@ class Lab(models.Model):
 
 
 class Genome(models.Model):
-    """Represents a genome reference on an Apollo instance."""
+    """Represents a genome reference on an Apollo instance.
+
+    Genomes has several publicity states:
+
+    - Public: Apollo accessible to all users and can edit
+    - Public readonly: Apollo accessible to all users
+    - Private: Apollo requires login but is listed on portal
+        - public users might like to request access/collaboration?
+
+    """
 
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
