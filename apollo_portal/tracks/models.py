@@ -55,7 +55,7 @@ class Genome(models.Model):
             "modified": self.datetime_modified.isoformat(),
             "accession_id": self.accession_id,
             "lab": self.lab.name,
-            "name": self.name.capitalize(),
+            "name": self.name,
             "species": self.species,
             "strain": self.strain,
             "condition": self.condition,

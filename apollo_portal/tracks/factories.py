@@ -39,7 +39,7 @@ class GenomeFactory(DjangoModelFactory):
     name = factory.Faker("word")
     accession_id = factory.Faker("ean8")
     species = factory.Faker("word")
-    strain = factory.Faker("word")
+    strain = factory.Faker("ean8")
     condition = factory.Faker("word")
     thumbnail = factory.django.ImageField(from_func=_get_fake_image)
     apollo_url = factory.Faker("url")

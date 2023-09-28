@@ -13,13 +13,20 @@ def genomes(request):
     genomes = Genome.objects.all()
     filter_labs = request.GET.get('labs')
     if filter_labs:
-        labs = filter_labs.split(',')
+        labs = [
+            lab.lower()
+            for lab in filter_labs.split(',')
+        ]
+        # Case insensitive filter by genome.lab.name
         genomes = (
             genomes
             .annotate(lab_lower_name=Lower('lab__name'))
             .filter(lab_lower_name__in=labs)
         )
-    return JsonResponse({'genomes': [
+
+    data = {'genomes': [
         g.as_json()
         for g in genomes
-    ]})
+    ]}
+
+    return JsonResponse(data)
