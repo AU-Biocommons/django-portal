@@ -1,0 +1,12 @@
+Dear {{ data.name.value|safe }},
+
+Thanks for your enquiry. We will get back to you as soon as possible.
+
+Regards,
+The Australian Apollo Service team
+
+---
+
+Your message:
+
+{{ data.message.value|safe }}

@@ -7,7 +7,7 @@ urlpatterns = [
     path('search', views.search_pages, name='search'),
     path('about', views.about, name='about'),
     path('signup', views.SignupView.as_view(), name='signup'),
-    path('contact', views.contact, name='contact'),
+    path('contact', views.ContactView.as_view(), name='contact'),
     path('resources', views.resources, name='resources'),
     path('resources/start',
          views.getting_started,

@@ -65,4 +65,18 @@ class SignUpForm(forms.Form):
         """Send email to Apollo admins and user."""
         notify.user_success(self)
         notify.admin_user_success(self)
-        notify.admin(self)
+        notify.admins(self)
+
+
+class ContactForm(forms.Form):
+    """Allow users to contact Apollo team."""
+
+    captcha = ReCaptchaField()
+    name = forms.CharField(max_length=200)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea, max_length=5000)
+
+    def dispatch(self):
+        """Send email to Apollo admins and user."""
+        notify.contact_form(self)
+        notify.admins(self)
