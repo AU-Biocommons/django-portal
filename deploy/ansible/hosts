@@ -1,0 +1,2 @@
+[dev_webservers]
+django-sandpit.genome.edu.au  ansible_connection=ssh  ansible_user=ubuntu

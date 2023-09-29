@@ -1,0 +1,76 @@
+---
+
+# Read vault from secrets.yml:
+# admin_email: <str>
+# admin_password: <str>
+# database_password: <str>
+# django_secret_key: <str>
+# smtp_password: <str>
+
+# If you don't want SSL certs, just flip this:
+certbot_ssl: true
+certbot_renew_email: j.lee@qcif.edu.au
+
+# 4 web workers should be plenty - increase for machines with >2 CPUs
+# Allows occassional minor web thread blocking e.g. send email
+gunicorn:
+  web_workers: 4
+
+# Postgres database conf
+postgres_db_name: apollo_portal
+postgres_db_user: apollo_portal
+
+postgresql_locales:
+  - 'en_US.UTF-8'
+
+postgresql_databases:
+  - name: "{{ postgres_db_name }}"
+    port: 5432
+
+postgresql_users:
+  - name: "{{ postgres_db_user }}"
+    password: "{{ postgres_db_password }}"
+    db: "{{ postgres_db_name }}"
+
+postgres_users_no_log: false
+
+# Django site configuration
+# -----------------------------------------------------------------------------
+
+# Will git clone apollo_portal to here
+project_root: /home/ubuntu/apollo_portal
+
+# This is where system config will be created
+setup_root: /home/ubuntu/setup
+
+# App will be served from here
+django_root: /srv/sites/apollo_portal
+
+# Virtual environment will be created here
+venv_root: "{{ project_root }}/venv"
+
+# Admin user login for the admin portal
+admin_user:
+  first_name: admin
+  last_name: admin
+  email: "{{ admin_email }}"
+  password: "{{ admin_password }}"
+
+smtp:
+  hostname: smtp.office365.com
+  port: 587
+  username: qfab_smtp@qfab.org
+  password: "{{ smtp_password }}"
+  from_address: qfab_smtp@qfab.org
+  to_address: help@genome.edu.au
+  use_tls: true
+
+# Sometimes required to get the playbook to run:
+# skip_database_migration: true
+
+# For error notifications
+slack:
+  errors:
+    api_key: "{{ slack_error_api_key }}"  # secrets.yml
+    channel_id: C038ESFSXLN
+    mention_user_id: U024MUHM23W
