@@ -1,6 +1,5 @@
 # To-do
 
-- Configure postgres
 - secrets.yml:
     ```
     Read vault from secrets.yml:

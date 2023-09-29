@@ -2,8 +2,6 @@
 
 set -e
 
-. $(dirname $0)/vars.sh
-
 # Make sure this isn't being run as root
 if [[ $EUID = 0 ]]; then
     echo "Don't run this as root - ubuntu is fine!"
@@ -25,7 +23,7 @@ python manage.py migrate
 # Build the search index
 python manage.py build_index
 
-# Update file ownership to allow www-data to write logs/media
+# Update file ownership to allow www-data to write logs + media files
 sudo chown -R ubuntu:www-data {{ django_log_root}}
 sudo find {{ django_log_root}} -type d -exec chmod 775 {} \;
 sudo find {{ django_log_root}} -type f -exec chmod 664 {} \;
