@@ -62,7 +62,7 @@ smtp:
   username: qfab_smtp@qfab.org
   password: "{{ smtp_password }}"
   from_address: qfab_smtp@qfab.org
-  to_address: help@genome.edu.au
+  to_address: "{{ user_support_email }}"  # secrets.yml
   use_tls: true
 
 # Sometimes required to get the playbook to run:
