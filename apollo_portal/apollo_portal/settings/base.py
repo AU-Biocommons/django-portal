@@ -16,7 +16,11 @@ from pathlib import Path
 from .logging.config import configure_logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-load_dotenv(BASE_DIR.parent / '.env')
+
+env_file = BASE_DIR.parent / '.env'
+if not env_file.exists():
+    env_file = BASE_DIR / '.env'
+load_dotenv(env_file)
 
 SECRET_KEY = 'secret'
 DEBUG = True
