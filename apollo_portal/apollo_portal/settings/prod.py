@@ -7,8 +7,10 @@ from .base import *  # noqa
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
 PRODUCTION_HOSTNAMES = [
+    'genome.edu.au',
     'apollo-portal.genome.edu.au',
     'django-sandpit.genome.edu.au',
+    'ubuntu22-test.genome.edu.au',
 ]
 ALLOWED_HOSTS += PRODUCTION_HOSTNAMES  # noqa
 CSRF_TRUSTED_ORIGINS = [

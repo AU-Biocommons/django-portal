@@ -6,6 +6,10 @@ apollo_portal/static/
 logs/
 media/
 
+# Ansible stuff
+deploy/ansible/roles/
+!deploy/ansible/roles/apollo_portal
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
