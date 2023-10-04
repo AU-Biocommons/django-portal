@@ -18,8 +18,6 @@ from .logging.config import configure_logging
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env_file = BASE_DIR.parent / '.env'
-if not env_file.exists():
-    env_file = BASE_DIR / '.env'
 load_dotenv(env_file)
 
 SECRET_KEY = 'secret'
