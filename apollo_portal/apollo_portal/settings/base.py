@@ -16,7 +16,9 @@ from pathlib import Path
 from .logging.config import configure_logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-load_dotenv(BASE_DIR.parent / '.env')
+
+env_file = BASE_DIR.parent / '.env'
+load_dotenv(env_file)
 
 SECRET_KEY = 'secret'
 DEBUG = True
@@ -127,6 +129,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+
+AUTH_USER_MODEL = 'home.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

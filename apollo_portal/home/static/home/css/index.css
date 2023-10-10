@@ -17,14 +17,15 @@
 }
 #cover-image h1,
 #cover-image h5,
-#cover-image a {
-  color: inherit;
+#cover-image .btn-primary {
   position: relative;
 }
 #cover-image h1 {
+  color: inherit;
   top: 0;
 }
 #cover-image h5 {
+  color: inherit;
   top: 0;
 }
 #cover-image a {

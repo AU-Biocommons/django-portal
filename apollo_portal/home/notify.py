@@ -20,16 +20,24 @@ def user_success(form):
 
 
 def admin_user_success(form):
-    """Send confirmation email to user."""
+    """Send confirmation email to admin user."""
     subject = 'Project Administrator for Apollo Instance'
-    to_addresses = [form.cleaned_data['email']]
+    to_addresses = [form.cleaned_data['admin_email']]
     template = 'home/mail/success_admin_user'
     send_email(form, subject, to_addresses, template)
 
 
-def admin(form):
-    """Send confirmation email to admins."""
-    subject = f'Webform submission from: {form.cleaned_data["name"]}'
+def contact_form(form):
+    """Send contact form email to admins."""
+    subject = 'We have received your message'
+    to_addresses = [form.cleaned_data['email']]
+    template = 'home/mail/contact_confirmation'
+    send_email(form, subject, to_addresses, template)
+
+
+def admins(form):
+    """Email submitted form content to admins."""
+    subject = f'Apollo webform submission from: {form.cleaned_data["name"]}'
     to_addresses = [settings.EMAIL_TO_ADDRESS]
     template = 'home/mail/success_admin'
     send_email(form, subject, to_addresses, template)

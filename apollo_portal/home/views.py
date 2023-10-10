@@ -2,7 +2,7 @@ import logging
 import pprint
 from django.shortcuts import render
 from django.views import View
-from .forms import SignUpForm
+from .forms import ContactForm, SignUpForm
 from . import search
 
 logger = logging.getLogger('django')
@@ -51,22 +51,46 @@ def get_resource_nav_context(request):
     }
 
 
-class SignupView(View):
-    """Allow users to apply for an Apollo service instance."""
+class AbstractFormView(View):
+    """Manage generic form submission."""
+
+    Form = None
+    Form = SignUpForm
+    template = None
+    template = 'home/signup.html'
+    success_template = None
+    success_template = 'home/signup-success.html'
 
     def get(self, request):
-        form = SignUpForm()
-        return render(request, 'home/signup.html', {'form': form})
+        form = self.Form()
+        return render(request, self.template, {'form': form})
 
     def post(self, request):
-        form = SignUpForm(request.POST)
+        form = self.Form(request.POST)
         if form.is_valid():
-            form.dispatch()
-            return render(request, 'home/signup-success.html')
+            if hasattr(form, 'dispatch'):
+                form.dispatch()
+            return render(request, self.success_template)
         else:
             logger.info(
                 "Invalid form submission:\n" + pprint.pformat(form.errors))
-        return render(request, 'home/signup.html', {'form': form})
+        return render(request, self.template, {'form': form})
+
+
+class SignupView(AbstractFormView):
+    """Handle sign-up form submission."""
+
+    Form = SignUpForm
+    template = 'home/signup.html'
+    success_template = 'home/signup-success.html'
+
+
+class ContactView(AbstractFormView):
+    """Handle contact form submission."""
+
+    Form = ContactForm
+    template = 'home/contact.html'
+    success_template = 'home/contact-success.html'
 
 
 def search_pages(request):
@@ -84,10 +108,6 @@ def index(request):
 
 def about(request):
     return render(request, 'home/about.html')
-
-
-def contact(request):
-    return render(request, 'home/contact.html')
 
 
 def resources(request):

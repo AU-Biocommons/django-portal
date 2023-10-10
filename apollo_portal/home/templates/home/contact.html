@@ -1,6 +1,9 @@
 {% extends 'home/header.html' %}
 {% load static %}
 
+<!-- See https://pypi.org/project/django-widget-tweaks/ -->
+{% load widget_tweaks %}
+
 {% block head %}
 <title>Contact Us | Apollo Portal</title>
 {% endblock %}
@@ -9,10 +12,58 @@
 <div class="container">
   <h1>Contact Us</h1>
   <p>
-    For all enquiries contact us at apollo dash support at genome dot edu dot au. Thank you.
+    For all enquiries about the Australian Apollo Service, please contact us
+    using the form below. Thank you.
   </p>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <section>
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.name.id_for_label }}">
+          Your name
+        </label>
+        {{ form.name.errors }}
+        {% render_field form.name class="form-control" %}
+        <small class="form-text text-muted">
+          This is how we will refer to you in communication.
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.email.id_for_label }}">
+          Your email
+        </label>
+        {{ form.email.errors }}
+        {% render_field form.email class="form-control" %}
+        <small class="form-text text-muted">
+          We will only use your email address for direct communication regarding your enquiry.
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="font-weight-bold" for="{{ form.message.id_for_label }}">
+          Your message
+        </label>
+        {{ form.message.errors }}
+        {% render_field form.message class="form-control" %}
+      </div>
+    </section>
+
+    <section>
+      {{ form.captcha }}
+      {{ form.captcha.errors }}
+    </section>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
 </div>
 {% endblock %}
 
 {% block script %}
+<script src="{% static 'home/js/forms.js' %}"></script>
 {% endblock %}

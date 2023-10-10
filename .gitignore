@@ -8,6 +8,9 @@ media/
 
 # Special files
 apollo_portal/tracks/data/factory/species_images/index.txt
+# Ansible stuff
+deploy/ansible/roles/
+!deploy/ansible/roles/apollo_portal
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

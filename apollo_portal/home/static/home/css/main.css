@@ -99,6 +99,11 @@ ol li {
   background: transparent;
   border: 1px solid white;
 }
+.theme-black .btn-primary:hover {
+  color: white;
+  border: 1px solid var(--link);
+  background-color: var(--link);
+}
 .theme-black p.text-muted {
   color: #aaa !important;
 }
