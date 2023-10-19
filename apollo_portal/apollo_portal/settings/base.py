@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+
+from apollo_portal.utils.environment import is_truthy_string
 from .logging.config import configure_logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -150,7 +152,8 @@ EMAIL_HOST = os.environ.get('MAIL_HOSTNAME')
 EMAIL_PORT = os.environ.get('MAIL_SMTP_PORT')
 EMAIL_HOST_USER = os.environ.get('MAIL_SMTP_USERNAME')
 EMAIL_HOST_PASSWORD = os.environ.get('MAIL_SMTP_PASSWORD')
-EMAIL_USE_TLS = str(os.environ.get('MAIL_USE_TLS')).lower() in ('1', 'true')
+EMAIL_USE_TLS = is_truthy_string(os.environ.get('MAIL_USE_TLS'))
+# EMAIL_USE_TLS = str(os.environ.get('MAIL_USE_TLS')).lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ.get('MAIL_FROM_ADDRESS')
 EMAIL_TO_ADDRESS = os.environ.get('MAIL_TO_ADDRESS')
 SERVER_EMAIL = os.environ.get('MAIL_FROM_ADDRESS')

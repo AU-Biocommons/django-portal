@@ -8,6 +8,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from pprint import pformat
 
+from apollo_portal.utils import postal
+
 logger = logging.getLogger('django')
 
 
@@ -79,10 +81,13 @@ def send_email(form, subject, to_addresses, template):
 def retry_send(msg, retries=3):
     for attempt in range(1, retries + 1):
         try:
+            if settings.EMAIL_HOST == 'mail.usegalaxy.org.au':
+                return postal.send_mail(msg)
             return msg.send()
         except Exception as exc:
-            if attempt == retries:
-                raise exc
+            # if attempt == retries:
+            #     raise exc
+            raise exc
             logging.warning(
                 f"Email attempt {attempt} failed."
                 " Retrying in 1 second...")
