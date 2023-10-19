@@ -2,7 +2,7 @@
 
 import os
 from .base import *  # noqa: F403
-
+from apollo_portal.utils.environment import is_truthy_string
 
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
@@ -22,7 +22,7 @@ CSRF_TRUSTED_ORIGINS = [
 STATICFILES_STORAGE = ('django.contrib.staticfiles.storage'
                        '.ManifestStaticFilesStorage')
 
-if not os.environ.get('USE_SQLITE_DB'):
+if not is_truthy_string(os.environ.get('USE_SQLITE_DB')):
     DATABASES['default'] = {  # noqa: F405
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ['DB_NAME'],
