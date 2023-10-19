@@ -27,7 +27,9 @@ $(document).ready(function() {
   })
 });
 
-// $('form').submit( () => {
-//   $('button[type="submit"]').prop('disabled', true);
-//   $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
-// });
+$('form').submit( () => {
+  const hard_width = $('button[type="submit"]').outerWidth();
+  $('button[type="submit"]').prop('disabled', true);
+  $('button[type="submit"]').css('min-width', hard_width);
+  $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
+});

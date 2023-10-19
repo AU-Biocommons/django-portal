@@ -57,7 +57,13 @@ ol li {
   border-radius: .3rem;
   background: white;
 }
-.btn-primary:hover {
+.btn-primary:disabled {
+  color: #ccc;
+  border: 1px solid darkgrey;
+  background: grey;
+  cursor: default;
+}
+.btn-primary:not(:disabled):hover {
   color: white;
   border: 1px solid var(--link);
   background-color: var(--link);
@@ -99,7 +105,7 @@ ol li {
   background: transparent;
   border: 1px solid white;
 }
-.theme-black .btn-primary:hover {
+.theme-black .btn-primary:not(:disabled):hover {
   color: white;
   border: 1px solid var(--link);
   background-color: var(--link);
