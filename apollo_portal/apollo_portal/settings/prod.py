@@ -22,11 +22,12 @@ CSRF_TRUSTED_ORIGINS = [
 STATICFILES_STORAGE = ('django.contrib.staticfiles.storage'
                        '.ManifestStaticFilesStorage')
 
-DATABASES['default'] = {  # noqa: F405
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.environ['DB_NAME'],
-    'USER': os.environ['DB_USER'],
-    'PASSWORD': os.environ['DB_PASSWORD'],
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
-}
+if not os.environ.get('USE_SQLITE_DB'):
+    DATABASES['default'] = {  # noqa: F405
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
