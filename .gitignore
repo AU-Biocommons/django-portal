@@ -2,9 +2,13 @@
 *.sqlite3
 .vscode/
 whoosh_index/
-apollo_portal/static/
+apollo_portal/apollo_portal/static/
 logs/
 media/
+.env.test
+
+# Special files
+apollo_portal/tracks/data/factory/species_images/index.txt
 
 # Ansible stuff
 deploy/ansible/roles/

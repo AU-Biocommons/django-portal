@@ -1,7 +1,12 @@
-from django.test import TestCase
+"""Unit test home application logic."""
+
+from django.conf import settings
 from django.core import mail
+from django.test import TestCase
+from django.test.utils import override_settings
 
 from . import choices, validators
+from .forms import ContactForm
 
 VALID_SIGNUP_DATA = {
     'g-recaptcha-response': '1',
@@ -21,6 +26,13 @@ VALID_SIGNUP_DATA = {
     'admin_name': 'Test Admin',
     'admin_email': 'admin@uq.edu.au',
 }
+
+
+test_email_backend = (
+    'django.core.mail.backends.smtp.EmailBackend'
+    if settings.TEST_PRODUCTION_MAIL_SERVER
+    else 'django.core.mail.backends.locmem.EmailBackend'
+)
 
 
 def print_form_errors(response):
@@ -83,3 +95,18 @@ class SignupTestCase(TestCase):
         self.assertEqual(validators.hostname('testing'), None)
         self.assertRaises(validators.ValidationError,
                           validators.hostname, 'test&invalid')
+
+
+@override_settings(EMAIL_BACKEND=test_email_backend)
+class TestMailServer(TestCase):
+    """This test requires a real mail server to be set in .env.test."""
+
+    def test_notify(self):
+        """Test submission of mock contact form."""
+        form = ContactForm({
+            'name': 'Test User',
+            'email': 'testuser@example.com',
+            'message': 'Test message from Apollo Portal unit tests',
+        })
+        form.is_valid()
+        form.dispatch()

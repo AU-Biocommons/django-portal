@@ -1,0 +1,53 @@
+#app {
+  min-height: 60vh;
+}
+#filter-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--table-head);
+}
+#filter-bar .filter {
+  margin: 0 .2rem;
+  padding: .2rem;
+}
+.multiselect__tags,
+.multiselect__input,
+.multiselect__single {
+  color: #555;
+  background: var(--table-body);
+}
+.multiselect__placeholder {
+  color: #888;
+}
+.multiselect__input::placeholder {
+  color: #bbb;
+}
+.genome-card {
+  margin: 1rem .25rem;
+  width: calc(25% - .5rem);
+  min-width: 250px;
+  background: var(--table-body);
+  box-shadow: 0 0 8px rgba(0,0,0,.5);
+}
+.genome-card .card-title,
+.genome-card .card-footer {
+  background: var(--table-head);
+}
+.lab-img {
+  height: 300px;
+  width: auto;
+  margin: 0 auto;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .genome-card {
+    min-width: 240px;
+  }
+}
+@media (max-width: 560px) {
+  .genome-cards .row {
+    justify-content: center;
+  }
+}

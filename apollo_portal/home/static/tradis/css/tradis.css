@@ -1,0 +1,14 @@
+img.screenshot {
+  margin: .5rem 0 3rem 0;
+  max-width: 800px;
+}
+#tradis-header {
+  margin-top: -3rem;
+}
+
+/* Media queries */
+@media (max-width: 767px) {
+  .sidebar .nav {
+    display: none;
+  }
+}
