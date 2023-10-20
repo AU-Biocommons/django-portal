@@ -39,6 +39,15 @@
   width: auto;
   margin: 0 auto;
 }
+.view-select-buttons button:last-child {
+  margin-left: 1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.view-select-buttons button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
 /* Media queries */
 @media (max-width: 768px) {
