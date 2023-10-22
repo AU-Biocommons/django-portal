@@ -49,7 +49,7 @@ def print_form_errors(response):
 class SignupTestCase(TestCase):
     def test_successful_signup(self):
         """Test signup form."""
-        response = self.client.post('/signup', VALID_SIGNUP_DATA)
+        response = self.client.post('/signup/', VALID_SIGNUP_DATA)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Thank you for registering')
         self.assertEqual(len(mail.outbox), 3)
@@ -58,7 +58,7 @@ class SignupTestCase(TestCase):
         """Test signup form."""
         data = VALID_SIGNUP_DATA.copy()
         data['institution'] = 'Another Institution'
-        response = self.client.post('/signup', data)
+        response = self.client.post('/signup/', data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Thank you for registering')
         self.assertEqual(len(mail.outbox), 3)
@@ -67,7 +67,7 @@ class SignupTestCase(TestCase):
         """Test signup form."""
         data = VALID_SIGNUP_DATA.copy()
         data.pop('agree_terms')
-        response = self.client.post('/signup', data)
+        response = self.client.post('/signup/', data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'This field is required')
 
@@ -75,7 +75,7 @@ class SignupTestCase(TestCase):
         """Test signup form."""
         data = VALID_SIGNUP_DATA.copy()
         data['phone'] = '0499258aaa'
-        response = self.client.post('/signup', data)
+        response = self.client.post('/signup/', data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Phone number can only contain numbers')
 
@@ -83,7 +83,7 @@ class SignupTestCase(TestCase):
         """Test signup form."""
         data = VALID_SIGNUP_DATA.copy()
         data['suggested_hostname'] = 'something&invalid'
-        response = self.client.post('/signup', data)
+        response = self.client.post('/signup/', data)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Hostname can only contain alphanumeric')
 
