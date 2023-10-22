@@ -21,6 +21,36 @@
 <!-- Use verbatim mode to prevent collision of Django and Vue template tags -->
 {% verbatim %}
 <div id="app">
+  <!-- View selector -->
+  <div class="row justify-content-between">
+    <div class="col">
+      <input class="form-control" type="text" placeholder="Search" @input="(e) => this.textSearch = e.target.value" style="max-width: 450px;">
+    </div>
+
+    <div class="col">
+      <div class="view-select-buttons">
+        <button
+          class="btn btn-secondary btn-icon"
+          @click="() => setView(this.views.CARDVIEW)"
+          data-toggle="tooltip"
+          data-title="Card view"
+          data-placement="top"
+        >
+          <span class="material-icons">grid_view</span>
+        </button>
+        <button
+          class="btn btn-secondary btn-icon"
+          @click="() => setView(this.views.LISTVIEW)"
+          data-toggle="tooltip"
+          data-title="List view"
+          data-placement="top"
+        >
+          <span class="material-icons">view_list</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Filter bar -->
   <div id="filter-bar">
     <div class="px-2">
@@ -127,7 +157,7 @@
 
 
   <!-- Genome cards -->
-  <div class="genome-cards">
+  <div v-if="selectedView === views.CARDVIEW" class="genome-cards">
     <div v-if="loading">
       <p class="lead">
         Loading...
@@ -153,7 +183,7 @@
         />
         <div class="card-title m-0">
           <h5 class="text-center my-1">
-            {{ genome.name }}
+            {{ capitalize(genome.name) }}
           </h5>
         </div>
 
@@ -185,6 +215,54 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div v-if="selectedView === views.LISTVIEW" class="genome-list">
+    <div v-if="loading">
+      <p class="lead">
+        Loading...
+      </p>
+    </div>
+
+    <div v-else-if="!filteredGenomes.length" class="text-center">
+      <p class="lead my-5">
+        No matching genomes
+      </p>
+    </div>
+
+    <table v-else class="table table-striped">
+      <thead>
+        <th>Genome name</th>
+        <th>Lab</th>
+        <th>Species</th>
+        <th>Strain</th>
+        <th>Condition</th>
+        <th></th>
+      </thead>
+      <tr
+        v-for="genome in filteredGenomes"
+        :key="genome.id"
+      >
+        <td>{{ capitalize(genome.name) }}</td>
+        <td>
+          <button class="btn-primary btn-small" type="button" @click="() => showLab(genome.lab)">
+            {{ genome.lab }} Lab
+          </button>
+        </td>
+        <td>{{ genome.species }}</td>
+        <td>{{ genome.strain }}</td>
+        <td>{{ genome.condition }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            :href="genome.apollo_url"
+            target="_blank"
+          >
+            View
+          </button>
+        </td>
+      </tr>
+    </table>
   </div>
 
   <div class="modal" id="labDetailsModal">
@@ -274,6 +352,7 @@
       return {
         loading: true,
         genomes: [],
+        textSearch: '',
         filters: {
           lab: {
             selected: [],
@@ -297,6 +376,11 @@
           },
         },
         labDetails: null,
+        views: {
+          CARDVIEW: 0,
+          LISTVIEW: 1,
+        },
+        selectedView: 0,
       }
     },
     computed: {
@@ -305,7 +389,12 @@
           return (!this.filters.lab.selected.length || this.filters.lab.selected.includes(genome.lab))
             && (!this.filters.species.selected.length || this.filters.species.selected.includes(genome.species))
             && (!this.filters.strain.selected.length || this.filters.strain.selected.includes(genome.strain))
-            && (!this.filters.condition.selected.length || this.filters.condition.selected.includes(genome.condition));
+            && (!this.filters.condition.selected.length || this.filters.condition.selected.includes(genome.condition))
+            && (
+              !this.textSearch
+              || (
+                genome.name.toLowerCase() + genome.species.toLowerCase()
+              ).includes(this.textSearch.toLowerCase()));
         });
       },
     },
@@ -313,6 +402,9 @@
       this.fetchGenomes();
     },
     methods: {
+      setView (view) {
+        this.selectedView = view;
+      },
       fetchGenomes () {
         let params = {};
         let urlParams = "";
@@ -372,6 +464,9 @@
         Object.keys(this.filters).forEach(field => {
           this.filters[field].selected = [];
         });
+      },
+      capitalize (string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
       },
     },
   });
