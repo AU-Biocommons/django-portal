@@ -40,7 +40,7 @@
   margin: 0 auto;
 }
 .view-select-buttons button:last-child {
-  margin-left: 1px;
+  margin-left: -3px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
