@@ -10,12 +10,13 @@ class Lab(models.Model):
     name = models.CharField(max_length=255)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
-    description_html = models.TextField(null=True)
-    website_url = models.URLField(null=True)
-    apollo_url = models.URLField(null=True)
-    principle_investigator = models.CharField(max_length=255, null=True)
-    email = models.EmailField(null=True)
-    image = models.ImageField(null=True, upload_to="labs")
+    description_html = models.TextField(null=True, blank=True)
+    website_url = models.URLField(null=True, blank=True)
+    apollo_url = models.URLField(null=True, blank=True)
+    principle_investigator = models.CharField(
+        max_length=255, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to="labs")
 
     def __str__(self):
         """Return string representation."""
@@ -52,13 +53,13 @@ class Genome(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
     lab = models.ForeignKey(Lab, on_delete=models.CASCADE)
-    accession_id = models.CharField(max_length=255, null=True)
+    accession_id = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
-    species = models.CharField(max_length=255, null=True)
-    strain = models.CharField(max_length=255, null=True)
-    condition = models.CharField(max_length=255, null=True)
-    thumbnail = models.ImageField(null=True, upload_to="genomes")
-    apollo_url = models.URLField(null=True)
+    species = models.CharField(max_length=255, null=True, blank=True)
+    strain = models.CharField(max_length=255, null=True, blank=True)
+    condition = models.CharField(max_length=255, null=True, blank=True)
+    thumbnail = models.ImageField(null=True, blank=True, upload_to="genomes")
+    apollo_url = models.URLField(null=True, blank=True)
     _metadata = models.TextField(default="{}")
 
     def __str__(self):
@@ -109,9 +110,9 @@ class Track(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    accession_id = models.CharField(max_length=255, null=True)
+    accession_id = models.CharField(max_length=255, null=True, blank=True)
     track_type = models.CharField(max_length=255)
-    _metadata = models.TextField(null=True)
+    _metadata = models.TextField(null=True, blank=True)
 
     def __str__(self):
         """Return string representation."""
