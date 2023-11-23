@@ -44,7 +44,7 @@ class Command(BaseCommand):
         """Run the command."""
         input(
             "\nWARNING: This will delete all Lab & Genome records!\n\n"
-            "Press ENTER to continue or CTRL+C to cancel."
+            "Press ENTER to continue or CTRL+C to cancel\n\n> "
         )
 
         labs = kwargs["labs"]
