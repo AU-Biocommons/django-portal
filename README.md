@@ -5,8 +5,10 @@ Apollo portal built on the Django web framework.
 
 ## Updating the webserver
 
-If there have been updates to the codebase, an admin can update the webserver
-like so:
+Updates should be applied through GitHub Workflows on pushes to branches `dev`
+and `master`.
+
+An admin can manually update the webserver like so:
 
 ```bash
 # Assumes you have SSH'd into the webserver
