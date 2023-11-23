@@ -55,7 +55,7 @@ class Genome(models.Model):
     lab = models.ForeignKey(Lab, on_delete=models.CASCADE)
     accession_id = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
-    species = models.CharField(max_length=255, null=True, blank=True)
+    species = models.CharField(max_length=255)
     strain = models.CharField(max_length=255, null=True, blank=True)
     condition = models.CharField(max_length=255, null=True, blank=True)
     thumbnail = models.ImageField(null=True, blank=True, upload_to="genomes")
