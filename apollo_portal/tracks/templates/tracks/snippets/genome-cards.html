@@ -182,18 +182,17 @@
         <img class="card-img-top"
           :src="genome.thumbnail"
           :alt="genome.name"
-          height="200px"
         />
         <div class="card-title m-0">
-          <h5 class="text-center my-1">
+          <p class="text-bold text-center my-1">
             {{ capitalize(genome.name) }}
-          </h5>
+          </p>
         </div>
 
         <div class="card-body">
           <p class="text-center mb-2">
             <button class="btn-primary btn-small" type="button" @click="() => showLab(genome.lab)">
-              {{ genome.lab }} Lab
+              {{ genome.lab }}
             </button>
           </p>
           <div>
