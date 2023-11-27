@@ -30,22 +30,20 @@
     <div class="col-auto">
       <div class="view-select-buttons">
         <button
-          class="btn btn-secondary btn-icon"
+        :class="this.selectedView === this.views.CARDVIEW ? ' btn btn-secondary btn-icon disabled' : 'btn btn-secondary btn-icon'"
           @click="() => setView(this.views.CARDVIEW)"
           data-toggle="tooltip"
           data-title="Card view"
           data-placement="top"
-          :disabled="this.selectedView === this.views.CARDVIEW"
         >
           <span class="material-icons">grid_view</span>
         </button>
         <button
-          class="btn btn-secondary btn-icon"
+        :class="this.selectedView === this.views.LISTVIEW ? ' btn btn-secondary btn-icon disabled' : 'btn btn-secondary btn-icon'"
           @click="() => setView(this.views.LISTVIEW)"
           data-toggle="tooltip"
           data-title="List view"
           data-placement="top"
-          :disabled="this.selectedView === this.views.LISTVIEW"
         >
           <span class="material-icons">view_list</span>
         </button>
