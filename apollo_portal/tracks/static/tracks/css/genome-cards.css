@@ -34,6 +34,11 @@
 .genome-card .card-footer {
   background: var(--table-head);
 }
+.genome-card .card-img-top {
+  height: 225px;
+  width: 100%;
+  margin: 0 auto;
+}
 .lab-img {
   height: 300px;
   width: auto;
