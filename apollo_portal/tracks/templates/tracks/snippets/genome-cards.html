@@ -198,10 +198,10 @@
           <div>
             <strong>Species:</strong> {{ genome.species }}
           </div>
-          <div>
+          <div v-if="genome.strain">
             <strong>Strain:</strong> {{ genome.strain }}
           </div>
-          <div>
+          <div v-if="genome.condition">
             <strong>Condition:</strong> {{ genome.condition }}
           </div>
         </div>
@@ -214,7 +214,7 @@
             <button
               class="btn btn-primary"
               data-toggle="tooltip"
-              data-title="View genome tracks on Apollo"
+              data-title="View public genome tracks on Apollo"
               data-placement="bottom"
             >
               View
