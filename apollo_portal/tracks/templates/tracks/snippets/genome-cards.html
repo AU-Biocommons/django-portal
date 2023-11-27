@@ -521,9 +521,13 @@
         });
       },
       getFilterOptions (field) {
-        return this.genomes.map(genome => genome[field])
+        const options = this.genomes.map(genome => genome[field])
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort();
+        if (!options[0]) {
+          return [];
+        }
+        return options;
       },
       resetFilters () {
         Object.keys(this.filters).forEach(field => {
