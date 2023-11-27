@@ -60,7 +60,7 @@
     </div>
     <div class="filter">
       <multiselect
-        v-if="!filters.lab.hidden"
+        v-if="!filters.lab.hidden && this.filters.lab.options.length"
         v-model="filters.lab.selected"
         :options="filters.lab.options"
         :multiple="true"
@@ -83,7 +83,7 @@
 
     <div class="filter">
       <multiselect
-        v-if="!filters.species.hidden"
+        v-if="!filters.species.hidden && this.filters.species.options.length"
         v-model="filters.species.selected"
         :options="filters.species.options"
         :multiple="true"
@@ -106,7 +106,7 @@
 
     <div class="filter">
       <multiselect
-        v-if="!filters.strain.hidden"
+        v-if="!filters.strain.hidden && this.filters.strain.options.length"
         v-model="filters.strain.selected"
         :options="filters.strain.options"
         :multiple="true"
@@ -129,7 +129,7 @@
 
     <div class="filter">
       <multiselect
-        v-if="!filters.condition.hidden"
+        v-if="!filters.condition.hidden && this.filters.condition.options.length"
         v-model="filters.condition.selected"
         :options="filters.condition.options"
         :multiple="true"
