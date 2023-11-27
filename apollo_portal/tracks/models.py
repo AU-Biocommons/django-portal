@@ -2,10 +2,13 @@
 
 import json
 from django.db import models
+from django.conf import settings
 
 
 class Lab(models.Model):
     """A research group with an Apollo instance."""
+
+    PLACEHOLDER_STATIC_PATH = 'placeholders/labs/placeholder.png'
 
     name = models.CharField(max_length=255)
     datetime_created = models.DateTimeField(auto_now_add=True)
@@ -22,6 +25,15 @@ class Lab(models.Model):
         """Return string representation."""
         return self.name
 
+    @property
+    def img_path_or_placeholder(self):
+        """Return image path or placeholder if not set."""
+        return (
+            self.image.url
+            if self.image
+            else settings.STATIC_URL + self.PLACEHOLDER_STATIC_PATH
+        )
+
     def as_json(self):
         """Serialize model for JSON encoding."""
         return {
@@ -34,7 +46,7 @@ class Lab(models.Model):
             "apollo_url": self.apollo_url,
             "principle_investigator": self.principle_investigator,
             "email": self.email,
-            "image": self.image.url if self.image else None,
+            "image": self.img_path_or_placeholder,
         }
 
 
@@ -49,6 +61,8 @@ class Genome(models.Model):
         - public users might like to request access/collaboration?
 
     """
+
+    PLACEHOLDER_STATIC_PATH = "placeholders/genomes/placeholder.png"
 
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
@@ -90,10 +104,19 @@ class Genome(models.Model):
             "species": self.species,
             "strain": self.strain,
             "condition": self.condition,
-            "thumbnail": self.thumbnail.url if self.thumbnail else None,
+            "thumbnail": self.img_path_or_placeholder,
             "apollo_url": self.apollo_url,
             "metadata": self.metadata,
         }
+
+    @property
+    def img_path_or_placeholder(self):
+        """Return image path or placeholder if not set."""
+        return (
+            self.thumbnail.url
+            if self.thumbnail
+            else settings.STATIC_URL + self.PLACEHOLDER_STATIC_PATH
+        )
 
 
 class Track(models.Model):
