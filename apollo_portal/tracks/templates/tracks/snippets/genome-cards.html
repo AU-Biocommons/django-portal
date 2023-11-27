@@ -30,7 +30,7 @@
     <div class="col-auto">
       <div class="view-select-buttons">
         <button
-        :class="this.selectedView === this.views.CARDVIEW ? ' btn btn-secondary btn-icon disabled' : 'btn btn-secondary btn-icon'"
+          :class="this.selectedView === this.views.CARDVIEW ? ' btn btn-secondary btn-icon disabled' : 'btn btn-secondary btn-icon'"
           @click="() => setView(this.views.CARDVIEW)"
           data-toggle="tooltip"
           data-title="Card view"
@@ -39,7 +39,7 @@
           <span class="material-icons">grid_view</span>
         </button>
         <button
-        :class="this.selectedView === this.views.LISTVIEW ? ' btn btn-secondary btn-icon disabled' : 'btn btn-secondary btn-icon'"
+          :class="this.selectedView === this.views.LISTVIEW ? ' btn btn-secondary btn-icon disabled' : 'btn btn-secondary btn-icon'"
           @click="() => setView(this.views.LISTVIEW)"
           data-toggle="tooltip"
           data-title="List view"
@@ -198,10 +198,10 @@
           <div>
             <strong>Species:</strong> {{ genome.species }}
           </div>
-          <div>
+          <div v-if="genome.strain">
             <strong>Strain:</strong> {{ genome.strain }}
           </div>
-          <div>
+          <div v-if="genome.condition">
             <strong>Condition:</strong> {{ genome.condition }}
           </div>
         </div>
@@ -214,7 +214,7 @@
             <button
               class="btn btn-primary"
               data-toggle="tooltip"
-              data-title="View genome tracks on Apollo"
+              data-title="View public genome tracks on Apollo"
               data-placement="bottom"
             >
               View
@@ -234,7 +234,7 @@
 
     <div v-else-if="!filteredGenomes.length" class="text-center">
       <p class="lead my-5">
-        No matching genomes
+        No genomes to display
       </p>
     </div>
 

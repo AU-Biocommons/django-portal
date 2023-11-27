@@ -20,6 +20,6 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY_DEV }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST_DEV }} > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER_DEV }}@${{ secrets.SSH_HOST_DEV }} "/srv/sites/apollo_portal/deploy/update.sh && exit"
+      run: ssh ${{ secrets.SSH_USER_DEV }}@${{ secrets.SSH_HOST_DEV }} "/home/ubuntu/update.sh && exit"
     - name: cleanup
       run: rm -rf ~/.ssh

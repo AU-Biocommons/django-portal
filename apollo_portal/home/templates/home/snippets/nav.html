@@ -46,4 +46,26 @@
       </ul>
     </div>
   </div>
+
+  <script>
+    // Set active navbar item
+    $(document).ready( () => {
+      const PAGES = {
+        '/': 'home',
+        '/tracks': 'genomes',
+        '/about': 'about',
+        '/contact': 'contact',
+        '/signup': 'signup',
+        '/resources': 'resources',
+      }
+      Object.keys(PAGES).forEach( (pathname) => {
+        if (pathname == '/' && window.location.pathname !== pathname) {
+          return;
+        }
+        if (window.location.pathname.slice(0, pathname.length) === pathname) {
+          $(`#nav-item-${PAGES[pathname]}`).addClass('active');
+        }
+      });
+    });
+  </script>
 </nav>
