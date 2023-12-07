@@ -78,8 +78,8 @@ class Genome(models.Model):
     apollo_url = models.URLField(null=True, blank=True)
     description_html = models.TextField(null=True, blank=True)
     reference = models.TextField(null=True, blank=True)
-    ncbi_bioproject = models.TextField(null=True, blank=True)
     doi = models.CharField(max_length=255, null=True, blank=True)
+    ncbi_bioproject = models.CharField(max_length=12, null=True, blank=True)
     _metadata_yaml = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -114,6 +114,10 @@ class Genome(models.Model):
             "condition": self.condition,
             "thumbnail": self.img_path_or_placeholder,
             "apollo_url": self.apollo_url,
+            "description_html": self.description_html,
+            "reference": self.reference,
+            "doi": self.doi,
+            "ncbi_bioproject": self.ncbi_bioproject,
             "metadata": self.metadata,
         }
 
