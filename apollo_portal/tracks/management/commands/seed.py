@@ -3,12 +3,25 @@
 import random
 from django.db import transaction
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import Group
 
-from tracks.models import Lab
+from tracks.models import Genome, Lab
 from tracks.factories import GenomeFactory, LabFactory
 
 DEFAULT_GENOMES = 50
 DEFAULT_LABS = 2  # in addition to Degnan, TraDIS-Vault
+
+CREATE_LABS = [
+    "Degnan",
+    "Henderson",
+    "Vollmer",
+]
+CREATE_GROUPS = {
+    'tradis-vault': [
+        CREATE_LABS[1],
+        CREATE_LABS[2],
+    ]
+}
 
 
 class Command(BaseCommand):
@@ -43,12 +56,14 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         """Run the command."""
         input(
-            "\nWARNING: This will delete all Lab & Genome records!\n\n"
+            "\nWARNING: This will delete all Group, Lab & Genome records!\n\n"
             "Press ENTER to continue or CTRL+C to cancel\n\n> "
         )
 
         labs = kwargs["labs"]
         genomes = kwargs["genomes"]
+        self.stdout.write("\nDeleting existing Group records...")
+        Group.objects.all().delete()
         self.stdout.write("\nDeleting existing Lab & Genome records...")
         Lab.objects.all().delete()
 
@@ -57,11 +72,22 @@ class Command(BaseCommand):
             LabFactory()
             for _ in range(labs)
         ]
-        labs += [LabFactory(name="Degnan")]
-        labs += [LabFactory(name="TraDIS-Vault")]
+        for lab_name in CREATE_LABS:
+            labs += [LabFactory(name=lab_name)]
 
         self.stdout.write(f"\nCreating {genomes} Genome records...\n")
         for _ in range(genomes):
             genome = GenomeFactory(lab=random.choice(labs))
             self.stdout.write(f"Created Genome '{genome.name}' under lab"
                               f" '{genome.lab.name}')")
+
+        for name, labs in CREATE_GROUPS.items():
+            group = Group.objects.create(name=name)
+            for lab_name in labs:
+                lab = Lab.objects.get(name=lab_name)
+                genomes = Genome.objects.filter(lab=lab)
+                for g in genomes:
+                    g.group = group
+                    g.save()
+                    self.stdout.write(f"Assigned genome '{g.name}' to group"
+                                      f" '{name}'")

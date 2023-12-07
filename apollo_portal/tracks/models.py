@@ -3,6 +3,7 @@
 import json
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import Group
 
 
 class Lab(models.Model):
@@ -64,6 +65,7 @@ class Genome(models.Model):
 
     PLACEHOLDER_STATIC_PATH = "placeholders/genomes/placeholder.png"
 
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
     lab = models.ForeignKey(Lab, on_delete=models.CASCADE)

@@ -1,16 +1,15 @@
 <!--
   Pass a list of Genome models into a card-rows view with filters.
 
-  The following variables can be defined in JavaScript to override the default
-  behaviour (set a <script> tag in a parent template before including this
-  snippet):
+  Use `include with hide_filters="['lab', ... ]"` to hide filters or apply a
+  global filter on genome records e.g. for a specific lab or group.
 
-  HIDE_FILTERS: Array of filter names to hide. Valid values are 'lab', 'species',
+  hide_filters: Array of filter names to hide. Valid values are 'lab', 'species',
   'strain', and 'condition'.
-  e.g. HIDE_FILTERS = ['lab']
+  e.g. hide_filters = ['lab']
 
-  FILTER_GENOMES_PARAMS: Object of GET params to pass to /tracks/api/genomes
-  e.g. FILTER_GENOMES_PARAMS = {lab: 'My Lab', species: 'Drosophila melanogaster'}
+  filter_genomes_params: Object of GET params to pass to /tracks/api/genomes
+  e.g. filter_genomes_params="{group: 'my group', labs: 'my Lab,your lab'}"
 -->
 
 {% load static %}
@@ -390,11 +389,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
 </div>
 {% endverbatim %}
 
@@ -402,6 +396,11 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
 <script>
+
+  //const HIDE_FILTERS = {{ hide_filters|default_if_none:"[]" }};
+  const HIDE_FILTERS = [];
+  const FILTER_GENOMES_PARAMS = {{ filter_genomes_params|default_if_none:"{}" }};
+
   new Vue({
     el: '#app',
     components: {
@@ -416,22 +415,22 @@
           lab: {
             selected: [],
             options: [],
-            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('lab'),
+            hidden: HIDE_FILTERS.includes('lab'),
           },
           species: {
             selected: [],
             options: [],
-            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('species'),
+            hidden: HIDE_FILTERS.includes('species'),
           },
           strain: {
             selected: [],
             options: [],
-            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('strain'),
+            hidden: HIDE_FILTERS.includes('strain'),
           },
           condition: {
             selected: [],
             options: [],
-            hidden: typeof(HIDE_FILTERS) !== 'undefined' && HIDE_FILTERS.includes('condition'),
+            hidden: HIDE_FILTERS.includes('condition'),
           },
         },
         labDetails: null,
@@ -470,7 +469,7 @@
       fetchGenomes () {
         let params = {};
         let urlParams = "";
-        if (typeof FILTER_GENOMES_PARAMS !== 'undefined') {
+        if (Object.keys(FILTER_GENOMES_PARAMS).length) {
           params = FILTER_GENOMES_PARAMS;
           urlParams = "?" + new URLSearchParams(params);
         }

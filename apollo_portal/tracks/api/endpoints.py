@@ -36,6 +36,10 @@ def labs(request):
 def genomes(request):
     """Return requested genomes as json."""
     genomes = Genome.objects.all()
+    filter_group = request.GET.get('group')
+    if filter_group:
+        # Case insensitive filter by genome.group.name
+        genomes = genomes.filter(group__name__iexact=filter_group)
     filter_labs_str = request.GET.get('labs')
     if filter_labs_str:
         labs = [
