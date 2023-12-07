@@ -1,6 +1,6 @@
 """Models for managing Apollo instances and their genome tracks."""
 
-import json
+import yaml
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import Group
@@ -76,7 +76,11 @@ class Genome(models.Model):
     condition = models.CharField(max_length=255, null=True, blank=True)
     thumbnail = models.ImageField(null=True, blank=True, upload_to="genomes")
     apollo_url = models.URLField(null=True, blank=True)
-    _metadata = models.TextField(default="{}")
+    description = models.TextField(null=True, blank=True)
+    reference = models.TextField(null=True, blank=True)
+    ncbi_bioproject = models.TextField(null=True, blank=True)
+    doi = models.CharField(max_length=255, null=True, blank=True)
+    _metadata_yaml = models.TextField(null=True, blank=True)
 
     def __str__(self):
         """Return string representation."""
@@ -85,14 +89,16 @@ class Genome(models.Model):
     @property
     def metadata(self):
         """Return metadata as a dictionary."""
-        return json.loads(self._metadata)
+        if not self._metadata_yaml:
+            return {}
+        return yaml.safe_load(self._metadata_yaml)
 
     @property
     def set_metadata(self, k, v):
         """Set metadata key to given value."""
-        data = json.loads(self._metadata)
+        data = self.metadata
         data[k] = v
-        self._metadata = json.dumps(data)
+        self._metadata_yaml = yaml.safe_dump(data)
 
     def as_json(self):
         """Serialize model for JSON encoding."""
@@ -137,20 +143,7 @@ class Track(models.Model):
     name = models.CharField(max_length=255)
     accession_id = models.CharField(max_length=255, null=True, blank=True)
     track_type = models.CharField(max_length=255)
-    _metadata = models.TextField(null=True, blank=True)
 
     def __str__(self):
         """Return string representation."""
         return f"{self.genome.lab.name}: {self.genome.name}: {self.name}"
-
-    @property
-    def metadata(self):
-        """Return metadata as a dictionary."""
-        return json.loads(self._metadata)
-
-    @property
-    def set_metadata(self, k, v):
-        """Set metadata key to given value."""
-        data = json.loads(self._metadata)
-        data[k] = v
-        self._metadata = json.dumps(data)
