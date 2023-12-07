@@ -76,7 +76,7 @@ class Genome(models.Model):
     condition = models.CharField(max_length=255, null=True, blank=True)
     thumbnail = models.ImageField(null=True, blank=True, upload_to="genomes")
     apollo_url = models.URLField(null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    description_html = models.TextField(null=True, blank=True)
     reference = models.TextField(null=True, blank=True)
     ncbi_bioproject = models.TextField(null=True, blank=True)
     doi = models.CharField(max_length=255, null=True, blank=True)
