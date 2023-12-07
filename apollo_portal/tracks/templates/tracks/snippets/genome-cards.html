@@ -397,9 +397,8 @@
 <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
 <script>
 
-  //const HIDE_FILTERS = {{ hide_filters|default_if_none:"[]" }};
-  const HIDE_FILTERS = [];
-  const FILTER_GENOMES_PARAMS = {{ filter_genomes_params|default_if_none:"{}" }};
+  const HIDE_FILTERS = {{ hide_filters|default:"[]" }};
+  const FILTER_GENOMES_PARAMS = {{ filter_genomes_params|default:"{}" }};
 
   new Vue({
     el: '#app',
