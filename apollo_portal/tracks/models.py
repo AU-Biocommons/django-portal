@@ -14,12 +14,21 @@ class Lab(models.Model):
     name = models.CharField(max_length=255)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
-    description_html = models.TextField(null=True, blank=True)
-    website_url = models.URLField(null=True, blank=True)
-    apollo_url = models.URLField(null=True, blank=True)
+    description_html = models.TextField(null=True, blank=True, help_text=(
+        "Description of the genome with inline HTML. Use `<br>` for a new line"
+        " and `<a>` tags for links."
+    ))
+    website_url = models.URLField(null=True, blank=True, help_text=(
+        "URL pointing to lab group public website."
+    ))
+    apollo_url = models.URLField(null=True, blank=True, help_text=(
+        "URL pointing to an Apollo login page."
+    ))
     principle_investigator = models.CharField(
         max_length=255, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True, help_text=(
+        "Contact email address, if consent has been given to show."
+    ))
     image = models.ImageField(null=True, blank=True, upload_to="labs")
 
     def __str__(self):
@@ -73,14 +82,24 @@ class Genome(models.Model):
     name = models.CharField(max_length=255)
     species = models.CharField(max_length=255)
     strain = models.CharField(max_length=255, null=True, blank=True)
-    condition = models.CharField(max_length=255, null=True, blank=True)
+    condition = models.CharField(
+        max_length=255, null=True, blank=True, help_text=(
+            "e.g. chemical exposure, genetic manipulation, cancer."
+        ))
     thumbnail = models.ImageField(null=True, blank=True, upload_to="genomes")
-    apollo_url = models.URLField(null=True, blank=True)
-    description_html = models.TextField(null=True, blank=True)
+    apollo_url = models.URLField(null=True, blank=True, help_text=(
+        "URL pointing to a public Apollo genome/tracks."
+    ))
+    description_html = models.TextField(null=True, blank=True, help_text=(
+        "Description of the genome with inline HTML. Use `<br>` for a new line"
+        " and `<a>` tags for links."
+    ))
     reference = models.TextField(null=True, blank=True)
     doi = models.CharField(max_length=255, null=True, blank=True)
     ncbi_bioproject = models.CharField(max_length=12, null=True, blank=True)
-    _metadata_yaml = models.TextField(null=True, blank=True)
+    _metadata_yaml = models.TextField(null=True, blank=True, help_text=(
+        "Metadata in YAML format. Should be one `key: value` pair per line."
+    ))
 
     def __str__(self):
         """Return string representation."""
