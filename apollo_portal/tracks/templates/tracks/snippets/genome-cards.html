@@ -392,13 +392,13 @@
               </td>
               <td><i>{{ genomeDetails.species }}</i></td>
             </tr>
-            <tr>
+            <tr v-if="genomeDetails.strain">
               <td>
                 <strong>Strain</strong>
               </td>
               <td>{{ genomeDetails.strain }}</td>
             </tr>
-            <tr>
+            <tr v-if="genomeDetails.condition">
               <td>
                 <strong>Condition</strong>
               </td>
