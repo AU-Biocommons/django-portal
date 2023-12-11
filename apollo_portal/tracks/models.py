@@ -155,10 +155,11 @@ class Track(models.Model):
 
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
+    lab = models.ForeignKey(Lab, on_delete=models.CASCADE)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     accession_id = models.CharField(max_length=255, null=True, blank=True)
-    track_type = models.CharField(max_length=255)
+    track_type = models.CharField(max_length=255, null=True, blank=True)
     description_html = models.TextField(null=True, blank=True, help_text=(
         "Description of the genome track with inline HTML. Use `<br>` for a"
         " new line and `<a>` tags for links."
