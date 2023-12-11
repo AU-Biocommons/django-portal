@@ -112,7 +112,6 @@ class Genome(models.Model):
             return {}
         return yaml.safe_load(self._metadata_yaml)
 
-    @property
     def set_metadata(self, k, v):
         """Set metadata key to given value."""
         data = self.metadata
