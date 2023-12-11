@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.db.models.functions import Lower
 
 from apollo_portal.utils.api import api_view
-from tracks.models import Genome, Lab
+from tracks.models import Genome, Lab, Track
 
 
 @api_view(['GET'])
@@ -56,4 +56,24 @@ def genomes(request):
     return JsonResponse({'genomes': [
         g.as_json()
         for g in genomes
+    ]})
+
+
+@api_view(['GET'])
+def tracks(request):
+    """Return requested genomes as json."""
+    tracks = Track.objects.all()
+    filter_keywords = {
+        'group': 'genome__group__name__iexact',
+        'genome_id': 'genome__id',
+    }
+    filter_kwargs = {
+        kwarg: request.GET.get(param)
+        for param, kwarg in filter_keywords
+        if request.GET.get(param)
+    }
+    tracks = tracks.filter(**filter_kwargs)
+    return JsonResponse({'tracks': [
+        t.as_json()
+        for t in tracks
     ]})
