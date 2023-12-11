@@ -261,7 +261,7 @@
         <td>{{ capitalize(genome.name) }}</td>
         <td>
           <button class="btn-primary btn-small" type="button" @click="() => showLab(genome.lab)">
-            {{ genome.lab }} Lab
+            {{ genome.lab }}
           </button>
         </td>
         <td><i>{{ genome.species }}</i></td>
@@ -314,7 +314,7 @@
               :alt="labDetails.name"
             />
 
-            <h3 class="text-center">{{ labDetails.name }} Lab</h3>
+            <h3 class="text-center">{{ labDetails.name }}</h3>
 
             <p v-html="labDetails.description_html"></p>
 
@@ -617,7 +617,7 @@
         this.labDetails = null;
       },
       resetGenomeDetails () {
-        this.GenomeDetails = null;
+        this.genomeDetails = null;
       },
       setFilterOptions () {
         Object.keys(this.filters).forEach(field => {
