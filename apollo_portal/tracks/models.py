@@ -85,7 +85,8 @@ class Genome(models.Model):
     condition = models.CharField(
         max_length=255, null=True, blank=True, help_text=(
             "e.g. chemical exposure, genetic manipulation, cancer."
-        ))
+        )
+    )
     thumbnail = models.ImageField(null=True, blank=True, upload_to="genomes")
     apollo_url = models.URLField(null=True, blank=True, help_text=(
         "URL pointing to a public Apollo genome/tracks."
@@ -128,8 +129,8 @@ class Genome(models.Model):
             "lab": self.lab.name,
             "name": self.name,
             "species": self.species,
-            "strain": self.strain,
-            "condition": self.condition,
+            "strain": self.strain or '-',
+            "condition": self.condition or '-',
             "thumbnail": self.img_path_or_placeholder,
             "apollo_url": self.apollo_url,
             "description_html": self.description_html,
@@ -150,14 +151,7 @@ class Genome(models.Model):
 
 
 class Track(models.Model):
-    """A track mapped to a genome reference.
-
-    Not currently used but maybe in future.
-
-    Should probably defer to an embedded "Machado" instance for tracks:
-    https://www.machado.cnptia.embrapa.br/demo_machado
-
-    """
+    """A track mapped to a genome reference."""
 
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
@@ -165,7 +159,61 @@ class Track(models.Model):
     name = models.CharField(max_length=255)
     accession_id = models.CharField(max_length=255, null=True, blank=True)
     track_type = models.CharField(max_length=255)
+    description_html = models.TextField(null=True, blank=True, help_text=(
+        "Description of the genome track with inline HTML. Use `<br>` for a"
+        " new line and `<a>` tags for links."
+    ))
+    apollo_url = models.URLField(null=True, blank=True, help_text=(
+        "URL pointing to a public Apollo genome with this track loaded."
+    ))
+    reference = models.TextField(null=True, blank=True)
+    doi = models.CharField(max_length=255, null=True, blank=True)
+    ncbi_bioproject = models.CharField(max_length=12, null=True, blank=True)
+    _metadata_yaml = models.TextField(null=True, blank=True, help_text=(
+        "Metadata in YAML format. Should be one `key: value` pair per line."
+    ))
+    condition = models.CharField(
+        max_length=255, null=True, blank=True, help_text=(
+            "e.g. chemical exposure, genetic manipulation, cancer."
+        )
+    )
 
     def __str__(self):
         """Return string representation."""
-        return f"{self.genome.lab.name}: {self.genome.name}: {self.name}"
+        return (
+            f"{self.genome.lab.name}: {self.genome.name}"
+            f": track '{self.name}'")
+
+    @property
+    def metadata(self):
+        """Return metadata as a dictionary."""
+        if not self._metadata_yaml:
+            return {}
+        return yaml.safe_load(self._metadata_yaml)
+
+    def set_metadata(self, k, v):
+        """Set metadata key to given value."""
+        data = self.metadata
+        data[k] = v
+        self._metadata_yaml = yaml.safe_dump(data)
+
+    def as_json(self):
+        """Serialize model for JSON encoding."""
+        return {
+            "id": self.id,
+            "created": self.datetime_created.isoformat(),
+            "modified": self.datetime_modified.isoformat(),
+            "accession_id": self.accession_id,
+            "name": self.name,
+            "lab": self.lab.name,
+            "genome": self.genome.name,
+            "species": self.genome.species,
+            "strain": self.genome.strain,
+            "condition": self.condition or '-',
+            "apollo_url": self.apollo_url,
+            "description_html": self.description_html,
+            "reference": self.reference,
+            "doi": self.doi,
+            "ncbi_bioproject": self.ncbi_bioproject,
+            "metadata": self.metadata,
+        }
