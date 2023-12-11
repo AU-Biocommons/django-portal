@@ -182,8 +182,8 @@ class Track(models.Model):
     def __str__(self):
         """Return string representation."""
         return (
-            f"{self.genome.lab.name}: {self.genome.name}"
-            f": track '{self.name}'")
+            f"{self.name} [Lab: {self.genome.lab.name}]"
+            f" [Genome: {self.genome.name}]")
 
     @property
     def metadata(self):
