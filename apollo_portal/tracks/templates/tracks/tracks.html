@@ -7,10 +7,69 @@
 
 {% block content %}
 <div class="container">
-  <h1>{{ genome.name }}</h1>
-  <h2>Genome tracks</h2>
+  <h1>Genome tracks: {{ genome.name }}</h1>
 
-  <!-- Genome details table? -->
+  <hr class="my-3">
+
+  <table>
+    {% if genome.description_html %}
+    <tr>
+      <td>
+        <strong>Genome description</strong>
+      </td>
+      <td>
+        {{ genome.description_html|safe }}
+      </td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td>
+        <strong>Species</strong>
+      </td>
+      <td><i>{{ genome.species }}</i></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Strain</strong>
+      </td>
+      <td>{{ genome.strain }}</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Condition</strong>
+      </td>
+      <td>{{ genome.condition }}</td>
+    </tr>
+    {% if genome.reference or genome.doi %}
+    <tr>
+      <td>
+        <strong>Reference</strong>
+      </td>
+      <td>
+        {% if genome.reference %}
+        {{ genome.reference }}
+        {% endif %}
+        {% if genome.doi %}
+        <a href="https://doi.org/{{ genome.doi }}" target="_blank">{{ genome.doi }}</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if genome.ncbi_bioproject %}
+    <tr>
+      <td>
+        <strong>NCBI BioProject</strong>
+      </td>
+      <td>
+        <a href="https://ncbi.nlm.nih.gov/bioproject/{{ genome.ncbi_bioproject }}" target="_blank">
+          {{ genome.ncbi_bioproject }}
+        </a>
+      </td>
+    </tr>
+    {% endif %}
+  </table>
+
+  <hr class="my-3">
 
   <section class="my-5">
     {% include 'tracks/snippets/tracks-table.html' %}

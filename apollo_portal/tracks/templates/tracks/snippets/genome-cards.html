@@ -409,7 +409,9 @@
                 <strong>Reference</strong>
               </td>
               <td>
-                {{ genomeDetails.reference }}
+                <span v-if="genomeDetails.reference">
+                  {{ genomeDetails.reference }}
+                </span>
                 <a v-if="genomeDetails.doi" :href="'https://doi.org/' + genomeDetails.doi" target="_blank">
                   {{ genomeDetails.doi }}
                 </a>
