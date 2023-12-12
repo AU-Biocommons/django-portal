@@ -59,7 +59,7 @@ class GenomesTestCase(TestCase):
             len(genomes)
             for genomes in LAB_GENOMES.values()
         ])
-        response = self.client.get('/tracks/api/genomes/')
+        response = self.client.get('/genomes/api/genomes/')
         data = response.json()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
@@ -74,7 +74,7 @@ class GenomesTestCase(TestCase):
             for lab, genomes in LAB_GENOMES.items()
             if lab in query_labs
         ])
-        response = self.client.get('/tracks/api/genomes/',
+        response = self.client.get('/genomes/api/genomes/',
                                    {'labs': ",".join(query_labs)})
         data = response.json()
         self.assertEqual(response.status_code, 200)
@@ -91,7 +91,7 @@ class GenomesTestCase(TestCase):
             for lab, genomes in LAB_GENOMES.items()
             if lab in query_labs
         ])
-        response = self.client.get('/tracks/api/genomes/',
+        response = self.client.get('/genomes/api/genomes/',
                                    {'labs': ",".join(query_labs)})
         data = response.json()
         self.assertEqual(response.status_code, 200)

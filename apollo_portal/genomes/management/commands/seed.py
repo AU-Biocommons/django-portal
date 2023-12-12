@@ -5,8 +5,8 @@ from django.db import transaction
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import Group
 
-from tracks.models import Genome, Lab
-from tracks.factories import GenomeFactory, LabFactory
+from genomes.models import Genome, Lab
+from genomes.factories import GenomeFactory, LabFactory
 
 DEFAULT_GENOMES = 50
 DEFAULT_LABS = 2  # in addition to Degnan, TraDIS-Vault

@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'captcha',
     'home',
-    'tracks',
+    'genomes',
 ]
 
 MIDDLEWARE = [
@@ -179,5 +179,5 @@ SITE_SEARCH_URLS = [
     '/tradis',
     '/tradis/tutorial',
     '/tradis/contact',
-    'tracks',
+    '/genomes',
 ]
