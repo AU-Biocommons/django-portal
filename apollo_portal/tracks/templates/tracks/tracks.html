@@ -1,0 +1,21 @@
+{% extends 'home/header.html' %}
+{% load static %}
+
+{% block head %}
+<title>Genomes | Australian Apollo Service</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Publicly available genome tracks</h1>
+
+  <h2>Genome: {{ genome.name }}</h2>
+
+  <!-- Genome details table? -->
+
+  <section class="my-5">
+    {% include 'tracks/snippets/tracks-table.html' %}
+  </section>
+
+</div>
+{% endblock %}

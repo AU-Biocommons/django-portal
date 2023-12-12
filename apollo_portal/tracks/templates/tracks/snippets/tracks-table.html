@@ -50,75 +50,6 @@
 
     <div class="filter">
       <multiselect
-        v-if="!filters.species.hidden && this.filters.species.options.length"
-        v-model="filters.species.selected"
-        :options="filters.species.options"
-        :multiple="true"
-        :close-on-select="false"
-        :clear-on-select="true"
-        :preserve-search="true"
-        :preselect-first="false"
-        placeholder="Species"
-      />
-        <template slot="selection" slot-scope="{ values, search, isOpen }">
-          <span
-            class="multiselect__single"
-            v-if="values.length"
-            v-show="!isOpen"
-          > {{ values.length }} species selected
-          </span>
-        </template>
-      </multiselect>
-    </div>
-
-    <div class="filter">
-      <multiselect
-        v-if="!filters.strain.hidden && this.filters.strain.options.length"
-        v-model="filters.strain.selected"
-        :options="filters.strain.options"
-        :multiple="true"
-        :close-on-select="false"
-        :clear-on-select="true"
-        :preserve-search="true"
-        :preselect-first="false"
-        placeholder="Strain"
-      />
-        <template slot="selection" slot-scope="{ values, search, isOpen }">
-          <span
-            class="multiselect__single"
-            v-if="values.length"
-            v-show="!isOpen"
-          > {{ values.length }} strains selected
-          </span>
-        </template>
-      </multiselect>
-    </div>
-
-    <div class="filter">
-      <multiselect
-        v-if="!filters.genome.hidden && this.filters.genome.options.length"
-        v-model="filters.genome.selected"
-        :options="filters.genome.options"
-        :multiple="true"
-        :close-on-select="false"
-        :clear-on-select="true"
-        :preserve-search="true"
-        :preselect-first="false"
-        placeholder="genome"
-      />
-        <template slot="selection" slot-scope="{ values, search, isOpen }">
-          <span
-            class="multiselect__single"
-            v-if="values.length"
-            v-show="!isOpen"
-          > {{ values.length }} genomes selected
-          </span>
-        </template>
-      </multiselect>
-    </div>
-
-    <div class="filter">
-      <multiselect
         v-if="!filters.condition.hidden && this.filters.condition.options.length"
         v-model="filters.condition.selected"
         :options="filters.condition.options"
@@ -169,8 +100,6 @@
       <thead>
         <th>Track name</th>
         <th>Lab</th>
-        <th>Species</th>
-        <th>Strain</th>
         <th>Condition</th>
         <th></th>
         <th></th>
@@ -185,8 +114,6 @@
             {{ track.lab }}
           </button>
         </td>
-        <td><i>{{ track.species }}</i></td>
-        <td>{{ track.strain }}</td>
         <td>{{ track.condition }}</td>
         <td>
           <a
@@ -307,18 +234,6 @@
           <p v-html="trackDetails.description_html || '<i>No description</i>'"></p>
 
           <table class="table my-3">
-            <tr>
-              <td>
-                <strong>Species</strong>
-              </td>
-              <td><i>{{ trackDetails.species }}</i></td>
-            </tr>
-            <tr v-if="trackDetails.strain">
-              <td>
-                <strong>Strain</strong>
-              </td>
-              <td>{{ trackDetails.strain }}</td>
-            </tr>
             <tr v-if="trackDetails.condition">
               <td>
                 <strong>Condition</strong>
@@ -381,22 +296,9 @@
               <td style="border-bottom: 1px solid #ddd;">The research group that owns the Apollo server hosting this genome.</td>
             </tr>
             <tr>
-              <td style="border-bottom: 1px solid #ddd; background: #eee;">Species</td>
-              <td style="border-bottom: 1px solid #ddd;">Scientific name of the species of origin.</td>
-            </tr>
-            <tr>
-              <td style="border-bottom: 1px solid #ddd; background: #eee;">Strain <small>(optional)</small></td>
-              <td style="border-bottom: 1px solid #ddd;">The strain that the genome was derived from (e.g. bacteria, plants).</td>
-            </tr>
-            <tr>
               <td style="border-bottom: 1px solid #ddd; background: #eee;">Condition <small>(optional)</small></td>
               <td style="border-bottom: 1px solid #ddd;">Environmental or experimental condition that resulted in this genome track (e.g. an experimental intervention, sample type or environmental condition).</td>
             </tr>
-            <!-- TBC: -->
-            <!-- <tr>
-              <td style="border-bottom: 1px solid #ddd; background: #eee;">Assembly</td>
-              <td style="border-bottom: 1px solid #ddd;">The genome assembly version. Assembly versions arise from genetically identicle samples with technical variation in the assembly process..</td>
-            </tr> -->
           </table>
         </div>
 
@@ -416,15 +318,25 @@
 <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
 <script>
 
+  function findGetParameter(parameterName) {
+    let result = null;
+    location.search
+      .substr(1)
+      .split("&")
+      .forEach(function (item) {
+        const tmp = item.split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+      });
+    return result;
+  }
+
   const FILTERS = [
     'lab',
-    'species',
-    'strain',
-    'genome',
     'condition',
   ];
   const HIDE_FILTERS = {{ hide_filters|default:"[]" }};
   const FILTER_TRACKS_PARAMS = {{ filter_tracks_params|default:"{}" }};
+  const GENOME_ID = {{ genome_id|default:"null" }};
 
   new Vue({
     el: '#app',
@@ -438,14 +350,13 @@
         textSearch: '',
         filters: FILTERS.reduce( (acc, name) => ({
           ...acc,
-          name: {
+          [name]: {
             selected: [],
             options: [],
             hidden: HIDE_FILTERS.includes(name),
           },
         }), {}),
         labDetails: null,
-        // genomeDetails: null,  // TODO?
         trackDetails: null,
       }
     },
@@ -453,8 +364,6 @@
       filteredTracks() {
         return this.tracks.filter( (track) => {
           return (!this.filters.lab.selected.length || this.filters.lab.selected.includes(track.lab))
-            && (!this.filters.species.selected.length || this.filters.species.selected.includes(track.species))
-            && (!this.filters.strain.selected.length || this.filters.strain.selected.includes(track.strain))
             && (!this.filters.condition.selected.length || this.filters.condition.selected.includes(track.condition))
             && (
               !this.textSearch
@@ -472,13 +381,14 @@
     },
     methods: {
       fetchTracks () {
-        let params = {};
-        let urlParams = "";
-        if (Object.keys(FILTER_TRACKS_PARAMS).length) {
-          params = FILTER_TRACKS_PARAMS;
-          urlParams = "?" + new URLSearchParams(params);
+        const params = FILTER_TRACKS_PARAMS;
+        if (GENOME_ID) {
+          params.genome_id = GENOME_ID;
         }
-        return fetch('/tracks/api/tracks' + urlParams)
+        const urlParams = params ?
+          '?' + new URLSearchParams(params)
+          : '';
+        return fetch('/tracks/api/tracks/' + urlParams)
           .catch(error => {
             alert(error);
           })

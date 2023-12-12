@@ -69,7 +69,7 @@ def tracks(request):
     }
     filter_kwargs = {
         kwarg: request.GET.get(param)
-        for param, kwarg in filter_keywords
+        for param, kwarg in filter_keywords.items()
         if request.GET.get(param)
     }
     tracks = tracks.filter(**filter_kwargs)
