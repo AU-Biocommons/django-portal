@@ -223,12 +223,6 @@
         </div>
 
         <div v-if="trackDetails" id="trackDetailsModalBody" class="modal-body">
-          <img
-            class="modal-header-img"
-            :src="trackDetails.thumbnail"
-            :alt="trackDetails.name"
-          />
-
           <h3 class="text-center">{{ trackDetails.name }}</h3>
 
           <p v-html="trackDetails.description_html || '<i>No description</i>'"></p>
