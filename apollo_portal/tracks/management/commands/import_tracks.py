@@ -57,13 +57,20 @@ def create_track_from_json(track):
 
     Create required group and lab records for relational fields.
     """
-    if not (track["genome_name"] or track["genome_id"]):
+    genome_name = track["genome_name"]
+    genome_id = track["genome_id"]
+    if not (genome_name or genome_id):
         raise ValueError("Missing required field [genome_name OR genome_id]")
     genome = (
-        Genome.objects.filter(name=track["genome_name"]).first()
-        if track["genome_name"]
-        else Genome.objects.filter(id=track["genome_id"]).first()
+        Genome.objects.filter(name=genome_name).first()
+        if genome_name
+        else Genome.objects.filter(id=genome_id).first()
     )
+    if not genome:
+        raise ValueError(
+            f"No genome found for identifier {genome_name or genome_id}")
+
+    print("Creating record with genome", genome)
 
     if not track["lab_name"]:
         raise ValueError("Missing required lab_name field")
