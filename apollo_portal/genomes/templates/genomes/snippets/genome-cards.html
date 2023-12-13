@@ -279,6 +279,7 @@
 
           <div v-else>
             <img
+              v-if="labDetails.image"
               class="modal-header-img"
               :src="labDetails.image"
               :alt="labDetails.name"
