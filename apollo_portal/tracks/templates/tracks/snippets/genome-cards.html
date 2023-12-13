@@ -8,14 +8,14 @@
   'strain', and 'condition'.
   e.g. hide_filters = ['lab']
 
-  filter_genomes_params: Object of GET params to pass to /tracks/api/genomes
+  filter_genomes_params: Object of GET params to pass to /genomes/api/genomes
   e.g. filter_genomes_params="{group: 'my group', labs: 'my Lab,your lab'}"
 -->
 
 {% load static %}
 
 <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.css">
-<link rel="stylesheet" href="{% static 'tracks/css/genome-cards.css' %}">
+<link rel="stylesheet" href="{% static 'genomes/css/genome-cards.css' %}">
 
 <!-- Use verbatim mode to prevent collision of Django and Vue template tags -->
 {% verbatim %}
@@ -573,7 +573,7 @@
           params = FILTER_GENOMES_PARAMS;
           urlParams = "?" + new URLSearchParams(params);
         }
-        return fetch('/tracks/api/genomes' + urlParams)
+        return fetch('/genomes/api/genomes' + urlParams)
           .catch(error => {
             alert(error);
           })
@@ -590,7 +590,7 @@
           });
       },
       fetchLab (name) {
-        return fetch(`/tracks/api/labs?labs=${name}`)
+        return fetch(`/genomes/api/labs?labs=${name}`)
           .catch(error => {
             alert(error);
           })
