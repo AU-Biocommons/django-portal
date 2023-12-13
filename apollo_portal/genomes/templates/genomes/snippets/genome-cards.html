@@ -421,7 +421,8 @@
             Apollo browser
           </a>
           <a
-            :href="'/genomes/' + genomeDetails.id + '/tracks/'"
+            v-if="genomeDetails.tracks_url"
+            :href="genomeDetails.tracks_url"
             class="btn btn-primary"
             data-toggle="tooltip"
             data-title="View available tracks for this genome"
