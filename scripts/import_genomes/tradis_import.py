@@ -9,7 +9,7 @@ from pathlib import Path
 os.chdir(Path(__file__).parent)
 
 XLS_PATH = Path("data/230828_tradis_vault_samples_update.xlsx")
-JSON_OUTFILE = Path("data/genomes.json")
+JSON_OUTFILE = Path("data/tracks.json")
 
 pmid_dois = {}
 
@@ -41,7 +41,7 @@ def get_doi_from_pubmed(pubmed_id):
     return doi
 
 
-genomes = []
+tracks = []
 df = pd.read_excel(XLS_PATH, sheet_name=0, header=0)
 
 for ix, row in df.iterrows():
@@ -52,15 +52,14 @@ for ix, row in df.iterrows():
         doi = get_doi_from_pubmed(row["Pubmed ID"])
         pmid_dois[row["Pubmed ID"]] = doi
 
-    genome = {
+    track = {
         "group_name": "tradis-vault",
         "lab_name": get_value(row, "Lab Name"),
+        "genome_name": "E. coli BW25113",
         "name": get_value(row, "Name"),
         "description": get_value(row, "Description"),
         "reference": get_value(row, "Source"),
         "doi": doi,
-        "strain": get_value(row, "Strain"),
-        "species": "Escherichia coli",
         "condition": get_value(row, "Condition"),
         "ncbi_bioproject": get_value(row, "Submission ID"),
     }
@@ -73,9 +72,9 @@ for ix, row in df.iterrows():
         val = get_value(row, key)
         if val:
             metadata[key] = val
-    genome["metadata"] = metadata
-    genomes.append(genome)
+    track["metadata"] = metadata
+    tracks.append(track)
 
-print(f"Writing genomes to {JSON_OUTFILE}")
+print(f"Writing tracks to {JSON_OUTFILE}")
 with open(JSON_OUTFILE, "w") as f:
-    json.dump(genomes, f)
+    json.dump(tracks, f)

@@ -15,7 +15,7 @@ class GenomeAdmin(admin.ModelAdmin):
     @admin.display(ordering="lab__name")
     def _lab_name(self, genome):
         return format_html(
-            '<a href="/admin/tracks/lab/{}/">{}</a>',
+            '<a href="/admin/genomes/lab/{}/">{}</a>',
             genome.lab.id,
             genome.lab.name,
         )
@@ -27,7 +27,7 @@ class TrackAdmin(admin.ModelAdmin):
     @admin.display(ordering="genome__name")
     def _genome_name(self, track):
         return format_html(
-            '<a href="/admin/tracks/genome/{}/">{}</a>',
+            '<a href="/admin/genomes/genome/{}/">{}</a>',
             track.genome.id,
             track.genome.name,
         )
@@ -35,7 +35,7 @@ class TrackAdmin(admin.ModelAdmin):
     @admin.display(ordering="lab__name")
     def _lab_name(self, track):
         return format_html(
-            '<a href="/admin/tracks/lab/{}/">{}</a>',
+            '<a href="/admin/genomes/lab/{}/">{}</a>',
             track.lab.id,
             track.lab.name,
         )

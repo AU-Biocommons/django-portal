@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.db.models.functions import Lower
 
 from apollo_portal.utils.api import api_view
-from tracks.models import Genome, Lab, Track
+from genomes.models import Genome, Lab, Track
 
 
 @api_view(['GET'])

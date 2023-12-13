@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tracks', '0005_lab_description_html_lab_email_lab_image_and_more'),
+        ('genomes', '0005_lab_description_html_lab_email_lab_image_and_more'),
     ]
 
     operations = [

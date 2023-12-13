@@ -46,12 +46,12 @@ class Migration(migrations.Migration):
                 ('accession_id', models.CharField(max_length=255, null=True)),
                 ('track_type', models.CharField(max_length=255)),
                 ('_metadata', models.TextField(null=True)),
-                ('genome', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tracks.genome')),
+                ('genome', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='genomes.genome')),
             ],
         ),
         migrations.AddField(
             model_name='genome',
             name='lab',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tracks.lab'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='genomes.lab'),
         ),
     ]

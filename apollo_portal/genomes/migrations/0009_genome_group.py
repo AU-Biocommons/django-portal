@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
-        ('tracks', '0008_alter_genome_accession_id_alter_genome_apollo_url_and_more'),
+        ('genomes', '0008_alter_genome_accession_id_alter_genome_apollo_url_and_more'),
     ]
 
     operations = [

@@ -8,14 +8,14 @@
   'strain', and 'condition'.
   e.g. hide_filters = ['lab']
 
-  filter_genomes_params: Object of GET params to pass to /tracks/api/genomes
+  filter_genomes_params: Object of GET params to pass to /genomes/api/genomes
   e.g. filter_genomes_params="{group: 'my group', labs: 'my Lab,your lab'}"
 -->
 
 {% load static %}
 
 <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.css">
-<link rel="stylesheet" href="{% static 'tracks/css/genome-cards.css' %}">
+<link rel="stylesheet" href="{% static 'genomes/css/genome-cards.css' %}">
 
 <!-- Use verbatim mode to prevent collision of Django and Vue template tags -->
 {% verbatim %}
@@ -206,20 +206,6 @@
         </div>
 
         <div class="card-footer text-center">
-          <a
-            :href="genome.apollo_url"
-            target="_blank"
-          >
-            <button
-              class="btn btn-primary"
-              data-toggle="tooltip"
-              data-title="View public genome tracks on Apollo"
-              data-placement="bottom"
-            >
-              Browser
-            </button>
-          </a>
-
           <button
             class="btn btn-primary"
             @click="showGenome(genome)"
@@ -252,7 +238,6 @@
         <th>Strain</th>
         <th>Condition</th>
         <th></th>
-        <th></th>
       </thead>
       <tr
         v-for="genome in filteredGenomes"
@@ -267,21 +252,6 @@
         <td><i>{{ genome.species }}</i></td>
         <td>{{ genome.strain }}</td>
         <td>{{ genome.condition }}</td>
-        <td>
-          <a
-            :href="genome.apollo_url"
-            target="_blank"
-          >
-            <button
-              class="btn btn-primary"
-              data-toggle="tooltip"
-              data-title="View genome tracks on Apollo"
-              data-placement="bottom"
-            >
-              Browser
-            </button>
-          </a>
-        </td>
         <td>
           <button
             class="btn btn-primary"
@@ -438,7 +408,26 @@
           </table>
         </div>
 
-        <div class="modal-footer justify-content-center">
+        <div v-if="genomeDetails" class="modal-footer justify-content-center">
+          <a
+            :href="genomeDetails.apollo_url"
+            target="_blank"
+            class="btn btn-primary"
+            data-toggle="tooltip"
+            data-title="View public genome tracks on Apollo"
+            data-placement="bottom"
+          >
+            Apollo browser
+          </a>
+          <a
+            :href="'/genome/' + genomeDetails.id + '/tracks/'"
+            class="btn btn-primary"
+            data-toggle="tooltip"
+            data-title="View available tracks for this genome"
+            data-placement="bottom"
+          >
+            View tracks
+          </a>
           <button class="btn btn-primary" data-dismiss="modal" @click="resetGenomeDetails">
             Close
           </button>
@@ -573,7 +562,7 @@
           params = FILTER_GENOMES_PARAMS;
           urlParams = "?" + new URLSearchParams(params);
         }
-        return fetch('/tracks/api/genomes' + urlParams)
+        return fetch('/genomes/api/genomes' + urlParams)
           .catch(error => {
             alert(error);
           })
@@ -590,7 +579,7 @@
           });
       },
       fetchLab (name) {
-        return fetch(`/tracks/api/labs?labs=${name}`)
+        return fetch(`/genomes/api/labs?labs=${name}`)
           .catch(error => {
             alert(error);
           })

@@ -6,7 +6,7 @@ from factory.django import DjangoModelFactory
 
 from . import models
 
-FAKE_IMG_DIR = settings.BASE_DIR / "tracks/data/factory/species_images"
+FAKE_IMG_DIR = settings.BASE_DIR / "genomes/data/factory/species_images"
 FAKE_IMG_INDEX_PATH = FAKE_IMG_DIR / "index.txt"
 
 
@@ -35,7 +35,7 @@ class GenomeFactory(DjangoModelFactory):
         model = models.Genome
         django_get_or_create = ('name',)
 
-    lab = factory.SubFactory("tracks.factories.LabFactory")
+    lab = factory.SubFactory("genomes.factories.LabFactory")
     name = factory.Faker("word")
     accession_id = factory.Faker("ean8")
     species = factory.Faker("word")
