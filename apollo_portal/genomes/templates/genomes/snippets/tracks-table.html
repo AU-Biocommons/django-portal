@@ -330,7 +330,7 @@
   ];
   const HIDE_FILTERS = {{ hide_filters|default:"[]" }};
   const FILTER_TRACKS_PARAMS = {{ filter_tracks_params|default:"{}" }};
-  const GENOME_ID = {{ genome_id|default:"null" }};
+  const GENOME_ID = {{ genome.id|default:"null" }};
 
   new Vue({
     el: '#app',
