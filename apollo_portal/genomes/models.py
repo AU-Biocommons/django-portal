@@ -36,12 +36,12 @@ class Lab(models.Model):
         return self.name
 
     @property
-    def img_path_or_placeholder(self):
+    def image_url(self):
         """Return image path or placeholder if not set."""
         return (
             self.image.url
             if self.image
-            else settings.STATIC_URL + self.PLACEHOLDER_STATIC_PATH
+            else None
         )
 
     def as_json(self):
@@ -56,7 +56,7 @@ class Lab(models.Model):
             "apollo_url": self.apollo_url,
             "principle_investigator": self.principle_investigator,
             "email": self.email,
-            "image": self.img_path_or_placeholder,
+            "image": self.image_url,
         }
 
 
