@@ -13,7 +13,7 @@
   height: 100vh;
   padding: 2rem 5rem;
   position: absolute;
-  z-index: 3;
+  z-index: 11;
   top: 0;
   bottom: 0;
   text-align: right;
@@ -26,7 +26,7 @@
 }
 #search form {
   position: relative;
-  z-index: 4;
+  z-index: 12;
   width: 90%;
   max-width: 600px;
   padding: 30px;

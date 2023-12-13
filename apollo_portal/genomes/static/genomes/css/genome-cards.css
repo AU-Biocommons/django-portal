@@ -1,0 +1,78 @@
+#app {
+  min-height: 60vh;
+}
+#filter-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--table-head);
+}
+#filter-bar .filter {
+  margin: 0 .2rem;
+  padding: .2rem;
+}
+.multiselect__tags,
+.multiselect__input,
+.multiselect__single {
+  color: #555;
+  background: var(--table-body);
+}
+.multiselect__placeholder {
+  color: #888;
+}
+.multiselect__input::placeholder {
+  color: #bbb;
+}
+.genome-card {
+  margin: 1rem .25rem;
+  width: calc(25% - .5rem);
+  min-width: 250px;
+  background: var(--table-body);
+  box-shadow: 0 0 8px rgba(0,0,0,.5);
+}
+.genome-card .card-title,
+.genome-card .card-footer {
+  background: var(--table-head);
+}
+.genome-card .card-img-top {
+  height: 225px;
+  width: 100%;
+  margin: 0 auto;
+}
+.modal-header-img {
+  height: 300px;
+  width: auto;
+  margin: 0 auto;
+}
+#genomeDetailsModalBody table {
+  font-size: .8rem;
+}
+#genomeDetailsModalBody tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+#genomeDetailsModalBody td {
+  padding: .2rem .5rem;
+  border: none;
+}
+.view-select-buttons button:last-child {
+  margin-left: -3px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.view-select-buttons button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .genome-card {
+    min-width: 240px;
+  }
+}
+@media (max-width: 560px) {
+  .genome-cards .row {
+    justify-content: center;
+  }
+}

@@ -28,13 +28,7 @@
 </section>
 
 <section class="container my-3">
-  <script>
-    const FILTER_GENOMES_PARAMS = {
-      labs: 'tradis-vault',
-    }
-    const HIDE_FILTERS = ['lab']
-  </script>
-  {% include 'tracks/snippets/genome-cards.html' %}
+  {% include 'genomes/snippets/genome-cards.html' with filter_genomes_params="{'group': 'tradis-vault'}" %}
 </section>
 
 {% endblock %}

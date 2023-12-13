@@ -8,7 +8,7 @@ media/
 .env.test
 
 # Special files
-apollo_portal/tracks/data/factory/species_images/index.txt
+apollo_portal/genomes/data/factory/species_images/index.txt
 
 # Ansible stuff
 deploy/ansible/roles/
