@@ -279,6 +279,7 @@
 
           <div v-else>
             <img
+              v-if="labDetails.image"
               class="modal-header-img"
               :src="labDetails.image"
               :alt="labDetails.name"
@@ -420,7 +421,8 @@
             Apollo browser
           </a>
           <a
-            :href="'/genomes/' + genomeDetails.id + '/tracks/'"
+            v-if="genomeDetails.tracks_url"
+            :href="genomeDetails.tracks_url"
             class="btn btn-primary"
             data-toggle="tooltip"
             data-title="View available tracks for this genome"

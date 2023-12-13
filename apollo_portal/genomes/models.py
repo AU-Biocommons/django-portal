@@ -138,6 +138,11 @@ class Genome(models.Model):
             "doi": self.doi,
             "ncbi_bioproject": self.ncbi_bioproject,
             "metadata": self.metadata,
+            "tracks_url": (
+                f'/genomes/{self.id}/tracks/'
+                if self.track_set.exists()
+                else None
+            ),
         }
 
     @property
