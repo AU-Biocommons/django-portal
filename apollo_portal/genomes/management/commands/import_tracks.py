@@ -63,7 +63,7 @@ def create_track_from_json(track):
     elif track.get("genome_id"):
         filter_kwargs = {'id': track["genome_id"]}
     elif track.get("genome_accession"):
-        filter_kwargs = {'accession': track["genome_accession"]}
+        filter_kwargs = {'accession_id': track["genome_accession"]}
     else:
         raise ValueError(
             "Missing required field"
