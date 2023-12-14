@@ -6,6 +6,7 @@ Expect JSON:
     "lab_name" value,
     "genome_name" value,
     "genome_id" value,  # instead of genome_name
+    "genome_accession" value,  # instead of genome_name
     "name" value,
     "description" value,
     "reference" value,
@@ -57,13 +58,22 @@ def create_track_from_json(track):
 
     Create required group and lab records for relational fields.
     """
-    if not (track["genome_name"] or track["genome_id"]):
-        raise ValueError("Missing required field [genome_name OR genome_id]")
-    genome = (
-        Genome.objects.filter(name=track["genome_name"]).first()
-        if track["genome_name"]
-        else Genome.objects.filter(id=track["genome_id"]).first()
-    )
+    if track.get("genome_name"):
+        filter_kwargs = {'name': track["genome_name"]}
+    elif track.get("genome_id"):
+        filter_kwargs = {'id': track["genome_id"]}
+    elif track.get("genome_accession"):
+        filter_kwargs = {'accession': track["genome_accession"]}
+    else:
+        raise ValueError(
+            "Missing required field"
+            " [genome_name OR genome_id OR genome_accession]")
+
+    genome = Genome.objects.filter(**filter_kwargs).first()
+    if not genome:
+        raise ValueError(
+            f"Genome not found for {filter_kwargs}"
+        )
 
     if not track["lab_name"]:
         raise ValueError("Missing required lab_name field")
