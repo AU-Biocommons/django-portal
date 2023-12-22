@@ -58,7 +58,7 @@ def send_email(form, subject, to_addresses, template):
                 'value': form.cleaned_data[field.name],
             }
             for field in form
-            if field.name not in ['captcha']
+            if field.name not in ['captcha', 'submit_delay_seconds']
         },
     }
 
