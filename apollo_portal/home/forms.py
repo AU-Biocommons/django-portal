@@ -20,6 +20,28 @@ class SubmitDelaySpamFilterMixin(forms.Form):
         min_value=SUBMIT_DELAY_MINIMUM_SECONDS)
 
 
+class HoneypotSpamFilterMixin(forms.Form):
+    """Include a honeypot field to catch spam/bot submissions."""
+
+    institution_hp = forms.CharField(required=False)
+    honeypot_field = (
+        '<input type="text" name="institution_hp" id="id_institution_hp"'
+        ' required />\n'
+        '<script type="text/javascript">\n'
+        'setTimeout('
+        '() => $("#id_institution_hp").prop("disabled", true), 2000);\n'
+        '$("#id_institution_hp").css("position", "absolute");\n'
+        '$("#id_institution_hp").css("opacity", "0");\n'
+        '</script>\n')
+
+    def clean_institution_hp(self):
+        """Check honeypot field."""
+        if self.cleaned_data.get('institution_hf'):
+            logger.warning('Honeypot field was filled in.')
+            raise forms.ValidationError('This value is incorrect.')
+        return self.cleaned_data
+
+
 class SignUpForm(SubmitDelaySpamFilterMixin, forms.Form):
     """Allow users to apply for an Apollo service instance."""
 
@@ -77,7 +99,11 @@ class SignUpForm(SubmitDelaySpamFilterMixin, forms.Form):
         notify.admins(self)
 
 
-class ContactForm(SubmitDelaySpamFilterMixin, forms.Form):
+class ContactForm(
+    HoneypotSpamFilterMixin,
+    SubmitDelaySpamFilterMixin,
+    forms.Form
+):
     """Allow users to contact Apollo team."""
 
     captcha = ReCaptchaField()

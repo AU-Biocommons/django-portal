@@ -16,6 +16,8 @@
 
     {% csrf_token %}
 
+    {{ form.honeypot_field|safe }}
+
     {{ form.non_field_errors }}
 
     <section>
