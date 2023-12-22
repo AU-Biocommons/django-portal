@@ -27,9 +27,11 @@ $(document).ready(function() {
   })
 });
 
-$('form').submit( () => {
+const submitButtonDisable = () => {
   const hard_width = $('button[type="submit"]').outerWidth();
   $('button[type="submit"]').prop('disabled', true);
   $('button[type="submit"]').css('min-width', hard_width);
   $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
-});
+}
+
+$('form').submit(submitButtonDisable);
