@@ -11,7 +11,16 @@ logger = logging.getLogger('django')
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
 
 
-class SignUpForm(forms.Form):
+class SubmitDelaySpamFilterMixin(forms.Form):
+    """Enforce a submit delay to prevent spam/bot submissions."""
+
+    SUBMIT_DELAY_MINIMUM_SECONDS = 5.0
+
+    submit_delay_seconds = forms.FloatField(
+        min_value=SUBMIT_DELAY_MINIMUM_SECONDS)
+
+
+class SignUpForm(SubmitDelaySpamFilterMixin, forms.Form):
     """Allow users to apply for an Apollo service instance."""
 
     captcha = ReCaptchaField()
@@ -68,7 +77,7 @@ class SignUpForm(forms.Form):
         notify.admins(self)
 
 
-class ContactForm(forms.Form):
+class ContactForm(SubmitDelaySpamFilterMixin, forms.Form):
     """Allow users to contact Apollo team."""
 
     captcha = ReCaptchaField()
