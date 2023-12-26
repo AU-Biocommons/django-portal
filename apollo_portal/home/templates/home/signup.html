@@ -16,6 +16,8 @@
 
     {% csrf_token %}
 
+    {{ form.honeypot_field|safe }}
+
     {{ form.non_field_errors }}
 
     <section>
@@ -264,4 +266,5 @@
 
 {% block script %}
 <script src="{% static 'home/js/forms.js' %}"></script>
+<script src="{% static 'home/js/submit-delay.js' %}"></script>
 {% endblock %}

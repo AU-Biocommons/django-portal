@@ -25,6 +25,7 @@ VALID_SIGNUP_DATA = {
     'grant_type': '',
     'admin_name': 'Test Admin',
     'admin_email': 'admin@uq.edu.au',
+    'submit_delay_seconds': '10.0',
 }
 
 

@@ -2,6 +2,7 @@
 
 import logging
 import time
+import traceback
 from datetime import date
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
@@ -49,15 +50,16 @@ def send_email(form, subject, to_addresses, template):
     """Send email for given form."""
     logger.info(f'Sending email to {to_addresses} Subject: {subject}')
     from_address = settings.EMAIL_FROM_ADDRESS
+    fields = {f.name: f for f in form}
     context = {
         'today': date.today().strftime('%d-%m-%Y'),
         'data': {
-            field.name: {
-                'label': field.label,
-                'value': form.cleaned_data[field.name],
+            name: {
+                'label': fields[name].label,
+                'value': value,
             }
-            for field in form
-            if field.name not in ['captcha']
+            for name, value in form.cleaned_data.items()
+            if name not in form.INTERNAL_FIELDS
         },
     }
 
@@ -72,9 +74,9 @@ def send_email(form, subject, to_addresses, template):
     msg.attach_alternative(html, "text/html")
     try:
         retry_send(msg)
-    except Exception as exc:
+    except Exception:
         logger.error(
-            f'Error sending email:\n{exc}\n\n'
+            f'Error sending email:\n{traceback.format_exc()}\n\n'
             f'Submitted form values:\n{pformat(form.cleaned_data)}')
 
 
@@ -85,9 +87,8 @@ def retry_send(msg, retries=3):
                 return postal.send_mail(msg)
             return msg.send()
         except Exception as exc:
-            # if attempt == retries:
-            #     raise exc
-            raise exc
+            if attempt == retries:
+                raise exc
             logging.warning(
                 f"Email attempt {attempt} failed."
                 " Retrying in 1 second...")
