@@ -23,29 +23,46 @@ class SubmitDelaySpamFilterMixin(forms.Form):
 class HoneypotSpamFilterMixin(forms.Form):
     """Include a honeypot field to catch spam/bot submissions."""
 
+    # Named to avoid spam bot detection:
+    HONEYPOT_FIELD_NAME = 'institution_hp'
     institution_hp = forms.CharField(required=False)
     honeypot_field = (
-        '<input type="text" name="institution_hp" id="id_institution_hp"'
-        ' required />\n'
+        f'<input type="text" name="{HONEYPOT_FIELD_NAME}"'
+        f'  id="id_{HONEYPOT_FIELD_NAME}" required />\n'
         '<script type="text/javascript">\n'
         'setTimeout('
-        '() => $("#id_institution_hp").prop("disabled", true), 2000);\n'
-        '$("#id_institution_hp").css("position", "absolute");\n'
-        '$("#id_institution_hp").css("opacity", "0");\n'
+        f'() => $("#id_{HONEYPOT_FIELD_NAME}").prop("disabled", 1), 1000);\n'
+        f'$("#id_{HONEYPOT_FIELD_NAME}").css("position", "absolute");\n'
+        f'$("#id_{HONEYPOT_FIELD_NAME}").css("opacity", "0");\n'
         '</script>\n')
 
     def clean_institution_hp(self):
         """Check honeypot field."""
-        if self.cleaned_data.get('institution_hf'):
+        value = self.cleaned_data.get(self.HONEYPOT_FIELD_NAME)
+        if value:
             logger.warning('Honeypot field was filled in.')
             raise forms.ValidationError('This value is incorrect.')
-        return self.cleaned_data
+        return value
 
 
-class SignUpForm(SubmitDelaySpamFilterMixin, forms.Form):
-    """Allow users to apply for an Apollo service instance."""
+class SpamFilterBaseForm(
+    SubmitDelaySpamFilterMixin,
+    HoneypotSpamFilterMixin,
+    forms.Form,
+):
+    """A base form with multiple levels of spam filtering/prevention."""
 
     captcha = ReCaptchaField()
+    INTERNAL_FIELDS = (
+        'submit_delay_seconds',
+        'institution_hp',
+        'captcha',
+    )
+
+
+class SignUpForm(SpamFilterBaseForm):
+    """Allow users to apply for an Apollo service instance."""
+
     confirm_institution = forms.BooleanField()
     group_name = forms.CharField(max_length=200)
     group_url = forms.URLField(required=False)
@@ -99,14 +116,9 @@ class SignUpForm(SubmitDelaySpamFilterMixin, forms.Form):
         notify.admins(self)
 
 
-class ContactForm(
-    HoneypotSpamFilterMixin,
-    SubmitDelaySpamFilterMixin,
-    forms.Form
-):
+class ContactForm(SpamFilterBaseForm):
     """Allow users to contact Apollo team."""
 
-    captcha = ReCaptchaField()
     name = forms.CharField(max_length=200)
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea, max_length=5000)
