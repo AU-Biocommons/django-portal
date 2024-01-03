@@ -189,20 +189,29 @@
         </div>
 
         <div class="card-body">
-          <p class="text-center mb-2">
+          <p class="text-center mb-1">
             <button class="btn-primary btn-small" type="button" @click="() => showLab(genome.lab)">
               {{ genome.lab }}
             </button>
           </p>
-          <div>
-            <strong>Species:</strong> <i>{{ genome.species }}</i>
-          </div>
-          <div v-if="genome.strain">
-            <strong>Strain:</strong> {{ genome.strain }}
-          </div>
-          <div v-if="genome.condition">
-            <strong>Condition:</strong> {{ genome.condition }}
-          </div>
+          <p class="text-center font-weight-light mb-1">
+            {{ genome.tracks_count }} track<span v-if="genome.tracks_count > 1">s</span>
+            available
+          </p>
+          <table class="details">
+            <tr>
+              <td><b>Species</b></td>
+              <td>{{ genome.species }}</td>
+            </tr>
+            <tr>
+              <td><b>Strain</b></td>
+              <td>{{ genome.strain }}</td>
+            </tr>
+            <tr>
+              <td><b>Condition</b></td>
+              <td>{{ genome.condition }}</td>
+            </tr>
+          </table>
         </div>
 
         <div class="card-footer text-center">

@@ -143,6 +143,7 @@ class Genome(models.Model):
                 if self.track_set.exists()
                 else None
             ),
+            "tracks_count": self.track_set.count(),
         }
 
     @property

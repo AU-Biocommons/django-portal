@@ -39,6 +39,17 @@
   width: 100%;
   margin: 0 auto;
 }
+.genome-card .card-body {
+  padding: .5rem;
+  font-size: .8rem;
+}
+.genome-card table.details {
+  margin: 0;
+}
+.genome-card table.details td {
+  padding: .2rem .5rem;
+  border: none;
+}
 .modal-header-img {
   height: 200px;
   width: auto;
