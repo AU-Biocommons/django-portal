@@ -66,6 +66,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Lab"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -89,6 +90,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Species"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -112,6 +114,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Strain"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -135,6 +138,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Condition"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -203,6 +207,9 @@
               {{ genome.tracks_count }} track<span v-if="genome.tracks_count > 1">s</span>
               available
             </a>
+          </p>
+          <p v-else class="mb-1" style="visibility: hidden;">
+            No tracks available
           </p>
           <table class="details">
             <tr>
@@ -625,12 +632,27 @@
         this.genomeDetails = null;
       },
       setFilterOptions () {
+        // Use setTimeout to ensure that this fires after filteredGenomes has been updated
+        setTimeout(() => {
         Object.keys(this.filters).forEach(field => {
-          this.filters[field].options = this.getFilterOptions(field);
-        });
+            if (this.filters[field].selected.length) {
+            } else {
+              this.filters[field].options = this.getFilterOptions(field, this.filteredGenomes);
+            }
+            const optFilteredGenomes = this.genomes.filter(genome => {
+              return (
+                (field === 'lab' || !this.filters.lab.selected.length || this.filters.lab.selected.includes(genome.lab))
+                && (field === 'species' || !this.filters.species.selected.length || this.filters.species.selected.includes(genome.species))
+                && (field === 'strain' || !this.filters.strain.selected.length || this.filters.strain.selected.includes(genome.strain))
+                && (field === 'condition' || !this.filters.condition.selected.length || this.filters.condition.selected.includes(genome.condition))
+              );
+            });
+            this.filters[field].options = this.getFilterOptions(field, optFilteredGenomes);
+          });
+        }, 100);
       },
-      getFilterOptions (field) {
-        const options = this.genomes.map(genome => genome[field])
+      getFilterOptions (field, genomes) {
+        const options = genomes.map(genome => genome[field])
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort();
         if (!options[0]) {
