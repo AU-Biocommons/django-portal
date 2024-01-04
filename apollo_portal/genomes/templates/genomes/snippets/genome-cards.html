@@ -66,6 +66,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Lab"
+        @select="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -89,6 +90,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Species"
+        @select="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -112,6 +114,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Strain"
+        @select="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -135,6 +138,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Condition"
+        @select="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -194,9 +198,12 @@
               {{ genome.lab }}
             </button>
           </p>
-          <p class="text-center font-weight-light mb-1">
+          <p v-if="genome.tracks_count" class="text-center font-weight-light mb-1">
             {{ genome.tracks_count }} track<span v-if="genome.tracks_count > 1">s</span>
             available
+          </p>
+          <p v-else class="mb-1" style="visibility: hidden;">
+            No tracks available
           </p>
           <table class="details">
             <tr>
@@ -619,12 +626,18 @@
         this.genomeDetails = null;
       },
       setFilterOptions () {
+        setTimeout(() => {
         Object.keys(this.filters).forEach(field => {
-          this.filters[field].options = this.getFilterOptions(field);
-        });
+            if (this.filters[field].selected.length) {
+              this.filters[field].options = this.getFilterOptions(field, this.genomes);
+            } else {
+              this.filters[field].options = this.getFilterOptions(field, this.filteredGenomes);
+            }
+          });
+        }, 100);
       },
-      getFilterOptions (field) {
-        const options = this.genomes.map(genome => genome[field])
+      getFilterOptions (field, genomes) {
+        const options = genomes.map(genome => genome[field])
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort();
         if (!options[0]) {
