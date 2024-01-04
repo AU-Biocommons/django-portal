@@ -198,9 +198,15 @@
               {{ genome.lab }}
             </button>
           </p>
+
           <p v-if="genome.tracks_count" class="text-center font-weight-light mb-1">
-            {{ genome.tracks_count }} track<span v-if="genome.tracks_count > 1">s</span>
-            available
+            <a
+              v-if="genome.tracks_url"
+              :href="genome.tracks_url"
+            >
+              {{ genome.tracks_count }} track<span v-if="genome.tracks_count > 1">s</span>
+              available
+            </a>
           </p>
           <p v-else class="mb-1" style="visibility: hidden;">
             No tracks available
@@ -431,7 +437,7 @@
             target="_blank"
             class="btn btn-primary"
             data-toggle="tooltip"
-            data-title="View Apollo genome browser"
+            data-title="Jump to Apollo genome browser"
             data-placement="bottom"
           >
             Apollo browser
@@ -652,6 +658,17 @@
         if (!options[0]) {
           return [];
         }
+        // Sort options again to put selected at the top
+        const selected = this.filters[field].selected;
+        options.sort((a, b) => {
+          if (selected.includes(a) && !selected.includes(b)) {
+            return -1;
+          }
+          if (!selected.includes(a) && selected.includes(b)) {
+            return 1;
+          }
+          return a.localeCompare(b);
+        });
         return options;
       },
       resetFilters () {
