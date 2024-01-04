@@ -653,6 +653,7 @@
         Object.keys(this.filters).forEach(field => {
           this.filters[field].selected = [];
         });
+        setFilterOptions();
       },
       capitalize (string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
