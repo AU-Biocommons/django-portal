@@ -66,7 +66,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Lab"
-        @select="setFilterOptions"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -90,7 +90,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Species"
-        @select="setFilterOptions"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -114,7 +114,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Strain"
-        @select="setFilterOptions"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -138,7 +138,7 @@
         :preserve-search="true"
         :preselect-first="false"
         placeholder="Condition"
-        @select="setFilterOptions"
+        @input="setFilterOptions"
       />
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <span
@@ -626,17 +626,29 @@
         this.genomeDetails = null;
       },
       setFilterOptions () {
+        // Use setTimeout to ensure that this fires after filteredGenomes has been updated
+        console.log('setFilterOptions')
         setTimeout(() => {
         Object.keys(this.filters).forEach(field => {
             if (this.filters[field].selected.length) {
-              this.filters[field].options = this.getFilterOptions(field, this.genomes);
             } else {
               this.filters[field].options = this.getFilterOptions(field, this.filteredGenomes);
             }
+            const optFilteredGenomes = this.genomes.filter(genome => {
+              console.log(`selected labs: ${this.filters.lab.selected}`)
+              return (
+                (field === 'lab' || !this.filters.lab.selected.length || this.filters.lab.selected.includes(genome.lab))
+                && (field === 'species' || !this.filters.species.selected.length || this.filters.species.selected.includes(genome.species))
+                && (field === 'strain' || !this.filters.strain.selected.length || this.filters.strain.selected.includes(genome.strain))
+                && (field === 'condition' || !this.filters.condition.selected.length || this.filters.condition.selected.includes(genome.condition))
+              );
+            });
+            this.filters[field].options = this.getFilterOptions(field, optFilteredGenomes);
           });
         }, 100);
       },
       getFilterOptions (field, genomes) {
+        console.log(`getFilterOptions on ${field} with ${genomes.length} genomes`);
         const options = genomes.map(genome => genome[field])
           .filter((value, index, self) => self.indexOf(value) === index)
           .sort();
