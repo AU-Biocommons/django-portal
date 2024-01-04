@@ -636,6 +636,17 @@
         if (!options[0]) {
           return [];
         }
+        // Sort options again to put selected at the top
+        const selected = this.filters[field].selected;
+        options.sort((a, b) => {
+          if (selected.includes(a) && !selected.includes(b)) {
+            return -1;
+          }
+          if (!selected.includes(a) && selected.includes(b)) {
+            return 1;
+          }
+          return a.localeCompare(b);
+        });
         return options;
       },
       resetFilters () {
