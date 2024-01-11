@@ -10,6 +10,7 @@ PRODUCTION_HOSTNAMES = [
     'genome.edu.au',
     'apollo-portal.genome.edu.au',
     'apollo-portal-dev.genome.edu.au',
+    'ubuntu22-test.genome.edu.au',
 ]
 ALLOWED_HOSTS += PRODUCTION_HOSTNAMES  # noqa
 CSRF_TRUSTED_ORIGINS = [
