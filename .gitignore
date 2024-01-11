@@ -2,7 +2,7 @@
 *.sqlite3
 .vscode/
 whoosh_index/
-apollo_portal/apollo_portal/static/
+app/apollo_portal/static/
 logs/
 media/
 .env.test
