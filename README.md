@@ -27,7 +27,7 @@ git clone $GIT_REPO_URL apollo_portal
 cd apollo_portal
 python -m pip install -r requirements
 # Jump into the Django project root
-cd apollo_portal
+cd app
 # Set up the database
 python manage.py migrate
 # Populate the DB with fake data
