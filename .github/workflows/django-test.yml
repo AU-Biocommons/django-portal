@@ -42,4 +42,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        cd apollo_portal && python manage.py test
+        cd app && python manage.py test
