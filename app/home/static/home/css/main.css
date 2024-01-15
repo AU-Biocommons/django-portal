@@ -48,6 +48,12 @@ ol li ol li ol {
 ol li {
   padding: .5rem 0;
 }
+.li-h3 {
+  font-size: 1.7rem;
+}
+.font-size-normal {
+  font-size: 1rem;
+}
 .page-align-top {
   margin-top: -2rem;
 }
