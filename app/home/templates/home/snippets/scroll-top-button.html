@@ -1,0 +1,37 @@
+{% load static %}
+
+<div id="scroll-top-btn">
+  <style>
+    #scroll-top-btn {
+      position: fixed;
+      bottom: 3rem;
+      right: 3rem;
+      z-index: 9999;
+    }
+    #scroll-top-btn button {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+    #scroll-top-btn button:hover {
+      background-color: var(--link);
+    }
+    #scroll-top-btn button i {
+      font-size: 20px;
+      color: #555;
+      transition: all 0.3s ease-in-out;
+    }
+    #scroll-top-btn button:hover i {
+      color: white;
+    }
+  </style>
+  <button>
+    <i class="fa fa-arrow-up"></i>
+  </button>
+  <script src="{% static 'home/js/scroll-top.js' %}"></script>
+</div>
