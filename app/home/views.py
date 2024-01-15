@@ -10,27 +10,27 @@ logger = logging.getLogger('django')
 
 RESOURCES_PAGES = [
     {
-        'url': '/resources/start',
+        'url': '/resources/start/',
         'label': 'Getting Started',
     },
     {
-        'url': '/resources/documentation',
+        'url': '/resources/documentation/',
         'label': 'User Documentation',
     },
     {
-        'url': '/resources/training',
+        'url': '/resources/training/',
         'label': 'Training, Tutorials and Other Resources',
     },
     {
-        'url': '/resources/faqs',
+        'url': '/resources/faqs/',
         'label': 'FAQs',
     },
     {
-        'url': '/resources/video',
+        'url': '/resources/video/',
         'label': 'Video Resources',
     },
     {
-        'url': '/resources/terms',
+        'url': '/resources/terms/',
         'label': 'Terms of Use',
     },
 ]
@@ -42,9 +42,9 @@ def get_resource_nav_context(request):
         if item['url'] == request.path:
             break
     return {
-        'prev': RESOURCES_PAGES[i-1] if i > 0 else None,
+        'prev': RESOURCES_PAGES[i - 1] if i > 0 else None,
         'next': (
-            RESOURCES_PAGES[i+1]
+            RESOURCES_PAGES[i + 1]
             if i < len(RESOURCES_PAGES) - 1
             else None
         ),
