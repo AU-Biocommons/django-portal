@@ -1,0 +1,41 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+{% load markdown %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block content %}
+<main class="container">
+  <div class="d-flex justify-content-center">
+    <a class="btn btn-primary" href="/">Home</a>
+  </div>
+
+  <br><br>
+
+  <h3>{{ notice.title_html|safe }}</h3>
+
+  <hr>
+
+  <p>
+    {{ notice.body_markdown|markdown|safe }}
+  </p>
+</main>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+// Ensure that notice links open in new tab if external
+$('a').each( (i, item) => {
+  if (!item.href.includes("{{ HOSTNAME }}")) {
+    console.log(`Setting _blank on href ${item.href}`)
+    item.target = '_blank';
+  }
+});
+{% endblock %}

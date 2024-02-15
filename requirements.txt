@@ -10,3 +10,4 @@ factory_boy==3.3
 requests
 psycopg2-binary
 pyyaml
+markdown2==2.4

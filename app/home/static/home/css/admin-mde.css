@@ -1,0 +1,26 @@
+/* Customise the admin markdown editor */
+
+/* .editor-toolbar, */
+.CodeMirror,
+.editor-preview-side,
+.editor-statusbar {
+  margin-left: 170px;
+}
+.CodeMirror {
+  margin-right: 300px;
+}
+.CodeMirror.CodeMirror-wrap {
+  width: calc(100% - 170px);
+  min-width: 400px;
+}
+.field-body img {
+  max-width: 100%;
+}
+
+/* Overwrite django admin styling */
+.editor-preview ul {
+  margin-left: 1rem !important;
+}
+.editor-preview ul li {
+  list-style-type: disc !important;
+}

@@ -1,0 +1,39 @@
+{% load static %}
+
+<!-- Notice bar -->
+<link rel="stylesheet" href="{% static 'home/css/notice.css' %}">
+<script src="{% static 'home/js/notice.js' %}"></script>
+
+{% if notices %}
+<div id="notice-bar" class="embedded">
+  <div class="notice-control" id="notice-left" onclick="moveNotice('left');">
+    <span class="material-icons">chevron_left</span>
+  </div>
+  <div class="notice-control" id="notice-right" onclick="moveNotice('right');">
+    <span class="material-icons">chevron_right</span>
+  </div>
+
+  {% for notice in notices %}
+  <div
+    {% if notice.url %}
+    class="notice alert alert-{{ notice.notice_class }} clickable"
+    onclick="window.location.href = '{{ notice.url }}';"
+    {% else %}
+    class="notice alert alert-{{ notice.notice_class }}"
+    {% endif %}
+    id="notice-{{ forloop.counter }}"
+    {% if forloop.counter0 %}style="display: none;"{% endif %}
+  >
+    {% if not notice.is_published %}
+    {% include 'home/snippets/unpublished-bubble.html' %}
+    {% endif %}
+
+    <span class="body">
+      {% if notice.material_icon %}
+      <span class="material-icons mx-2">{{ notice.material_icon }}</span>
+      {% endif %}
+      {{ notice.title_html|safe }}
+    </span>
+  </div>
+  {% endfor %}
+{% endif %}
