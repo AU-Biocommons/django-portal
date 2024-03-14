@@ -48,6 +48,9 @@ ol li ol li ol {
 ol li {
   padding: .5rem 0;
 }
+.material-icons {
+  vertical-align: bottom;
+}
 .li-h3 {
   font-size: 1.7rem;
 }
