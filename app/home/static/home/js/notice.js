@@ -11,13 +11,14 @@ let changeNotice = false;
 // console.log(notices.length + " notices to rotate");
 
 const fadeAnimateNotices = () => {
-  // console.log(`fadeAnimateNotices (ix = ${ix})`);
+  console.log('---');
+  console.log(`fadeAnimateNotices (ix = ${ix})`);
   const current = notices[ix];
   next = notices[ix + 1];
 
   // Defer cycle if user has just changed manually
   if ( changeNotice ) {
-    // console.log("Deferring cycle due to user change");
+    console.log("Deferring cycle due to user change");
     changeNotice = false;
     return setTimeout(fadeAnimateNotices, PAUSE_MS);
   }
@@ -26,22 +27,24 @@ const fadeAnimateNotices = () => {
 
   // Defer cycle if user is hovering
   if ( $('#notice-bar:hover').length || $('.notice-control:hover').length ) {
-    // console.log("Deferring cycle due to mouse hover");
-    // console.log("#notice-bar length: " + $('#notice-bar:hover').length);
-    // console.log(".notice-control length: " + $('.notice-control:hover').length);
+    console.log("Deferring cycle due to mouse hover");
+    console.log("#notice-bar length: " + $('#notice-bar:hover').length);
+    console.log(".notice-control length: " + $('.notice-control:hover').length);
     return setTimeout(fadeAnimateNotices, PAUSE_MS);
   }
 
   if (ix + 1 >= notices.length) {
-    // console.log("Reset notice ix")
+    console.log("Reset notice ix")
     ix = -1;
     next = notices[0];
+    console.log("Next notice:")
+    console.log(next);
   } else if (ix < 0) {
     ix = notices.length - 1;
   }
 
   $(current).fadeOut(FADE_MS, () => {
-    // console.log("Fading to notice " + (ix + 1));
+    console.log("Fading to notice " + (ix + 1));
     $(next).fadeIn(FADE_MS);
     setTimeout(fadeAnimateNotices, PAUSE_MS );
     ix++;

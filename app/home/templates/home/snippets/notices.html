@@ -2,10 +2,9 @@
 
 <!-- Notice bar -->
 <link rel="stylesheet" href="{% static 'home/css/notice.css' %}">
-<script src="{% static 'home/js/notice.js' %}"></script>
 
 {% if notices %}
-<div id="notice-bar" class="embedded">
+<div id="notice-bar">
   <div class="notice-control" id="notice-left" onclick="moveNotice('left');">
     <span class="material-icons">chevron_left</span>
   </div>
@@ -37,3 +36,5 @@
   </div>
   {% endfor %}
 {% endif %}
+</div>
+<script src="{% static 'home/js/notice.js' %}"></script>
