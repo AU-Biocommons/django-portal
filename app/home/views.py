@@ -1,8 +1,9 @@
 import logging
 import pprint
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .forms import ContactForm, SignUpForm
+from .models import Notice
 from . import search
 
 logger = logging.getLogger('django')
@@ -103,7 +104,20 @@ def search_pages(request):
 
 
 def index(request):
-    return render(request, 'home/index.html')
+    """Show landing page with current notices."""
+    notices = Notice.objects.filter(enabled=True)
+    if not request.user.is_staff:
+        notices = notices.filter(is_published=True)
+    return render(request, 'home/index.html', {
+        'notices': notices,
+    })
+
+
+def notice(request, notice_id):
+    """Show notice page."""
+    return render(request, 'home/notice.html', {
+        'notice': get_object_or_404(Notice, id=notice_id),
+    })
 
 
 def about(request):

@@ -1,0 +1,64 @@
+/* Alert bar */
+#notice-bar {
+  text-align: center;
+  width: calc(100% + 4rem);
+  margin: 0 -2rem 0 -2rem;
+  position: relative;
+}
+#notice-bar .notice-control {
+  color: var(--color);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  position: absolute;
+  top: calc(8px - 0.1rem);
+  font-size: 2rem;
+  cursor: pointer;
+  transition-duration: .25s;
+  z-index: 100;
+  line-height: 0.82;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#notice-bar .notice-control:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+#notice-left {
+  left: 2rem;
+}
+#notice-right {
+  right: 2rem;
+}
+#notice-bar .notice {
+  margin: 0 0 .1rem 0;
+  padding: .3rem .5rem .1rem .5rem;
+  width: 100%;
+  white-space: nowrap;
+}
+#notice-bar .notice.clickable {
+  cursor: pointer;
+}
+#notice-bar .notice.clickable:hover .body {
+  text-decoration: underline;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+#notice-bar .notice .body {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5rem;
+  width: 100%;
+}
+.notice p {
+  margin-bottom: .5rem;
+  font-size: .9rem;
+}

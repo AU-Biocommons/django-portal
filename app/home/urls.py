@@ -19,6 +19,7 @@ urlpatterns = [
     path('resources/faqs/', views.faqs, name='faqs'),
     path('resources/video/', views.video, name='video'),
     path('resources/terms/', views.terms, name='terms'),
+    path('notice/<int:notice_id>', views.notice, name='notice'),
     path('degnan/', include('home.groups.degnan.urls')),
     path('tradis/', include('home.groups.tradis.urls')),
 ] + redirect_patterns
