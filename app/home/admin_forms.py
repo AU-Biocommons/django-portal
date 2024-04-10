@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
-from .models import User
+from .models import User, Notice
 
 
 class UserCreationForm(forms.ModelForm):
@@ -80,3 +80,37 @@ class UserChangeForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class NoticeAdminForm(forms.ModelForm):
+    """Update and create Notices.
+
+    Make the body widget bigger.
+    """
+
+    class Meta:
+        """Form metadata."""
+
+        model = Notice
+        widgets = {
+            'body_markdown': forms.Textarea(attrs={
+                'rows': 30,
+                'cols': 120,
+            }),
+        }
+        fields = '__all__'
+
+    def clean_title_html(self):
+        """Clean short description."""
+        title = self.cleaned_data['title_html']
+        if not title:
+            return title
+        if '</a>' in title:
+            self.add_error(
+                'title_html',
+                (
+                    'Please remove <a> tags as this creates a confusing user'
+                    ' experience (link within link).'
+                ),
+            )
+        return title
