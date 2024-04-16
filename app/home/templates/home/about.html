@@ -7,7 +7,14 @@
 
 {% block content %}
 <div class="container">
-  <h1>About the Apollo Service</h1>
+  <h1>About the Australian Apollo Service</h1>
+
+  <section>
+    <h3>How to cite the Apollo Service</h3>
+    {% include 'home/snippets/citation.html' %}
+  </section>
+
+  <hr>
 
   <section>
     <p>
@@ -37,20 +44,6 @@
       The Service is underpinned by computational resources provided by the
       <a href="https://pawsey.org.au/">Pawsey Supercomputing Research Centre</a>.
     </p>
-
-    <p>
-      When papers acknowledge the Australian Apollo Service, they support
-      continued research infrastructure investments by institutions and
-      governments. When you use the Australian Apollo Service to support your
-      publication or project, please cite its use using the following
-      acknowledgement statement and web address:
-    </p>
-
-    <blockquote>
-      This work was supported by the Australian Apollo Service
-      https://apollo-portal.genome.edu.au/ provided by the Australian BioCommons
-      and Operational Partners.
-    </blockquote>
   </section>
 </div>
 {% endblock %}
