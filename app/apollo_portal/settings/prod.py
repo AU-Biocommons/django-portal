@@ -18,6 +18,8 @@ CSRF_TRUSTED_ORIGINS = [
     for hostname in PRODUCTION_HOSTNAMES
 ]
 
+TIME_ZONE = 'Australia/Brisbane'
+
 # Use manifest to manage static file versions for cache busting:
 STATICFILES_STORAGE = ('django.contrib.staticfiles.storage'
                        '.ManifestStaticFilesStorage')

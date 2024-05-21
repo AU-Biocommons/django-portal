@@ -433,24 +433,26 @@
 
         <div v-if="genomeDetails" class="modal-footer justify-content-center">
           <a
-            :href="genomeDetails.apollo_url"
+            :href="genomeDetails.apollo_url ? genomeDetails.apollo_url : ''"
+            :class="genomeDetails.apollo_url ? 'btn btn-primary' : 'btn btn-secondary disabled'"
             target="_blank"
-            class="btn btn-primary"
             data-toggle="tooltip"
             data-title="Jump to Apollo genome browser"
             data-placement="bottom"
           >
-            Apollo browser
+            <span v-if="genomeDetails.apollo_url">Apollo browser</span>
+            <span v-else style="white-space: nowrap;">No browser</span>
           </a>
           <a
-            v-if="genomeDetails.tracks_url"
-            :href="genomeDetails.tracks_url"
-            class="btn btn-primary"
+            :href="genomeDetails.tracks_url ? genomeDetails.tracks_url : ''"
+            :class="genomeDetails.tracks_url ? 'btn btn-primary' : 'btn btn-secondary disabled'"
+            target="_blank"
             data-toggle="tooltip"
             data-title="View available tracks for this genome"
             data-placement="bottom"
           >
-            View tracks
+            <span v-if="genomeDetails.apollo_url">View tracks</span>
+            <span v-else>No tracks</span>
           </a>
         </div>
       </div>
