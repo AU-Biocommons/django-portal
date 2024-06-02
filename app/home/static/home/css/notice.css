@@ -62,3 +62,6 @@
   margin-bottom: .5rem;
   font-size: .9rem;
 }
+.notice .material-icons {
+  vertical-align: sub;
+}
