@@ -26,7 +26,7 @@ class PageSchema(SchemaClass):
 class Runserver:
     """Run Django development server to be queried by ElasticSearch."""
 
-    HOSTNAME = '127.0.0.1:8000'
+    HOSTNAME = '127.0.0.1:8001'
     ARGS = (
         sys.executable,
         'manage.py',
