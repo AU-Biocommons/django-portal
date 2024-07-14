@@ -1,12 +1,16 @@
 name: Deploy to prod
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Django tests"]
+    types:
+      - completed
     branches:
       - master
 
 jobs:
   run_pull:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: run server update
     runs-on: ubuntu-latest
     environment: Deployment
