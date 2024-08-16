@@ -627,6 +627,17 @@
     </a>
     .
   </p>
+  <p>
+    NOTE: The speed of loading reference genome will be very slow if the reference genome is created via Jbrowse interface. It might not be noticeable if the size of reference genome is small. 
+    Use prepare-refseqs.pl tool to create reference genome via the terminal if possible. This perl script splits the reference genome sequence into chunk (default: 20kb), and the loading speed of the reference genome/tracks in Jbrowse will improve greatly. This script is available on the Apollo instance.
+    See     
+    <a
+    href="https://jbrowse.org/docs/prepare-refseqs.pl.html"
+    >
+    here
+    </a>
+    for more details.
+  </p>
   <ol>
     <li>Log into your Apollo Instance</li>
     <li>
