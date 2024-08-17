@@ -10,7 +10,7 @@ from genomes.models import Genome, Lab, Track
 @api_view(['GET'])
 def labs(request):
     """Return requested labs as json."""
-    labs = Lab.objects.all()
+    labs = Lab.objects.all().order_by(Lower('name'))
     filter_labs_str = request.GET.get('labs')
     if filter_labs_str:
         filter_labs = [
@@ -34,8 +34,13 @@ def labs(request):
 
 @api_view(['GET'])
 def genomes(request):
-    """Return requested genomes as json."""
-    genomes = Genome.objects.all()
+    """Return requested genomes as json.
+
+    Optionally filter by GET parameters, where `group` matches
+    `genome.group.name` and `lab` is a comma-joined list of lab names which
+    matching `genome.lab.name`.
+    """
+    genomes = Genome.objects.all().order_by(Lower('name'))
     filter_group = request.GET.get('group')
     if filter_group:
         # Case insensitive filter by genome.group.name
@@ -62,7 +67,7 @@ def genomes(request):
 @api_view(['GET'])
 def tracks(request):
     """Return requested genomes as json."""
-    tracks = Track.objects.all()
+    tracks = Track.objects.all().order_by(Lower('name'))
     filter_keywords = {
         'group': 'genome__group__name__iexact',
         'genome_id': 'genome__id',
