@@ -15,8 +15,8 @@ class Lab(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
     description_html = models.TextField(null=True, blank=True, help_text=(
-        "Description of the genome with inline HTML. Use `<br>` for a new line"
-        " and `<a>` tags for links."
+        "Description of the genome with inline HTML. Use `&lt;br&gt;` for a "
+        "new line and `&lt;a&gt;` tags for links."
     ))
     website_url = models.URLField(null=True, blank=True, help_text=(
         "URL pointing to lab group public website."
@@ -92,8 +92,8 @@ class Genome(models.Model):
         "URL pointing to a public Apollo genome/tracks."
     ))
     description_html = models.TextField(null=True, blank=True, help_text=(
-        "Description of the genome with inline HTML. Use `<br>` for a new line"
-        " and `<a>` tags for links."
+        "Description of the genome with inline HTML. Use `&lt;br&gt;` for a "
+        "new line and `&lt;a&gt;` tags for links."
     ))
     reference = models.TextField(null=True, blank=True)
     doi = models.CharField(max_length=255, null=True, blank=True)
@@ -167,8 +167,8 @@ class Track(models.Model):
     accession_id = models.CharField(max_length=255, null=True, blank=True)
     track_type = models.CharField(max_length=255, null=True, blank=True)
     description_html = models.TextField(null=True, blank=True, help_text=(
-        "Description of the genome track with inline HTML. Use `<br>` for a"
-        " new line and `<a>` tags for links."
+        "Description of the genome with inline HTML. Use `&lt;br&gt;` for a "
+        "new line and `&lt;a&gt;` tags for links."
     ))
     apollo_url = models.URLField(null=True, blank=True, help_text=(
         "URL pointing to a public Apollo genome with this track loaded."
