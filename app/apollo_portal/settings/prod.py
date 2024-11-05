@@ -1,6 +1,8 @@
 """Production settings."""
 
 import os
+import logging
+import sentry_sdk
 from .base import *  # noqa: F403
 from apollo_portal.utils.environment import is_truthy_string
 
@@ -33,3 +35,12 @@ if not is_truthy_string(os.environ.get('USE_SQLITE_DB')):
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
+
+sentry_project_id = 'XXX'
+sentry_sdk.init(
+    dsn=f"https://{sentry_project_id}@sentry.galaxyproject.org/20",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+)
+logging.getLogger('sentry_sdk').setLevel(logging.ERROR)
