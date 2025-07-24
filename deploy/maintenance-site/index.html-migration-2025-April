@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apollo Portal | Migration </title>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        color: white;
+        font-family: "Poppins", sans-serif;
+        background-color: black;
+        height: 90vh;
+      }
+      img {
+        width: 55%;
+        height: auto;
+        margin-left: -15%;
+        position: relative;
+      }
+      h1 {
+        font-weight: 400;
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.25rem;
+      }
+      .main {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 10%;
+        justify-content: center;
+        align-items: center;
+      }
+      .text {
+        position: relative;
+        z-index: 2;
+        padding: 25px;
+      }
+      @media (max-width: 745px) {
+        img {
+          width: 100%;
+        }
+        .main {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="text">
+        <h1> Outage Notification: Apollo Service Migration </h1>
+        <br><br>
+        <p>
+	The <b>Apollo Service</b> is currently <b>offline</b>. <br>
+	  <br>
+	  Please be advised that the Apollo Service is currently unavailable
+	  as we migrate to a new infrastructure provider.
+	  The Apollo Service and broader infrastructure partner teams are working diligently
+	  to complete this transition as quickly and smoothly as possible.
+	  We will notify Apollo users as soon as the Apollo Service is back online.
+	  <br>
+	  <br>
+	  We thank you for your patience and understanding during this time.
+	  <br>
+	  <br>
+	  If you have any questions regarding this outage,
+	  please email us at apollo-support at genome [dot] edu [dot] au.
+        </p>
+      </div>
+
+      <img src="/img/fish1920_new.jpg" alt="Tropical fish">
+    </div>
+  </body>
+</html>

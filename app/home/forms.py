@@ -3,6 +3,7 @@
 import logging
 from captcha.fields import ReCaptchaField
 from django import forms
+from django.utils.safestring import mark_safe
 from .fields import OtherChoiceField
 from . import choices, notify, validators, widgets
 
@@ -26,7 +27,7 @@ class HoneypotSpamFilterMixin(forms.Form):
     # Named to avoid spam bot detection:
     HONEYPOT_FIELD_NAME = 'institution_hp'
     institution_hp = forms.CharField(required=False)
-    honeypot_field = (
+    honeypot_field = mark_safe(
         f'<input type="text" name="{HONEYPOT_FIELD_NAME}"'
         f'  id="id_{HONEYPOT_FIELD_NAME}" required />\n'
         '<script type="text/javascript">\n'
