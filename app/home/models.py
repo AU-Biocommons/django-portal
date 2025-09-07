@@ -92,3 +92,20 @@ class Notice(models.Model):
         super().clean()
         if self.material_icon:
             self.material_icon = self.material_icon.lower().replace(' ', '_')
+
+
+class FAQ(models.Model):
+    """Store FAQs to be rendered on FAQ page."""
+
+    question = models.CharField(
+        max_length=200,
+        help_text="Plain text only please.",
+    )
+    answer = models.CharField(
+        max_length=2000,
+        help_text="Plain text or HTML are accepted.",
+    )
+    hide = models.BooleanField(
+        default=False,
+        help_text="Don't show this entry on the FAQs page."
+    )

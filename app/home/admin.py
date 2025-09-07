@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .admin_forms import NoticeAdminForm, UserCreationForm, UserChangeForm
-from .models import User, Notice
+from .models import User, Notice, FAQ
 
 
 class UserAdmin(BaseUserAdmin):
@@ -84,5 +84,15 @@ class NoticeAdmin(admin.ModelAdmin):
     order = ('-datetime_modified',)
 
 
+class FAQAdmin(admin.ModelAdmin):
+    """Administer FAQs."""
+
+    list_display = [
+        'question',
+        'hide',
+    ]
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Notice, NoticeAdmin)
+admin.site.register(FAQ, FAQAdmin)
