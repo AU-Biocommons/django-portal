@@ -2,9 +2,11 @@
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django import forms
+from django.db import models
 
 from .admin_forms import NoticeAdminForm, UserCreationForm, UserChangeForm
-from .models import User, Notice
+from .models import User, Notice, FAQ
 
 
 class UserAdmin(BaseUserAdmin):
@@ -84,5 +86,34 @@ class NoticeAdmin(admin.ModelAdmin):
     order = ('-datetime_modified',)
 
 
+class FAQAdmin(admin.ModelAdmin):
+    """Administer FAQs."""
+
+    class Media:
+        """Custom CSS for FAQ admin."""
+
+        css = {
+            'all': ('home/css/admin-faq.css',)
+        }
+
+    formfield_overrides = {
+        models.CharField: {
+            'widget': forms.Textarea(
+                attrs={
+                    'class': 'monospace-textarea',
+                    'rows': 10,
+                    'cols': 120,
+                },
+            ),
+        },
+    }
+
+    list_display = [
+        'question',
+        'hidden',
+    ]
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Notice, NoticeAdmin)
+admin.site.register(FAQ, FAQAdmin)

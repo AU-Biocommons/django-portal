@@ -1,0 +1,78 @@
+[
+  {
+    "question": "What is the Apollo Service?\n",
+    "answer": "The Apollo software package is a web-based tool for visualising           genomic contents and manually improving gene predictions. It allows           researchers to work on a reference genome collaboratively. The Apollo           Service provides Australian-based researchers with customised, local           instances of the Apollo software for their genome projects.\n"
+  },
+  {
+    "question": "How can I get an Apollo Instance?\n",
+    "answer": "Researchers from Australian-based research groups and consortia can           obtain an Apollo Instance by applying for an account on the\n<a href=\"/signup\">\n sign up webpage\n</a>\n. Further details can be found in the\n<a href=\"/resources/start\">\n Getting Started tab\n</a>\n.\n"
+  },
+  {
+    "question": "Can I trial Apollo before signing up?\n",
+    "answer": "To become familiar with the Apollo environment, please use the           demonstration site created by the official Apollo developers,           accessible via the\n<a href=\"https://genomearchitect.readthedocs.io/en/latest/UsersGuide.html#public-demo\">\n Apollo public demo instance\n</a>\n, with the credentials:\n<br/>\n<br/>\n<br/>\n<strong>\n username\n</strong>\ndemo@demo.com\n<br/>\n<strong>\n password\n</strong>\ndemo\n"
+  },
+  {
+    "question": "I am a non-Australian-based researcher, can I access the Apollo             Service?\n",
+    "answer": "The service is funded to support\n<a href=\"/resources/terms#AusUni\">\n Australian-based research groups and consortia\n</a>\n, and only Principal Investigators with an institutional email           address from an\n<a href=\"/resources/terms#AusUni\">\n Australian research institution\n</a>\nmay apply for a hosted Apollo Instance. International collaborators           are however very welcome to be invited to collaborate within an           established Instance or view data. This is at the discretion of the           Instance managers, i.e. the Instance Project Administrator and/or           Principal Investigator.\n"
+  },
+  {
+    "question": "Can Apollo automatically annotate my genome?\n",
+    "answer": "No. Apollo is a tool to manually correct genome annotations that have           already been produced from automated tools or pipelines. A           non-exhaustive list of genome annotation tools is available via our\n<a href=\"https://australianbiocommons.github.io/2_tools.html\">\n Tool Finder\n</a>\n.\n"
+  },
+  {
+    "question": "How can I get training to use Apollo?\n",
+    "answer": "Training for the Apollo Service is in development with plans to offer           workshops or webinars on the Apollo Service. Training will be           advertised to users through their email or via the\n<a href=\"https://groups.google.com/a/lbl.gov/g/apollo\">\n Genome Annotation Google Group\n</a>\n.\u00a0A number of\n<a href=\"/resources/video\">\n video resources\n</a>\nare available to help you get started using the Apollo Service.\n"
+  },
+  {
+    "question": "How can I get an Apollo Instance?\n",
+    "answer": "Researchers from\n<a href=\"/resources/terms#AusUni\">\n Australian-based research groups and research consortia\n</a>\ncan obtain an Apollo Instance by applying for an account at the\n<a href=\"/signup\">\n sign up webpage\n</a>\n. Further details can be found in the\n<a href=\"/resources/start\">\n Getting Started tab\n</a>\n.\n"
+  },
+  {
+    "question": "How long will my Apollo Instance be around?\n",
+    "answer": "The Service will continue for the lifetime of the Australian           BioCommons, which is currently funded until June 2028. However, in the           case of use that interferes with operations or violates the\n<a href=\"/resources/terms\">\n Apollo Service Terms of Use and Policies\n</a>\nor applicable laws, Australian BioCommons reserves the right,           without notice, to restrict or remove access.\n"
+  },
+  {
+    "question": "Do I have to pay for my Apollo Instance?\n",
+    "answer": "No. The service is fully subsidised for Australian researchers and           their collaborators thanks to:\n<a href=\"https://www.dese.gov.au/national-research-infrastructure\">\n National Collaborative Research Infrastructure Strategy (NCRIS)\n</a>\ninvestments made by\n<a href=\"https://bioplatforms.com/\">\n Bioplatforms Australia (BPA)\n</a>\n,           investment from the\n<a href=\" https://science.des.qld.gov.au/funding/ricf\">\n Queensland Government's Research Infrastructure Co-investment Fund             (RICF)\n</a>\nand generous computational resourcing from the\n<a href=\"https://pawsey.org.au/\">\n Pawsey Supercomputing Centre\n</a>\n. The\n<a href=\"https://www.biocommons.org.au/\">\n Australian BioCommons\n</a>\n(hosted by\n<a href=\"https://www.unimelb.edu.au/\">\n The University of Melbourne\n</a>\n)           operates the Apollo Portal and Apollo Service in collaboration with\n<a href=\"https://www.qcif.edu.au/\">\n Queensland Cyber Infrastructure Foundation (QCIF)\n</a>\n.\n"
+  },
+  {
+    "question": "Who will have access to my data on Apollo?\n",
+    "answer": "Control over the access to curate or view data is determined by the           Project Administrator of the Apollo Instance. Access to data in your           Apollo Instance is private by default. The Project           Administrator\u00a0can grant access with access for public view and/or           restricted view.\n"
+  },
+  {
+    "question": "Can I publish my genomes using Apollo?\n",
+    "answer": "Yes. As the manager of an Apollo Instance, just upload the genome, any           associated aligned genomic data then make genomes and tracks viewable           by the public. You can follow the user resource to do so\n<a href=\"/resources/documentation#seven\">\n here\n</a>\n.\n"
+  },
+  {
+    "question": "Is there a help desk I can contact?\n",
+    "answer": "Yes. To access help with your Apollo Instance please email support at\n<a href=\"mailto:apollo-support@genome.edu.au\">\n apollo-support@genome.edu.au\n</a>\n.\n"
+  },
+  {
+    "question": "What is the difference between Apollo and JBrowse?\n",
+    "answer": "JBrowse is a web-browser based genome browser that can be used to           interactively view and explore a genome and any aligned genomics data           (e.g. sequences reads of transcripts).\n<br/>\n<br/>\nApollo is a tool that is built on top of JBrowse that lets users view           a genome, associated annotation file and any other aligned genomics           data, but also enables trusted users to curate/correct the genome           annotation files by making changes.\n"
+  },
+  {
+    "question": "Can I make my genomes available to view to the public?\n",
+    "answer": "Yes. As the manager of an Apollo instance you can choose to make           genomes and tracks viewable to the public. To do this, you can follow           the user resource\n<a href=\"/resources/documentation#seven\">\n here\n</a>\n.\n"
+  },
+  {
+    "question": "Can I make my genomes private?\n",
+    "answer": "Yes. As the manager of an Apollo Instance you can choose to make           genomes and tracks private and only viewable (and editable if you           like) by trusted collaborators.\n"
+  },
+  {
+    "question": "I have sensitive genomic data, can I use this Apollo Service?\n",
+    "answer": "The Apollo Service is not designed to handle sensitive data. You are           prohibited from using the Service to store or process sensitive data,           including but not limited to personally identifying genetic, genomic           or medical data.\n"
+  },
+  {
+    "question": "Will my personal and genome data be shared?\n",
+    "answer": "The Apollo Service is committed to protecting your privacy. We do not           collect, process, retain or share personal data other than for the           purposes described in the\n<a href=\"/resources/terms\">\n Apollo Service Privacy Policy\n</a>\n.\n<br/>\n<br/>\nThe Apollo Service stores data which you provide to us voluntarily           when you upload data or annotate data. You are prohibited from using           the Apollo Service to host or process sensitive data, including but           not limited to personal data. We may examine the data you share           through the service for alignment with our\n<a href=\"/resources/terms\">\n Acceptable Use Policy\n</a>\n.\n"
+  },
+  {
+    "question": "Where is my genome data hosted?\n",
+    "answer": "All data is stored and processed in Australia by our Operational           Partners.\n"
+  },
+  {
+    "question": "How can I acknowledge the Apollo Instance that was built for me?\n",
+    "answer": "<p>\n When you use Apollo Portal to support your publication or project,             please use the following acknowledgement statement:\n</p>\n<p class=\"my-5\">\n This work is supported by the Australian Apollo Service             (\n <a href=\"/\">\n  https://apollo-portal.genome.edu.au\n </a>\n )             provided by Australian BioCommons and its partners. The service             receives NCRIS funding through Bioplatforms Australia,             as well as Queensland Government RICF funding.\n</p>\n"
+  }
+]

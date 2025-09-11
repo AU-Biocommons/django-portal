@@ -1,0 +1,7 @@
+.monospace-textarea {
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 12px;
+    line-height: 1.4;
+    resize: vertical;
+    min-height: 80px;
+}

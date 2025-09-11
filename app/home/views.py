@@ -3,7 +3,7 @@ import pprint
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .forms import ContactForm, SignUpForm
-from .models import Notice
+from .models import FAQ, Notice
 from . import search
 
 logger = logging.getLogger('django')
@@ -148,6 +148,7 @@ def training(request):
 
 def faqs(request):
     return render(request, 'home/resources/faqs.html', {
+        'faqs': FAQ.objects.filter(hidden=False),
         'nav': get_resource_nav_context(request),
     })
 
