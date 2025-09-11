@@ -89,7 +89,7 @@ class FAQAdmin(admin.ModelAdmin):
 
     list_display = [
         'question',
-        'hide',
+        'hidden',
     ]
 
 

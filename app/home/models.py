@@ -105,7 +105,7 @@ class FAQ(models.Model):
         max_length=2000,
         help_text="Plain text or HTML are accepted.",
     )
-    hide = models.BooleanField(
+    hidden = models.BooleanField(
         default=False,
         help_text="Don't show this entry on the FAQs page."
     )

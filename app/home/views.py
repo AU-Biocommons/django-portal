@@ -148,7 +148,7 @@ def training(request):
 
 def faqs(request):
     return render(request, 'home/resources/faqs.html', {
-        'faqs': FAQ.objects.filter(hide=False),
+        'faqs': FAQ.objects.filter(hidden=False),
         'nav': get_resource_nav_context(request),
     })
 
