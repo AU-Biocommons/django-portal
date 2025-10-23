@@ -1,0 +1,29 @@
+<style>
+  .unpublished-bubble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    padding: 4px 10px;
+    color: red;
+    font-size: 1.25rem;
+    display: block;
+    transform: translate(-75%, -75%);
+    background: salmon;
+    border-radius: 50%;
+  }
+  .unpublished-bubble span.material-icons {
+    margin: 0;
+    vertical-align: middle;
+  }
+</style>
+<div
+  class="unpublished-bubble"
+  data-bs-toggle="tooltip"
+  data-bs-placement="left"
+  title="This content is unpublished - it is only visible to admin users"
+>
+  <span class="material-icons">visibility_off</span>
+</div>

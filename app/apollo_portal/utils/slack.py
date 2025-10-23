@@ -11,16 +11,18 @@ def post(message):
     key = os.environ.get("SLACK_API_KEY")
     user_id = os.environ.get("SLACK_MENTION_USER_ID")
     channel_id = os.environ.get("SLACK_CHANNEL_ID")
+    hostname = os.environ.get("HOSTNAME", 'unknown server')
 
     if key is None:
         return
-    if user_id:
-        message = f'<@{user_id}> {message}'
+
+    mention_str = f'<@{user_id}> ' if user_id else ' '
+    text = f'{mention_str}[{hostname}]\n{message}'
 
     requests.post(
         SLACK_URL,
         json={
-            "text": message,
+            "text": text,
             "channel": channel_id,
         },
         headers={

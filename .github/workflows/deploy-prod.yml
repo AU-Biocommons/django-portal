@@ -1,12 +1,16 @@
 name: Deploy to prod
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Django tests"]
+    types:
+      - completed
     branches:
       - master
 
 jobs:
   run_pull:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: run server update
     runs-on: ubuntu-latest
     environment: Deployment
@@ -17,9 +21,9 @@ jobs:
       # https://stackoverflow.com/a/70447517
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY_PROD }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SSH_HOST_PROD }} > ~/.ssh/known_hosts
+        echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER_PROD }}@${{ secrets.SSH_HOST_PROD }} "/home/ubuntu/update.sh && exit"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "/home/ubuntu/update.sh && exit"
     - name: cleanup
       run: rm -rf ~/.ssh

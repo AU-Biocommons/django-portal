@@ -4,13 +4,13 @@ You have been nominated by {{ data.name|safe }} as a Project Administrator on th
 
 Once your Instance has been created, you have two options for uploading data to your Apollo Instance. If your data files are greater than 2 GB, we recommend uploading data to your Instance via the command line. To provide you with access to your Instance from the command line, please provide the Apollo Service Team with your public-key. If you are unsure how to generate a public key please see the following help resource.
 
-Alternatively, if your data files are not more than 2 GB, you can upload your files via the Apollo (browser) Interface and you do not need a public-key for this purpose. 
+Alternatively, if your data files are not more than 2 GB, you can upload your files via the Apollo (browser) Interface and you do not need a public-key for this purpose.
 
 Please read and familiarise yourself with the Apollo Service Terms of Use and Policies. Some of the fine print:
 
 The Service is fully subsidised for research groups / consortia where the Principal Investigator is employed by an Australian-based academic or research institute;
 The Principal Investigator is ultimately responsible for the hosted Apollo Instance and must ensure all users adhere to the Apollo Service Terms of Use and Policies;
-This Service is designed for the long term storage of genome assembly and annotation data. We can guarantee, that the service will be available to the current operational horizon of the Australian BioCommons (i.e. June 2023)
+This Service is designed for the long term storage of genome assembly and annotation data. We can guarantee that the service will be available to the current operational horizon of Australian BioCommons (i.e. June 2028)
 The Service is subject to overall storage quota limits and project administrators and users must monitor their volume of large support files (e.g. BAM) and only host these for the duration they are needed; and
 The Apollo Service is not designed for hosting sensitive data.
 You will be notified with login details once your Instance has been created. Additional user resources are located on the Apollo Service website.

@@ -118,16 +118,16 @@
         <td>
           <a
             :href="track.apollo_url"
+            :href="track.apollo_url ? track.apollo_url : ''"
+            :class="track.apollo_url ? 'btn btn-primary' : 'btn btn-secondary disabled'"
             target="_blank"
+            class="btn btn-primary"
+            data-toggle="tooltip"
+            data-title="View genome track on Apollo"
+            data-placement="bottom"
           >
-            <button
-              class="btn btn-primary"
-              data-toggle="tooltip"
-              data-title="View genome track on Apollo"
-              data-placement="bottom"
-            >
-              Browser
-            </button>
+          <span v-if="track.apollo_url">Browser</span>
+          <small v-else style="white-space: nowrap;">No browser</small>
           </a>
         </td>
         <td>

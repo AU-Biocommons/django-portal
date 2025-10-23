@@ -4,9 +4,10 @@ django-recaptcha==3.*
 whoosh==2.*
 python-dotenv==1.*
 BeautifulSoup4==4.*
-gunicorn
 Pillow==10.0
 factory_boy==3.3
+markdown2==2.4
+gunicorn
 requests
 psycopg2-binary
 pyyaml
